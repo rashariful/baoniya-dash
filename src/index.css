@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Premium Orange Theme - Brand Color: #FE5F15 */
+
+@layer base {
+  :root {
+    /* Background & text */
+    --background: 145 70% 98%; /* Light off-white green tint */
+    --foreground: 145 80% 5%;  /* Very dark green */
+
+    /* Primary: Emerald Green (#033320) */
+    --primary: 145 88% 10%; 
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: Golden Yellow (#CF962C) */
+    --secondary: 38 65% 50%; 
+    --secondary-foreground: 0 0% 100%;
+
+    /* Accent: Darker Emerald (#014B27) */
+    --accent: 145 95% 15%; 
+    --accent-foreground: 0 0% 100%;
+
+    /* Card & surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 145 80% 5%;
+
+    /* Sidebar - Deep Emerald (#033320) */
+    --sidebar-background: 145 88% 10%;
+    --sidebar-foreground: 145 10% 90%;
+    --sidebar-primary: 38 65% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 145 95% 15%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 145 80% 15%;
+    --sidebar-ring: 38 65% 50%;
+
+    /* Other system tokens (using emerald/neutral scales) */
+    --muted: 145 20% 92%;
+    --muted-foreground: 145 20% 40%;
+    --border: 145 20% 85%;
+    --input: 145 20% 85%;
+    --ring: 145 88% 10%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark mode inverted for green theme */
+    --background: 145 80% 5%;
+    --foreground: 145 20% 95%;
+
+    --primary: 145 95% 15%; /* #014B27 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 38 65% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --sidebar-background: 145 88% 8%;
+    --sidebar-accent: 145 95% 12%;
+    /* ... rest of dark mode tokens remain similar to root logic */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
