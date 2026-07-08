@@ -1,15 +1,15 @@
 "use client";
-import { LockOutlined, MailOutlined } from "@ant-design/icons";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Form, Input, Typography, message } from "antd";
 import { useLoginMutation } from "@/redux/api/authApi";
 import { setUser } from "@/redux/features/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import logo from "@/assets/logo.jpeg"; // Replace with your School/Academy Logo
+import logo from "@/assets/logo.jpeg";
 import { storeUserInfo } from "@/utils/auth";
 import { verifyToken } from "@/utils/jwt";
-import { BookOpen, GraduationCap, Users } from "lucide-react"; // Updated Icons
+import { BookOpen, GraduationCap, Users } from "lucide-react";
 
 const { Title, Text } = Typography;
 
@@ -21,12 +21,28 @@ export default function LoginPage() {
 
   const onFinish = async (values) => {
     try {
-      const res = await login(values).unwrap();
+      const { identifier, password } = values;
+
+      // 🔥 identifier ta email na phone eta detect kora
+      const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identifier);
+
+      const payload = isEmail
+        ? { email: identifier.toLowerCase(), password }
+        : { phone: identifier, password };
+
+      const res = await login(payload).unwrap();
       const decoded = verifyToken(res?.data?.accessToken);
       const role = decoded.role;
 
       dispatch(setUser({ user: { ...res.data, role }, token: res?.data?.accessToken }));
       storeUserInfo({ accessToken: res?.data?.accessToken });
+
+      // 🔥 mustChangePassword check — password change page e redirect
+      if (res?.data?.user?.mustChangePassword) {
+        message.info("Please change your password to continue.");
+        navigate("/change-password", { replace: true });
+        return;
+      }
 
       message.success("Welcome back to your learning journey!");
 
@@ -34,6 +50,7 @@ export default function LoginPage() {
         admin: "/dashboard",
         mentor: "/mentor",
         teacher: "/teacher",
+        student: "/student",
       };
 
       const from = location.state?.from?.pathname || roleBasePath[role] || "/dashboard";
@@ -44,19 +61,18 @@ export default function LoginPage() {
   };
 
   return (
-    // Academic Deep Blue / Teal Theme
     <div className="min-h-screen bg-[#033320] flex items-center justify-center p-4 relative overflow-hidden">
-      
-      {/* Subtle Geometric Pattern */}
-      <div className="absolute inset-0 opacity-[0.05]" 
-           style={{ backgroundImage: "radial-gradient(#CF962C 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+      <div
+        className="absolute inset-0 opacity-[0.05]"
+        style={{ backgroundImage: "radial-gradient(#CF962C 1px, transparent 1px)", backgroundSize: "40px 40px" }}
+      />
 
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }} 
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         className="w-full max-w-md z-10"
       >
-        <Card 
+        <Card
           className="shadow-2xl border-t-4 border-t-[#CF962C] rounded-2xl overflow-hidden"
           bodyStyle={{ padding: "40px" }}
         >
@@ -67,25 +83,37 @@ export default function LoginPage() {
           </div>
 
           <Form name="login" onFinish={onFinish} layout="vertical">
-            <Form.Item name="email" rules={[{ required: true, type: 'email' }]}>
-              <Input prefix={<MailOutlined className="text-slate-400" />} size="large" placeholder="Institutional Email" />
+            <Form.Item
+              name="identifier"
+              rules={[
+                { required: true, message: "Please enter your phone or email" },
+              ]}
+            >
+              <Input
+                prefix={<UserOutlined className="text-slate-400" />}
+                size="large"
+                placeholder="Phone Number or Email"
+              />
             </Form.Item>
 
-            <Form.Item name="password" rules={[{ required: true }]}>
-              <Input.Password prefix={<LockOutlined className="text-slate-400" />} size="large" placeholder="Password" />
+            <Form.Item name="password" rules={[{ required: true, message: "Please enter your password" }]}>
+              <Input.Password
+                prefix={<LockOutlined className="text-slate-400" />}
+                size="large"
+                placeholder="Password"
+              />
             </Form.Item>
 
-            <Button 
-              type="primary" 
-              htmlType="submit" 
-              loading={isLoading} 
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={isLoading}
               className="w-full h-12 bg-[#014B27] hover:bg-[#033320] border-0 shadow-lg font-semibold text-white mt-2"
             >
               Access Classroom
             </Button>
           </Form>
 
-          {/* Educational Trust Badges */}
           <div className="flex justify-center gap-6 mt-8 text-[#6b9b7b]">
             <div className="flex flex-col items-center"><BookOpen size={20} /><span className="text-[10px] mt-1 uppercase font-bold">Curriculum</span></div>
             <div className="flex flex-col items-center"><GraduationCap size={20} /><span className="text-[10px] mt-1 uppercase font-bold">Certified</span></div>
@@ -96,6 +124,105 @@ export default function LoginPage() {
     </div>
   );
 }
+
+// "use client";
+// import { LockOutlined, MailOutlined } from "@ant-design/icons";
+// import { Button, Card, Form, Input, Typography, message } from "antd";
+// import { useLoginMutation } from "@/redux/api/authApi";
+// import { setUser } from "@/redux/features/authSlice";
+// import { useDispatch } from "react-redux";
+// import { useNavigate, useLocation } from "react-router-dom";
+// import { motion } from "framer-motion";
+// import logo from "@/assets/logo.jpeg"; // Replace with your School/Academy Logo
+// import { storeUserInfo } from "@/utils/auth";
+// import { verifyToken } from "@/utils/jwt";
+// import { BookOpen, GraduationCap, Users } from "lucide-react"; // Updated Icons
+
+// const { Title, Text } = Typography;
+
+// export default function LoginPage() {
+//   const [login, { isLoading }] = useLoginMutation();
+//   const dispatch = useDispatch();
+//   const navigate = useNavigate();
+//   const location = useLocation();
+
+//   const onFinish = async (values) => {
+//     try {
+//       const res = await login(values).unwrap();
+//       const decoded = verifyToken(res?.data?.accessToken);
+//       const role = decoded.role;
+
+//       dispatch(setUser({ user: { ...res.data, role }, token: res?.data?.accessToken }));
+//       storeUserInfo({ accessToken: res?.data?.accessToken });
+
+//       message.success("Welcome back to your learning journey!");
+
+//       const roleBasePath = {
+//         admin: "/dashboard",
+//         mentor: "/mentor",
+//         teacher: "/teacher",
+//       };
+
+//       const from = location.state?.from?.pathname || roleBasePath[role] || "/dashboard";
+//       navigate(from, { replace: true });
+//     } catch (err) {
+//       message.error(err?.data?.message || "Invalid credentials!");
+//     }
+//   };
+
+//   return (
+//     // Academic Deep Blue / Teal Theme
+//     <div className="min-h-screen bg-[#033320] flex items-center justify-center p-4 relative overflow-hidden">
+      
+//       {/* Subtle Geometric Pattern */}
+//       <div className="absolute inset-0 opacity-[0.05]" 
+//            style={{ backgroundImage: "radial-gradient(#CF962C 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+
+//       <motion.div 
+//         initial={{ opacity: 0, scale: 0.95 }} 
+//         animate={{ opacity: 1, scale: 1 }}
+//         className="w-full max-w-md z-10"
+//       >
+//         <Card 
+//           className="shadow-2xl border-t-4 border-t-[#CF962C] rounded-2xl overflow-hidden"
+//           bodyStyle={{ padding: "40px" }}
+//         >
+//           <div className="text-center mb-8">
+//             <img src={logo} alt="Logo" className="w-20 h-20 mx-auto mb-4 object-contain" />
+//             <Title level={3} className="!text-[#033320] font-bold">Al-Noor Academy</Title>
+//             <Text className="text-slate-500">Log in to continue your education</Text>
+//           </div>
+
+//           <Form name="login" onFinish={onFinish} layout="vertical">
+//             <Form.Item name="email" rules={[{ required: true, type: 'email' }]}>
+//               <Input prefix={<MailOutlined className="text-slate-400" />} size="large" placeholder="Institutional Email" />
+//             </Form.Item>
+
+//             <Form.Item name="password" rules={[{ required: true }]}>
+//               <Input.Password prefix={<LockOutlined className="text-slate-400" />} size="large" placeholder="Password" />
+//             </Form.Item>
+
+//             <Button 
+//               type="primary" 
+//               htmlType="submit" 
+//               loading={isLoading} 
+//               className="w-full h-12 bg-[#014B27] hover:bg-[#033320] border-0 shadow-lg font-semibold text-white mt-2"
+//             >
+//               Access Classroom
+//             </Button>
+//           </Form>
+
+//           {/* Educational Trust Badges */}
+//           <div className="flex justify-center gap-6 mt-8 text-[#6b9b7b]">
+//             <div className="flex flex-col items-center"><BookOpen size={20} /><span className="text-[10px] mt-1 uppercase font-bold">Curriculum</span></div>
+//             <div className="flex flex-col items-center"><GraduationCap size={20} /><span className="text-[10px] mt-1 uppercase font-bold">Certified</span></div>
+//             <div className="flex flex-col items-center"><Users size={20} /><span className="text-[10px] mt-1 uppercase font-bold">Community</span></div>
+//           </div>
+//         </Card>
+//       </motion.div>
+//     </div>
+//   );
+// }
 
 // "use client";
 // import { LockOutlined, MailOutlined } from "@ant-design/icons";

@@ -491,7 +491,6 @@ export const studentFormFields: FormField[] = [
     type: "text",
     placeholder: "Enter roll number",
     span: 12,
-    required: true,
   },
   {
     name: "classId",
@@ -501,13 +500,34 @@ export const studentFormFields: FormField[] = [
     span: 12,
     dynamicOptions: true,
     options: [],
+    required: true,
   },
-    {
+  {
+    name: "sectionId",
+    label: "Section",
+    type: "select",
+    placeholder: "Select section",
+    span: 12,
+    dynamicOptions: true,
+    options: [],
+  },
+  {
+    name: "sessionId",
+    label: "Academic Session",
+    type: "select",
+    placeholder: "Select academic session",
+    span: 12,
+    dynamicOptions: true,
+    options: [],
+    required: true,
+  },
+  {
     name: "phone",
     label: "Phone",
     type: "text",
     placeholder: "Enter phone number",
     span: 12,
+    required: true,
   },
   {
     name: "fatherName",
@@ -524,14 +544,6 @@ export const studentFormFields: FormField[] = [
     span: 12,
   },
   {
-    name: "section",
-    label: "Section",
-    type: "text",
-    placeholder: "Enter section (e.g. A)",
-    span: 12,
-  },
-
-  {
     name: "address",
     label: "Address",
     type: "textarea",
@@ -543,7 +555,19 @@ export const studentFormFields: FormField[] = [
 /* =========================
    👨‍🏫 TEACHER
 ========================= */
+/* =========================
+   👨‍🏫 TEACHER
+========================= */
 export const teacherFormFields: FormField[] = [
+  // =========================
+  // Basic Information
+  // =========================
+  {
+    name: "picture",
+    label: "Profile Picture",
+    type: "image",
+    span: 24,
+  },
   {
     name: "name",
     label: "Teacher Name",
@@ -553,41 +577,687 @@ export const teacherFormFields: FormField[] = [
     required: true,
   },
   {
+    name: "nid",
+    label: "NID Number",
+    type: "text",
+    placeholder: "Enter NID number",
+    span: 12,
+  },
+  {
+    name: "birthCertificateNo",
+    label: "Birth Certificate No",
+    type: "text",
+    placeholder: "Enter Birth Certificate Number",
+    span: 12,
+  },
+  {
+    name: "gender",
+    label: "Gender",
+    type: "select",
+    options: [
+      { label: "Male", value: "Male" },
+      { label: "Female", value: "Female" },
+      { label: "Other", value: "Other" },
+    ],
+    span: 12,
+  },
+  {
+    name: "dateOfBirth",
+    label: "Date of Birth",
+    type: "date",
+    span: 12,
+  },
+  {
+    name: "bloodGroup",
+    label: "Blood Group",
+    type: "select",
+    options: [
+      { label: "A+", value: "A+" },
+      { label: "A-", value: "A-" },
+      { label: "B+", value: "B+" },
+      { label: "B-", value: "B-" },
+      { label: "AB+", value: "AB+" },
+      { label: "AB-", value: "AB-" },
+      { label: "O+", value: "O+" },
+      { label: "O-", value: "O-" },
+    ],
+    span: 12,
+  },
+  {
+    name: "religion",
+    label: "Religion",
+    type: "text",
+    placeholder: "Islam / Hindu / Christian",
+    span: 12,
+  },
+  {
+    name: "maritalStatus",
+    label: "Marital Status",
+    type: "select",
+    options: [
+      { label: "Single", value: "Single" },
+      { label: "Married", value: "Married" },
+      { label: "Divorced", value: "Divorced" },
+      { label: "Widowed", value: "Widowed" },
+    ],
+    span: 12,
+  },
+
+  // =========================
+  // Professional Information
+  // =========================
+  {
+    name: "designation",
+    label: "Designation",
+    type: "text",
+    placeholder: "Assistant Teacher",
+    span: 12,
+    required: true,
+  },
+  {
+    name: "department",
+    label: "Department",
+    type: "text",
+    placeholder: "Science",
+    span: 12,
+  },
+  {
     name: "subject",
     label: "Subject",
     type: "text",
-    placeholder: "e.g. Mathematics",
+    placeholder: "Mathematics",
     span: 12,
   },
   {
-    name: "phone",
-    label: "Phone",
+    name: "qualification",
+    label: "Highest Qualification",
     type: "text",
-    placeholder: "Enter phone number",
+    placeholder: "M.Sc / B.Sc / MBA",
     span: 12,
   },
   {
-    name: "email",
-    label: "Email",
-    type: "text",
-    placeholder: "Enter email address",
+    name: "teachingExperience",
+    label: "Teaching Experience (Years)",
+    type: "number",
+    placeholder: "0",
     span: 12,
-  },
-  {
-    name: "address",
-    label: "Address",
-    type: "textarea",
-    placeholder: "Enter address",
-    span: 24,
   },
   {
     name: "salary",
     label: "Salary",
     type: "number",
-    placeholder: "0.00",
+    placeholder: "0",
+    span: 12,
+  },
+  {
+    name: "joinDate",
+    label: "Joining Date",
+    type: "date",
+    span: 12,
+  },
+  {
+    name: "schoolJoinDate",
+    label: "School Joining Date",
+    type: "date",
+    span: 12,
+  },
+  {
+    name: "employmentType",
+    label: "Employment Type",
+    type: "select",
+    options: [
+      { label: "Permanent", value: "Permanent" },
+      { label: "Contract", value: "Contract" },
+      { label: "Part Time", value: "Part Time" },
+    ],
+    span: 12,
+  },
+  {
+    name: "status",
+    label: "Status",
+    type: "select",
+    options: [
+      { label: "Active", value: "Active" },
+      { label: "Inactive", value: "Inactive" },
+      { label: "Resigned", value: "Resigned" },
+    ],
+    span: 12,
+  },
+  {
+    name: "bio",
+    label: "Biography",
+    type: "textarea",
+    placeholder: "Short biography",
+    span: 24,
+  },
+
+  // =========================
+  // Educational Information
+  // =========================
+
+  // SSC / Dakhil
+  {
+    name: "education.0.label",
+    label: "Exam",
+    type: "select",
+    options: [
+      { label: "SSC", value: "SSC" },
+      { label: "Dakhil", value: "Dakhil" },
+    ],
+    span: 6,
+  },
+  {
+    name: "education.0.institute",
+    label: "SSC / Dakhil Institute",
+    type: "text",
+    span: 10,
+  },
+  {
+    name: "education.0.year",
+    label: "Passing Year",
+    type: "number",
+    span: 4,
+  },
+  {
+    name: "education.0.grade",
+    label: "GPA / Grade",
+    type: "text",
+    span: 4,
+  },
+
+  // HSC / Alim
+  {
+    name: "education.1.label",
+    label: "Exam",
+    type: "select",
+    options: [
+      { label: "HSC", value: "HSC" },
+      { label: "Alim", value: "Alim" },
+    ],
+    span: 6,
+  },
+  {
+    name: "education.1.institute",
+    label: "HSC / Alim Institute",
+    type: "text",
+    span: 10,
+  },
+  {
+    name: "education.1.year",
+    label: "Passing Year",
+    type: "number",
+    span: 4,
+  },
+  {
+    name: "education.1.grade",
+    label: "GPA / Grade",
+    type: "text",
+    span: 4,
+  },
+
+  // Graduation
+  {
+    name: "education.2.label",
+    label: "Graduation",
+    type: "select",
+    options: [
+      { label: "Honours", value: "Honours" },
+      { label: "Pass Course", value: "Pass Course" },
+      { label: "Fazil", value: "Fazil" },
+      { label: "Diploma", value: "Diploma" },
+      { label: "BSc", value: "BSc" },
+      { label: "BBA", value: "BBA" },
+      { label: "BA", value: "BA" },
+      { label: "Other", value: "Other" },
+    ],
+    span: 6,
+  },
+  {
+    name: "education.2.institute",
+    label: "Graduation Institute",
+    type: "text",
+    span: 10,
+  },
+  {
+    name: "education.2.year",
+    label: "Passing Year",
+    type: "number",
+    span: 4,
+  },
+  {
+    name: "education.2.grade",
+    label: "CGPA / Grade",
+    type: "text",
+    span: 4,
+  },
+
+  // Masters
+  {
+    name: "education.3.label",
+    label: "Post Graduation",
+    type: "select",
+    options: [
+      { label: "Masters", value: "Masters" },
+      { label: "Kamil", value: "Kamil" },
+      { label: "MBA", value: "MBA" },
+      { label: "MSc", value: "MSc" },
+      { label: "MA", value: "MA" },
+      { label: "MPhil", value: "MPhil" },
+      { label: "PhD", value: "PhD" },
+      { label: "Other", value: "Other" },
+    ],
+    span: 6,
+  },
+  {
+    name: "education.3.institute",
+    label: "Post Graduation Institute",
+    type: "text",
+    span: 10,
+  },
+  {
+    name: "education.3.year",
+    label: "Passing Year",
+    type: "number",
+    span: 4,
+  },
+  {
+    name: "education.3.grade",
+    label: "CGPA / Grade",
+    type: "text",
+    span: 4,
+  },
+
+  // =========================
+  // Contact Information
+  // =========================
+  {
+    name: "phone",
+    label: "Phone",
+    type: "text",
+    placeholder: "01XXXXXXXXX",
+    span: 12,
+    required: true,
+  },
+  {
+    name: "alternativePhone",
+    label: "Alternative Phone",
+    type: "text",
+    span: 12,
+  },
+  {
+    name: "email",
+    label: "Email",
+    type: "email",
+    placeholder: "teacher@email.com",
+    span: 12,
+  },
+  {
+    name: "presentAddress",
+    label: "Present Address",
+    type: "textarea",
+    span: 12,
+  },
+  {
+    name: "permanentAddress",
+    label: "Permanent Address",
+    type: "textarea",
+    span: 12,
+  },
+
+  // =========================
+  // Emergency Contact
+  // =========================
+  {
+    name: "emergencyContact.name",
+    label: "Emergency Contact Name",
+    type: "text",
+    span: 12,
+  },
+  {
+    name: "emergencyContact.relation",
+    label: "Relation",
+    type: "text",
+    span: 6,
+  },
+  {
+    name: "emergencyContact.phone",
+    label: "Emergency Contact Phone",
+    type: "text",
+    span: 6,
+  },
+
+  // =========================
+  // Bank Information
+  // =========================
+  {
+    name: "bankName",
+    label: "Bank Name",
+    type: "text",
+    span: 12,
+  },
+  {
+    name: "accountName",
+    label: "Account Holder Name",
+    type: "text",
+    span: 12,
+  },
+  {
+    name: "accountNumber",
+    label: "Account Number",
+    type: "text",
+    span: 12,
+  },
+  {
+    name: "branchName",
+    label: "Branch Name",
+    type: "text",
+    span: 12,
+  },
+  {
+    name: "routingNumber",
+    label: "Routing Number",
+    type: "text",
+    span: 12,
+  },
+
+  // =========================
+  // Social Links
+  // =========================
+  {
+    name: "social.facebook",
+    label: "Facebook",
+    type: "text",
+    span: 12,
+  },
+  {
+    name: "social.linkedin",
+    label: "LinkedIn",
+    type: "text",
+    span: 12,
+  },
+  {
+    name: "social.instagram",
+    label: "Instagram",
+    type: "text",
+    span: 12,
+  },
+  {
+    name: "social.twitter",
+    label: "Twitter / X",
+    type: "text",
     span: 12,
   },
 ];
+// export const teacherFormFields: FormField[] = [
+//   // =========================
+//   // Basic Information
+//   // =========================
+//   {
+//     name: "picture",
+//     label: "Profile Picture",
+//     type: "image",
+//     span: 24,
+//   },
+//   {
+//     name: "name",
+//     label: "Teacher Name",
+//     type: "text",
+//     placeholder: "Enter full name",
+//     span: 12,
+//     required: true,
+//   },
+//   {
+//     name: "teacherId",
+//     label: "Teacher ID",
+//     type: "text",
+//     placeholder: "e.g. TCH-0001",
+//     span: 12,
+//   },
+//   {
+//     name: "nid",
+//     label: "NID Number",
+//     type: "text",
+//     placeholder: "Enter NID number",
+//     span: 12,
+//   },
+//   {
+//     name: "birthCertificateNo",
+//     label: "Birth Certificate No",
+//     type: "text",
+//     placeholder: "Enter Birth Certificate Number",
+//     span: 12,
+//   },
+//   {
+//     name: "gender",
+//     label: "Gender",
+//     type: "select",
+//     options: [
+//       { label: "Male", value: "Male" },
+//       { label: "Female", value: "Female" },
+//       { label: "Other", value: "Other" },
+//     ],
+//     span: 12,
+//   },
+//   {
+//     name: "dateOfBirth",
+//     label: "Date of Birth",
+//     type: "date",
+//     span: 12,
+//   },
+//   {
+//     name: "bloodGroup",
+//     label: "Blood Group",
+//     type: "select",
+//     options: [
+//       { label: "A+", value: "A+" },
+//       { label: "A-", value: "A-" },
+//       { label: "B+", value: "B+" },
+//       { label: "B-", value: "B-" },
+//       { label: "AB+", value: "AB+" },
+//       { label: "AB-", value: "AB-" },
+//       { label: "O+", value: "O+" },
+//       { label: "O-", value: "O-" },
+//     ],
+//     span: 12,
+//   },
+//   {
+//     name: "religion",
+//     label: "Religion",
+//     type: "text",
+//     placeholder: "Enter religion",
+//     span: 12,
+//   },
+//   {
+//     name: "maritalStatus",
+//     label: "Marital Status",
+//     type: "select",
+//     options: [
+//       { label: "Single", value: "Single" },
+//       { label: "Married", value: "Married" },
+//       { label: "Divorced", value: "Divorced" },
+//       { label: "Widowed", value: "Widowed" },
+//     ],
+//     span: 12,
+//   },
+
+//   // =========================
+//   // Professional Information
+//   // =========================
+//   {
+//     name: "designation",
+//     label: "Designation",
+//     type: "text",
+//     placeholder: "Assistant Teacher",
+//     span: 12,
+//     required: true,
+//   },
+//   {
+//     name: "department",
+//     label: "Department",
+//     type: "text",
+//     placeholder: "Science",
+//     span: 12,
+//   },
+//   {
+//     name: "subject",
+//     label: "Subject",
+//     type: "text",
+//     placeholder: "Mathematics",
+//     span: 12,
+//   },
+//   {
+//     name: "qualification",
+//     label: "Qualification",
+//     type: "text",
+//     placeholder: "M.Sc in Mathematics",
+//     span: 12,
+//   },
+//   {
+//     name: "teachingExperience",
+//     label: "Teaching Experience (Years)",
+//     type: "number",
+//     placeholder: "0",
+//     span: 12,
+//   },
+//   {
+//     name: "salary",
+//     label: "Salary",
+//     type: "number",
+//     placeholder: "0",
+//     span: 12,
+//   },
+//   {
+//     name: "joinDate",
+//     label: "Joining Date",
+//     type: "date",
+//     span: 12,
+//   },
+//   {
+//     name: "schoolJoinDate",
+//     label: "School Joining Date",
+//     type: "date",
+//     span: 12,
+//   },
+//   {
+//     name: "employmentType",
+//     label: "Employment Type",
+//     type: "select",
+//     options: [
+//       { label: "Permanent", value: "Permanent" },
+//       { label: "Contract", value: "Contract" },
+//       { label: "Part Time", value: "Part Time" },
+//     ],
+//     span: 12,
+//   },
+//   {
+//     name: "status",
+//     label: "Status",
+//     type: "select",
+//     options: [
+//       { label: "Active", value: "Active" },
+//       { label: "Inactive", value: "Inactive" },
+//       { label: "Resigned", value: "Resigned" },
+//     ],
+//     span: 12,
+//   },
+//   {
+//     name: "bio",
+//     label: "Biography",
+//     type: "textarea",
+//     placeholder: "Short biography",
+//     span: 24,
+//   },
+
+//   // =========================
+//   // Contact Information
+//   // =========================
+//   {
+//     name: "phone",
+//     label: "Phone",
+//     type: "text",
+//     placeholder: "Enter phone number",
+//     span: 12,
+//     required: true,
+//   },
+//   {
+//     name: "alternativePhone",
+//     label: "Alternative Phone",
+//     type: "text",
+//     placeholder: "Alternative phone",
+//     span: 12,
+//   },
+//   {
+//     name: "email",
+//     label: "Email",
+//     type: "email",
+//     placeholder: "teacher@email.com",
+//     span: 12,
+//   },
+//   {
+//     name: "presentAddress",
+//     label: "Present Address",
+//     type: "textarea",
+//     placeholder: "Present Address",
+//     span: 12,
+//   },
+//   {
+//     name: "permanentAddress",
+//     label: "Permanent Address",
+//     type: "textarea",
+//     placeholder: "Permanent Address",
+//     span: 12,
+//   },
+
+//   // =========================
+//   // Emergency Contact
+//   // =========================
+//   {
+//     name: "emergencyContact.name",
+//     label: "Emergency Contact Name",
+//     type: "text",
+//     span: 12,
+//   },
+//   {
+//     name: "emergencyContact.relation",
+//     label: "Relation",
+//     type: "text",
+//     span: 6,
+//   },
+//   {
+//     name: "emergencyContact.phone",
+//     label: "Emergency Contact Phone",
+//     type: "text",
+//     span: 6,
+//   },
+
+//   // =========================
+//   // Social Links
+//   // =========================
+//   {
+//     name: "social.facebook",
+//     label: "Facebook",
+//     type: "text",
+//     span: 12,
+//   },
+//   {
+//     name: "social.linkedin",
+//     label: "LinkedIn",
+//     type: "text",
+//     span: 12,
+//   },
+//   {
+//     name: "social.instagram",
+//     label: "Instagram",
+//     type: "text",
+//     span: 12,
+//   },
+//   {
+//     name: "social.twitter",
+//     label: "Twitter / X",
+//     type: "text",
+//     span: 12,
+//   },
+// ];
 
 /* =========================
    📅 ATTENDANCE

@@ -16,6 +16,10 @@ export const studentColumns: ColumnsType<any> = [
   slColumn,
   { title: "Name", dataIndex: "name" },
   { title: "Roll", dataIndex: "roll" },
+   {
+    title: "Student ID",
+    dataIndex: "studentId",
+  },
   { title: "Class", dataIndex: ["classId", "name"], render: (v) => v || "-" },
   { title: "Guardian", dataIndex: "fatherName" },
   { 
@@ -33,12 +37,55 @@ export const studentColumns: ColumnsType<any> = [
 /* =========================
    👨‍🏫 TEACHER
 ========================= */
+
 export const teacherColumns: ColumnsType<any> = [
   slColumn,
-  { title: "Name", dataIndex: "name" },
-  { title: "Subject", dataIndex: "subject" },
-  { title: "Phone", dataIndex: "phone", render: (v) => <Typography.Text copyable>{v || "-"}</Typography.Text> },
-  { title: "Status", dataIndex: "isActive", render: (v) => <Tag color={v ? "green" : "red"}>{v ? "Active" : "Inactive"}</Tag> },
+
+  {
+    title: "Teacher",
+    dataIndex: "name",
+  },
+
+  {
+    title: "Teacher ID",
+    dataIndex: "teacherId",
+  },
+
+  {
+    title: "Designation",
+    dataIndex: "designation",
+  },
+
+  {
+    title: "Subject",
+    dataIndex: "subject",
+  },
+
+  {
+    title: "Phone",
+    dataIndex: "phone",
+    render: (value) => (
+      <Typography.Text copyable>
+        {value || "-"}
+      </Typography.Text>
+    ),
+  },
+
+  {
+    title: "Experience",
+    dataIndex: "teachingExperience",
+    render: (value) => `${value || 0} Years`,
+  },
+
+  {
+    title: "Status",
+    dataIndex: "status",
+    render: (value) => (
+      <Tag color={value === "Active" ? "green" : value === "Inactive" ? "orange" : "red"}>
+        {value}
+      </Tag>
+    ),
+  },
 ];
 
 /* =========================

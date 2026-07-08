@@ -18,7 +18,8 @@ export function AppSidebar() {
 
   // রিডাক্স থেকে ইউজার ডাটা নেওয়া
   const { user } = useTypedSelector((state) => state.auth);
-  console.log(user, "")
+ 
+  
   const userRole = user?.role; // no hardcoded fallback to "admin"
 
   const roleRoutes: Record<string, any[]> = {
@@ -57,8 +58,8 @@ export function AppSidebar() {
           </div>
           {!collapsed && (
             <div className="min-w-0">
-              <p className="font-bold text-lg leading-tight text-white">Al-Noor</p>
-              <p className="text-xs uppercase tracking-widest text-[#6b9b7b]">Educational</p>
+              <p className="font-bold text-lg leading-tight text-white">বাউনিয়া</p>
+              <p className="text-xs uppercase tracking-widest text-[#6b9b7b]">আবদুল জলিল উচ্চ বিদ্যালয়</p>
             </div>
           )}
         </div>
