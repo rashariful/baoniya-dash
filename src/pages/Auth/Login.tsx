@@ -77,8 +77,8 @@ export default function LoginPage() {
           bodyStyle={{ padding: "40px" }}
         >
           <div className="text-center mb-8">
-            <img src={logo} alt="Logo" className="w-20 h-20 mx-auto mb-4 object-contain" />
-            <Title level={3} className="!text-[#033320] font-bold">Al-Noor Academy</Title>
+            <img src={logo} alt="Logo" className="shadow-xl drop-shadow rounded-full w-20 h-20 mx-auto mb-4 object-contain" />
+            <Title level={3} className="!text-[#033320] font-bold">আবদুল জলিল উচ্চ বিদ্যালয়</Title>
             <Text className="text-slate-500">Log in to continue your education</Text>
           </div>
 
@@ -110,7 +110,7 @@ export default function LoginPage() {
               loading={isLoading}
               className="w-full h-12 bg-[#014B27] hover:bg-[#033320] border-0 shadow-lg font-semibold text-white mt-2"
             >
-              Access Classroom
+              Access School
             </Button>
           </Form>
 
