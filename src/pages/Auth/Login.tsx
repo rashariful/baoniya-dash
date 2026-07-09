@@ -64,7 +64,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-[#033320] flex items-center justify-center p-4 relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.05]"
-        style={{ backgroundImage: "radial-gradient(#CF962C 1px, transparent 1px)", backgroundSize: "40px 40px" }}
+        style={{ backgroundImage: "radial-gradient(#e02201 1px, transparent 1px)", backgroundSize: "40px 40px" }}
       />
 
       <motion.div
@@ -73,13 +73,13 @@ export default function LoginPage() {
         className="w-full max-w-md z-10"
       >
         <Card
-          className="shadow-2xl border-t-4 border-t-[#CF962C] rounded-2xl overflow-hidden"
+          className="shadow-2xl border-t-4 border-t-[#e02201] rounded-2xl overflow-hidden"
           bodyStyle={{ padding: "40px" }}
         >
           <div className="text-center mb-8">
             <img src={logo} alt="Logo" className="shadow-xl drop-shadow rounded-full w-20 h-20 mx-auto mb-4 object-contain" />
             <Title level={3} className="!text-[#033320] font-bold">আবদুল জলিল উচ্চ বিদ্যালয়</Title>
-            <Text className="text-slate-500">Log in to continue your education</Text>
+            <Text className="text-slate-500">আপনার অ্যাকাউন্টে প্রবেশ করতে লগইন করুন।</Text>
           </div>
 
           <Form name="login" onFinish={onFinish} layout="vertical">
@@ -110,7 +110,7 @@ export default function LoginPage() {
               loading={isLoading}
               className="w-full h-12 bg-[#014B27] hover:bg-[#033320] border-0 shadow-lg font-semibold text-white mt-2"
             >
-              Access School
+  বিদ্যালয়ে প্রবেশ করুন
             </Button>
           </Form>
 
