@@ -1348,10 +1348,24 @@ export const feesFormFields: FormField[] = [
   {
     name: "month",
     label: "Month",
-    type: "text",
-    placeholder: "e.g. January",
+    type: "select",
+    placeholder: "Select month",
     span: 12,
     required: true,
+    options: [
+      { label: "January", value: "january" },
+      { label: "February", value: "february" },
+      { label: "March", value: "march" },
+      { label: "April", value: "april" },
+      { label: "May", value: "may" },
+      { label: "June", value: "june" },
+      { label: "July", value: "july" },
+      { label: "August", value: "august" },
+      { label: "September", value: "september" },
+      { label: "October", value: "october" },
+      { label: "November", value: "november" },
+      { label: "December", value: "december" },
+    ],
   },
   {
     name: "amount",
@@ -1369,19 +1383,7 @@ export const feesFormFields: FormField[] = [
     span: 12,
     initialValue: 0,
   },
-  {
-    name: "status",
-    label: "Status",
-    type: "select",
-    placeholder: "Select payment status",
-    span: 12,
-    options: [
-      { label: "Paid", value: "paid" },
-      { label: "Unpaid", value: "unpaid" },
-      { label: "Partial", value: "partial" },
-    ],
-    initialValue: "unpaid",
-  },
+ 
 ];
 
 /* =========================

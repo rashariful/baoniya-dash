@@ -80,7 +80,7 @@ const DonatePage = () => {
           <StatCard key={i} title={s.title} value={s.value} sub={s.sub} colorClass={s.color} />
         ))}
       </div>
-      <ExamResultPage/>
+      {/* <ExamResultPage/> */}
 
       <CrudTemplate
         title="Donation Management"

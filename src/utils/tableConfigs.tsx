@@ -323,21 +323,26 @@ export const eventColumns: ColumnsType<any> = [
 /* =========================
    💸 FEES
 ========================= */
+
 export const feesColumns: ColumnsType<any> = [
   slColumn,
-  // { title: "Student", dataIndex: "studentName" },
-   { title: "Student", dataIndex: ["studentId", "name"], render: (v) => v || "-" },
+  { title: "Student", dataIndex: ["studentId", "name"], render: (v) => v || "-" },
+   { title: "Guardian Name", dataIndex: ["studentId", "guardianName"], },
   { title: "Amount", dataIndex: "amount", render: (v) => `৳ ${v}` },
   { title: "Paid", dataIndex: "paidAmount", render: (v) => `৳ ${v}` },
-  { 
-    title: "Due", 
-    dataIndex: "due", 
-    render: (v) => <Tag color={v > 0 ? "red" : "green"}>৳ {v}</Tag> 
+  {
+    title: "Due",
+    dataIndex: "dueAmount",
+    render: (v) => <Tag color={v > 0 ? "red" : "green"}>৳ {v}</Tag>,
   },
   {
     title: "Status",
     dataIndex: "status",
-    render: (v) => <Tag color={v === "paid" ? "green" : "orange"}>{v?.toUpperCase()}</Tag>,
+    render: (v) => (
+      <Tag color={v === "paid" ? "green" : v === "partial" ? "orange" : "red"}>
+        {v?.toUpperCase()}
+      </Tag>
+    ),
   },
 ];
 
