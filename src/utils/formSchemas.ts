@@ -492,6 +492,13 @@ export const studentFormFields: FormField[] = [
     placeholder: "Enter roll number",
     span: 12,
   },
+  // {
+  //   name: "registrationNo",
+  //   label: "Registration No",
+  //   type: "text",
+  //   placeholder: "Enter registration number",
+  //   span: 12,
+  // },
   {
     name: "classId",
     label: "Class",
@@ -523,25 +530,53 @@ export const studentFormFields: FormField[] = [
   },
   {
     name: "phone",
-    label: "Phone",
+    label: "Student Phone",
     type: "text",
-    placeholder: "Enter phone number",
+    placeholder: "Enter student phone number",
     span: 12,
     required: true,
   },
   {
     name: "fatherName",
-    label: "Father Name",
+    label: "Father's Name",
     type: "text",
     placeholder: "Enter father's name",
     span: 12,
   },
   {
     name: "motherName",
-    label: "Mother Name",
+    label: "Mother's Name",
     type: "text",
     placeholder: "Enter mother's name",
     span: 12,
+  },
+  {
+    name: "guardianName",
+    label: "Guardian Name",
+    type: "text",
+    placeholder: "Enter guardian's name",
+    span: 12,
+  },
+  {
+    name: "guardianPhone",
+    label: "Guardian Phone",
+    type: "text",
+    placeholder: "Enter guardian phone number",
+    span: 12,
+  },
+  {
+    name: "status",
+    label: "Status",
+    type: "select",
+    placeholder: "Select status",
+    span: 12,
+    options: [
+      { label: "Active", value: "active" },
+      { label: "Inactive", value: "inactive" },
+      { label: "Transferred", value: "transferred" },
+      { label: "Graduated", value: "graduated" },
+    ],
+    required: true,
   },
   {
     name: "address",
@@ -551,7 +586,6 @@ export const studentFormFields: FormField[] = [
     span: 24,
   },
 ];
-
 /* =========================
    👨‍🏫 TEACHER
 ========================= */
