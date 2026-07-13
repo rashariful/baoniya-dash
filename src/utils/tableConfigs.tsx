@@ -1,5 +1,5 @@
 import { ColumnsType, ColumnType } from "antd/es/table";
-import { Tag, Typography, Tooltip } from "antd";
+import { Tag, Typography, Tooltip, Image } from "antd";
 
 // টাইপ এরর সমাধানের জন্য এসএল কলাম
 const slColumn: ColumnType<any> = {
@@ -40,6 +40,17 @@ export const studentColumns: ColumnsType<any> = [
 
 export const teacherColumns: ColumnsType<any> = [
   slColumn,
+  {
+    title: "Thumbnail",
+    dataIndex: "thumbnail",
+    key: "thumbnail",
+    render: (thumbnail: string) =>
+      thumbnail ? (
+        <Image width={50} height={50} src={thumbnail} alt="Banner" />
+      ) : (
+        "No Image"
+      ),
+  },
 
   {
     title: "Teacher",
@@ -50,6 +61,7 @@ export const teacherColumns: ColumnsType<any> = [
     title: "Teacher ID",
     dataIndex: "teacherId",
   },
+   
 
   {
     title: "Designation",

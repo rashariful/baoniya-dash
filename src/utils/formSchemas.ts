@@ -597,11 +597,25 @@ export const teacherFormFields: FormField[] = [
   // Basic Information
   // =========================
   {
-    name: "picture",
-    label: "Profile Picture",
-    type: "image",
+    name: "thumbnail",
+    label: "Thumbnail",
+    type: "upload",
     span: 24,
+    required: true,
+    rules: [
+      {
+        validator: (_, value) => {
+          if (value && value.size > 2 * 1024 * 1024) {
+            return Promise.reject(
+              new Error("Image size must be less than 2MB!")
+            );
+          }
+          return Promise.resolve();
+        },
+      },
+    ],
   },
+ 
   {
     name: "name",
     label: "Teacher Name",
@@ -1021,6 +1035,25 @@ export const teacherFormFields: FormField[] = [
     type: "text",
     span: 12,
   },
+  // {
+  //   name: "thumbnail",
+  //   label: "Thumbnail",
+  //   type: "upload",
+  //   span: 24,
+  //   required: true,
+  //   rules: [
+  //     {
+  //       validator: (_, value) => {
+  //         if (value && value.size > 2 * 1024 * 1024) {
+  //           return Promise.reject(
+  //             new Error("Image size must be less than 2MB!")
+  //           );
+  //         }
+  //         return Promise.resolve();
+  //       },
+  //     },
+  //   ],
+  // },
 ];
 // export const teacherFormFields: FormField[] = [
 //   // =========================
