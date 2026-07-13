@@ -72,7 +72,7 @@ function Dashboard() {
   
   <div className="relative text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
     <div>
-      <p className="text-xs uppercase tracking-widest opacity-80">As-salāmu ʿalaykum, Mufti Abdullah</p>
+      <p className="text-xs uppercase tracking-widest opacity-80">As-salāmu ʿalaykum.</p>
       <h1 className="text-3xl md:text-4xl font-semibold mt-1">বাউনিয়া আবদুল জলিল উচ্চ বিদ্যালয়</h1>
       <p className="opacity-90 text-sm mt-2 max-w-lg">1,284 students, 86 teachers and 312 ssc students under your stewardship. All sections reporting normal activity.</p>
     </div>
