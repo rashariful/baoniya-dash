@@ -14,7 +14,7 @@ import {
 } from "@/redux/api/examResultApi";
 
 import { useGetAllStudentQuery } from "@/redux/api/studentApi";
-import { useGetAllExamQuery } from "@/redux/api/examApi";
+import { useGetAllExaminationQuery } from "@/redux/api/examinationApi";
 import { useGetAllAcademicSessionQuery } from "@/redux/api/academicSessionApi";
 import { useGetAllSubjectQuery } from "@/redux/api/subjectApi";
 
@@ -22,9 +22,11 @@ const ExamResultPage = () => {
   const { data, isLoading, refetch } = useGetAllExamResultQuery();
 
   const { data: studentData } = useGetAllStudentQuery();
-  const { data: examData } = useGetAllExamQuery();
+  const { data: examData } = useGetAllExaminationQuery();
   const { data: sessionData } = useGetAllAcademicSessionQuery();
   const { data: subjectData } = useGetAllSubjectQuery();
+
+  
 
   const [create] = useCreateExamResultMutation();
   const [update] = useUpdateExamResultMutation();
@@ -39,7 +41,7 @@ const ExamResultPage = () => {
       }));
 
     const studentOptions = mapOptions(studentData?.data, "name");
-    const examOptions = mapOptions(examData?.data, "name");
+    const examOptions = mapOptions(examData?.data, "title");
     const sessionOptions = mapOptions(sessionData?.data, "year");
     const subjectOptions = mapOptions(subjectData?.data, "name");
 

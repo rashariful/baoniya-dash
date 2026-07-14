@@ -563,21 +563,23 @@ export const studentFormFields: FormField[] = [
     type: "text",
     placeholder: "Enter guardian phone number",
     span: 12,
+        required: true,
+
   },
-  {
-    name: "status",
-    label: "Status",
-    type: "select",
-    placeholder: "Select status",
-    span: 12,
-    options: [
-      { label: "Active", value: "active" },
-      { label: "Inactive", value: "inactive" },
-      { label: "Transferred", value: "transferred" },
-      { label: "Graduated", value: "graduated" },
-    ],
-    required: true,
-  },
+  // {
+  //   name: "status",
+  //   label: "Status",
+  //   type: "select",
+  //   placeholder: "Select status",
+  //   span: 12,
+  //   options: [
+  //     { label: "Active", value: "active" },
+  //     { label: "Inactive", value: "inactive" },
+  //     { label: "Transferred", value: "transferred" },
+  //     { label: "Graduated", value: "graduated" },
+  //   ],
+  //   required: true,
+  // },
   {
     name: "address",
     label: "Address",
