@@ -1,44 +1,44 @@
 import React, { useState } from "react";
 import { message } from "antd";
+
 import CrudTemplate from "@/components/templates/CrudTemplate/CrudTemplate";
 
-import { teacherColumns } from "@/utils/tableConfigs";
-import { teacherFormFields } from "@/utils/formSchemas";
+import { galleryColumns } from "@/utils/tableConfigs";
+import { galleryFormFields } from "@/utils/formSchemas";
 
 import {
-  useCreateTeacherMutation,
-  useGetAllTeacherQuery,
-  useUpdateTeacherMutation,
-  useDeleteTeacherMutation,
-} from "@/redux/api/teacherApi";
+  useCreateGalleryMutation,
+  useGetAllGalleryQuery,
+  useUpdateGalleryMutation,
+  useDeleteGalleryMutation,
+} from "@/redux/api/galleryApi";
 
-type TeacherFormData = {
-  name: string;
-  phone: string;
-  designation: string;
+type GalleryFormData = {
+  title: string;
+  description?: string;
   thumbnail?: File;
 };
 
-const TeacherPage = () => {
+const GalleryPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const { data, isLoading, refetch } = useGetAllTeacherQuery(
-    searchTerm ? [{ name: "searchTerm", value: searchTerm }] : undefined,
+  const { data, isLoading, refetch } = useGetAllGalleryQuery(
+    searchTerm ? [{ name: "searchTerm", value: searchTerm }] : undefined
   );
 
-  const [createTeacher] = useCreateTeacherMutation();
-  const [updateTeacher] = useUpdateTeacherMutation();
-  const [deleteTeacher] = useDeleteTeacherMutation();
+  const [createGallery] = useCreateGalleryMutation();
+  const [updateGallery] = useUpdateGalleryMutation();
+  const [deleteGallery] = useDeleteGalleryMutation();
 
-  // FormData Convert
+  // Convert Object to FormData
   const convertToFormData = (data: Record<string, any>) => {
     const formData = new FormData();
 
     Object.entries(data).forEach(([key, value]) => {
       if (!value && value !== 0) return;
 
-      // File upload
-      if (value.originFileObj instanceof File) {
+      // Upload File
+      if (value?.originFileObj instanceof File) {
         formData.append(key, value.originFileObj);
       } else if (value instanceof File) {
         formData.append(key, value);
@@ -54,7 +54,7 @@ const TeacherPage = () => {
         formData.append(key, JSON.stringify(value));
       }
 
-      // Normal data
+      // Primitive
       else {
         formData.append(key, String(value));
       }
@@ -63,53 +63,53 @@ const TeacherPage = () => {
     return formData;
   };
 
-  const handleAdd = async (data: TeacherFormData) => {
+  const handleAdd = async (data: GalleryFormData) => {
     try {
       const formData = convertToFormData(data);
 
-      await createTeacher(formData).unwrap();
+      await createGallery(formData).unwrap();
 
-      message.success("Teacher created successfully");
+      message.success("Gallery created successfully");
       refetch();
     } catch (error: any) {
-      message.error(error?.data?.message || "Failed to create teacher");
+      message.error(error?.data?.message || "Failed to create gallery");
     }
   };
 
-  const handleEdit = async (id: string, data: TeacherFormData) => {
+  const handleEdit = async (id: string, data: GalleryFormData) => {
     try {
       const formData = convertToFormData(data);
 
-      await updateTeacher({
+      await updateGallery({
         id,
         data: formData,
       }).unwrap();
 
-      message.success("Teacher updated successfully");
+      message.success("Gallery updated successfully");
       refetch();
     } catch (error: any) {
-      message.error(error?.data?.message || "Failed to update teacher");
+      message.error(error?.data?.message || "Failed to update gallery");
     }
   };
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteTeacher(id).unwrap();
+      await deleteGallery(id).unwrap();
 
-      message.success("Teacher deleted successfully");
+      message.success("Gallery deleted successfully");
       refetch();
     } catch (error: any) {
-      message.error(error?.data?.message || "Failed to delete teacher");
+      message.error(error?.data?.message || "Failed to delete gallery");
     }
   };
 
   return (
     <CrudTemplate
-      title="Teacher Management"
-      subtitle="Manage all teachers"
+      title="Gallery Management"
+      subtitle="Manage all gallery items"
       data={data?.data || []}
-      columns={teacherColumns}
-      formFields={teacherFormFields}
+      columns={galleryColumns}
+      formFields={galleryFormFields}
       loading={isLoading}
       onAdd={handleAdd}
       onEdit={handleEdit}
@@ -120,4 +120,4 @@ const TeacherPage = () => {
   );
 };
 
-export default TeacherPage;
+export default GalleryPage;

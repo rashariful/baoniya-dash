@@ -176,6 +176,36 @@ export const donationColumns: ColumnsType<any> = [
   },
 ];
 
+
+export const galleryColumns: ColumnsType<any> = [
+  slColumn,
+  {
+    title: "Thumbnail",
+    dataIndex: "thumbnail",
+    render: (thumbnail: string) => (
+      <Image
+        src={thumbnail}
+        width={70}
+        height={70}
+        style={{
+          objectFit: "cover",
+          borderRadius: 6,
+        }}
+        preview
+      />
+    ),
+  },
+  {
+    title: "Gallery Name",
+    dataIndex: "name",
+  },
+   {
+    title: "Category Name",
+    dataIndex: "category",
+    key: "category",
+  },
+
+];
 /* =========================
    📅 ATTENDANCE
 ========================= */

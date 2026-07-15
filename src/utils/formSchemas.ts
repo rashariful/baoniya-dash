@@ -150,6 +150,45 @@ export const examFormFields: FormField[] = [
   },
 ];
 
+
+export const galleryFormFields: FormField[] = [
+  {
+    name: "name",
+    label: "Gallery Name",
+    type: "text",
+    placeholder: "Enter gallery name",
+    span: 12,
+    required: true,
+  },
+  {
+    name: "category",
+    label: "Category",
+    type: "select",
+    span: 12,
+    required: true,
+    options: [
+      { label: "ক্যাম্পাস", value: "campus" },
+      { label: "সুবিধা", value: "facilities" },
+      { label: "ইভেন্ট", value: "events" },
+      { label: "ক্রীড়া", value: "sports" },
+      { label: "কমিউনিটি", value: "community" },
+      { label: "সাংস্কৃতিক অনুষ্ঠান", value: "cultural" },
+      { label: "শিক্ষা কার্যক্রম", value: "academic" },
+      { label: "বৃক্ষরোপণ", value: "tree_plantation" },
+      { label: "জাতীয় দিবস", value: "national_day" },
+      { label: "পুরস্কার ও অর্জন", value: "achievement" },
+      { label: "শিক্ষা সফর", value: "education_tour" },
+      { label: "অন্যান্য", value: "others" },
+    ],
+  },
+  {
+    name: "thumbnail",
+    label: "Thumbnail",
+    type: "upload",
+    span: 24,
+    required: true,
+  },
+];
 /* =========================
    📊 GRADE RULE
 ========================= */

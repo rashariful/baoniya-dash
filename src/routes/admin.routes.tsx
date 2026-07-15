@@ -20,6 +20,7 @@ import {
   Sigma,
   Sliders,
   ClipboardList,
+  GalleryThumbnails,
 } from "lucide-react";
 
 /* =========================
@@ -51,6 +52,7 @@ import SubjectPage from "@/pages/Subject/SubjectPage";
 import GradeRulePage from "@/pages/GradeRule/GradeRulePage";
 import ResultSettingPage from "@/pages/ResultSetting/ResultSettingPage";
 import ExamResultPage from "@/pages/ExamResult/ExamResultPage";
+import GalleryPage from "@/pages/Gallery/GalleryPage";
 
 export const adminRoutes = [
   {
@@ -195,6 +197,13 @@ export const adminRoutes = [
     icon: <CalendarDays />,
     group: "Engagement",
     element: <EventPage />,
+  },
+  {
+    name: "Gallery",
+    path: "gallery",
+    icon: <GalleryThumbnails />,
+    group: "Engagement",
+    element: <GalleryPage />,
   },
   {
     name: "Banner",

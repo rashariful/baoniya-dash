@@ -87,6 +87,10 @@ const apiEndpoints = {
     all: "/report",
     withId: (id) => `/report/${id}`,
   },
+  gallery: {
+    all: "/gallery",
+    withId: (id) => `/gallery/${id}`,
+  },
 
   settings: {
     all: "/settings",
@@ -193,6 +197,7 @@ export const {
   staff,
   student,
   teacher,
+  gallery,
 
   academicSession,
   section,

@@ -273,6 +273,7 @@ const IDCardModal: React.FC<IDCardModalProps> = ({
           {/* Info section */}
           <div style={{ padding: "4px 12px 0" }}>
             <p
+            className="capitalize"
               style={{
                 margin: "2px 0",
                 fontSize: 14,
@@ -285,7 +286,7 @@ const IDCardModal: React.FC<IDCardModalProps> = ({
             </p>
 
             <div style={{ fontSize: 10, color: "#111827", lineHeight: 1.7 }}>
-              <div>
+              <div className="capitalize">
                 <b>পিতাঃ</b> {fatherName}
               </div>
               <div>
