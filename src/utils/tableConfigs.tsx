@@ -14,23 +14,55 @@ const slColumn: ColumnType<any> = {
 ========================= */
 export const studentColumns: ColumnsType<any> = [
   slColumn,
-  { title: "Name", dataIndex: "name" },
-  { title: "Roll", dataIndex: "roll" },
-   {
+  {
     title: "Student ID",
     dataIndex: "studentId",
+    width: 140,
   },
-  { title: "Class", dataIndex: ["classId", "name"], render: (v) => v || "-" },
-  { title: "Guardian", dataIndex: "fatherName" },
-  { 
-    title: "Phone", 
-    dataIndex: "phone", 
-    render: (v) => <Typography.Text copyable>{v || "-"}</Typography.Text> 
+  {
+    title: "Student Name",
+    dataIndex: "name",
+  },
+  {
+    title: "Class",
+    dataIndex: ["classId", "name"],
+  },
+  {
+    title: "Roll",
+    dataIndex: "roll",
+    width: 80,
+    align: "center",
+  },
+  {
+    title: "Guardian",
+    dataIndex: "guardianName",
+  },
+  {
+    title: "Guardian Phone",
+    dataIndex: "guardianPhone",
+    render: (value) => (
+      <Typography.Text copyable>
+        {value}
+      </Typography.Text>
+    ),
+  },
+  {
+    title: "Login Phone",
+    dataIndex: ["userId", "phone"],
+    render: (value) => (
+      <Typography.Text copyable>
+        {value}
+      </Typography.Text>
+    ),
   },
   {
     title: "Status",
-    dataIndex: "isActive",
-    render: (v) => <Tag color={v ? "green" : "red"}>{v ? "Active" : "Inactive"}</Tag>,
+    dataIndex: ["userId", "isActive"],
+    render: (value) => (
+      <Tag color={value ? "success" : "error"}>
+        {value ? "Active" : "Inactive"}
+      </Tag>
+    ),
   },
 ];
 
