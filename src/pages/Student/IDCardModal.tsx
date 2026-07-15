@@ -192,18 +192,25 @@ const IDCardModal: React.FC<IDCardModalProps> = ({
           </div>
 
           {/* Red band */}
-          <div
-            className="w-28 mx-auto rounded-md mt-1"
-            style={{
-              background: "##c0392b",
-              textAlign: "center",
-              padding: "3px 0",
-            }}
-          >
-            <span style={{ color: "#fff", fontSize: 12, fontWeight: 700 }}>
-              পরিচয় পত্র
-            </span>
-          </div>
+        <div
+  className="w-28 mx-auto mt-1 rounded-md"
+  style={{
+    backgroundColor: "#B91C1C", // Professional dark red
+    textAlign: "center",
+    padding: "4px 0",
+  }}
+>
+  <span
+    style={{
+      color: "#FFFFFF",
+      fontSize: "12px",
+      fontWeight: 700,
+      letterSpacing: "0.5px",
+    }}
+  >
+    পরিচয় পত্র
+  </span>
+</div>
 
           {/* Seal + Photo */}
           <div
