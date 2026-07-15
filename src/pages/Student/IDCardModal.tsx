@@ -61,7 +61,7 @@ const IDCardModal: React.FC<IDCardModalProps> = ({
   const session = val(student?.sessionId?.name || student?.sessionId?.year);
   const bloodGroup = val(student?.bloodGroup);
   const mobile = val(student?.guardianPhone || student?.userId?.phone);
-  const photoUrl = student?.photo || student?.avatar || null;
+  const photoUrl = student?.thumbnail || student?.thumbnail || null;
 
   // QR code generate (studentId ba unique link diye)
   useEffect(() => {
