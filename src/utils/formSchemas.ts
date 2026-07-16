@@ -390,6 +390,12 @@ export const examResultFormFields: FormField[] = [
         dynamicOptions: true,
       },
       {
+        name: "CA",
+        label: "ca",
+        type: "number",
+        span: 4,
+      },
+      {
         name: "written",
         label: "Written",
         type: "number",
@@ -1404,62 +1410,106 @@ export const attendanceFormFields: FormField[] = [
     initialValue: "present",
   },
 ];
-
 /* =========================
    💰 FEES
 ========================= */
+
+const monthOptions = [
+  { label: "January", value: "january" },
+  { label: "February", value: "february" },
+  { label: "March", value: "march" },
+  { label: "April", value: "april" },
+  { label: "May", value: "may" },
+  { label: "June", value: "june" },
+  { label: "July", value: "july" },
+  { label: "August", value: "august" },
+  { label: "September", value: "september" },
+  { label: "October", value: "october" },
+  { label: "November", value: "november" },
+  { label: "December", value: "december" },
+];
+
+const feeHeadOptions = [
+  { label: "বকেয়া", value: "due" },
+  { label: "চলতি মাস", value: "current_month" },
+  { label: "অগ্রিম বেতন", value: "advance_tuition" },
+  { label: "সেশন ফি", value: "session_fee" },
+  { label: "ভর্তি/পুনঃ ভর্তি/ছাড়পত্র/জরিমানা", value: "admission_fee" },
+  { label: "রশিদ বই", value: "receipt_book" },
+  { label: "ক্যালেন্ডার, ডায়েরি ও পরিচিতি পত্র", value: "calendar_diary_id" },
+  { label: "সিলেবাস", value: "syllabus" },
+  { label: "নির্মাণ/মেরামত ফি", value: "maintenance_fee" },
+  { label: "বিজ্ঞানাগার ফি", value: "laboratory_fee" },
+  { label: "ক্রীড়া/বার্ষিক পুরস্কার বিতরণী ফি", value: "sports_fee" },
+  { label: "ছাত্র কল্যাণ তহবিল", value: "student_welfare" },
+  { label: "পাঠাগার ফি", value: "library_fee" },
+  { label: "মিলাদ ফি", value: "milad_fee" },
+  { label: "স্কাউট/গার্লস গাইড ফি", value: "scout_guide_fee" },
+  { label: "পরীক্ষা ও প্রিন্টিং ফি", value: "exam_printing_fee" },
+  { label: "ম্যাগাজিন ফি", value: "magazine_fee" },
+  { label: "ফলাফল বিবরণী ফি", value: "result_sheet_fee" },
+  { label: "কম্পিউটার বিজ্ঞান ফি", value: "computer_fee" },
+  { label: "শিক্ষক-কর্মচারী কল্যাণ তহবিল", value: "staff_welfare" },
+  { label: "বিদ্যুৎ, ওয়াসা ও টেলিফোন ফি", value: "utility_fee" },
+  { label: "বোর্ড ফি/রেজিস্ট্রেশন ফি", value: "board_registration_fee" },
+  { label: "হোস্টেল চার্জ", value: "hostel_charge" },
+  { label: "শিক্ষা সার্ভিস/আইসিটি ফি", value: "ict_service_fee" },
+  { label: "বিবিধ", value: "others" },
+];
+
 export const feesFormFields: FormField[] = [
   {
     name: "studentId",
     label: "Student",
     type: "select",
-    placeholder: "Select student",
+    placeholder: "Select Student",
     span: 12,
     required: true,
     dynamicOptions: true,
     options: [],
   },
-  {
-    name: "month",
-    label: "Month",
-    type: "select",
-    placeholder: "Select month",
-    span: 12,
-    required: true,
-    options: [
-      { label: "January", value: "january" },
-      { label: "February", value: "february" },
-      { label: "March", value: "march" },
-      { label: "April", value: "april" },
-      { label: "May", value: "may" },
-      { label: "June", value: "june" },
-      { label: "July", value: "july" },
-      { label: "August", value: "august" },
-      { label: "September", value: "september" },
-      { label: "October", value: "october" },
-      { label: "November", value: "november" },
-      { label: "December", value: "december" },
-    ],
-  },
-  {
-    name: "amount",
-    label: "Amount",
-    type: "number",
-    placeholder: "Enter total amount",
-    span: 12,
-    required: true,
-  },
+
   {
     name: "paidAmount",
     label: "Paid Amount",
     type: "number",
-    placeholder: "Enter paid amount",
+    placeholder: "Enter Paid Amount",
     span: 12,
     initialValue: 0,
   },
- 
-];
 
+  {
+    name: "feeItems",
+    label: "Fee Items",
+    type: "dynamicList",
+    span: 24,
+    fields: [
+      {
+        name: "feeHead",
+        label: "Fee Head",
+        type: "select",
+        placeholder: "Select Fee Head",
+        required: true,
+        options: feeHeadOptions,
+      },
+      {
+        name: "month",
+        label: "Month",
+        type: "select",
+        placeholder: "Select Month",
+        required: false,
+        options: monthOptions,
+      },
+      {
+        name: "amount",
+        label: "Amount",
+        type: "number",
+        placeholder: "Enter Amount",
+        required: true,
+      },
+    ],
+  },
+];
 /* =========================
    📚 CLASSES
 ========================= */

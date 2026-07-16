@@ -90,6 +90,11 @@ export const teacherColumns: ColumnsType<any> = [
   },
 
   {
+    title: "Teacher Index",
+    dataIndex: "teacherId",
+  },
+
+  {
     title: "Teacher ID",
     dataIndex: "teacherId",
   },
@@ -115,11 +120,11 @@ export const teacherColumns: ColumnsType<any> = [
     ),
   },
 
-  {
-    title: "Experience",
-    dataIndex: "teachingExperience",
-    render: (value) => `${value || 0} Years`,
-  },
+  // {
+  //   title: "Experience",
+  //   dataIndex: "teachingExperience",
+  //   render: (value) => `${value || 0} Years`,
+  // },
 
   {
     title: "Status",
@@ -402,6 +407,7 @@ export const feesColumns: ColumnsType<any> = [
   slColumn,
   { title: "Student", dataIndex: ["studentId", "name"], render: (v) => v || "-" },
    { title: "Guardian Name", dataIndex: ["studentId", "guardianName"], },
+   { title: "Roll Number", dataIndex: ["studentId", "roll"], },
   { title: "Amount", dataIndex: "amount", render: (v) => `৳ ${v}` },
   { title: "Paid", dataIndex: "paidAmount", render: (v) => `৳ ${v}` },
   {
