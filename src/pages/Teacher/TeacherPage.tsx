@@ -30,38 +30,39 @@ const TeacherPage = () => {
   const [updateTeacher] = useUpdateTeacherMutation();
   const [deleteTeacher] = useDeleteTeacherMutation();
 
-  // FormData Convert
-  const convertToFormData = (data: Record<string, any>) => {
-    const formData = new FormData();
+// আপডেট করা অংশ
+const convertToFormData = (data: Record<string, any>, formData = new FormData(), parentKey = "") => {
+  Object.entries(data).forEach(([key, value]) => {
+    const fieldName = parentKey ? `${parentKey}[${key}]` : key;
 
-    Object.entries(data).forEach(([key, value]) => {
-      if (!value && value !== 0) return;
+    if (value === undefined || value === null || value === "") return;
 
-      // File upload
-      if (value.originFileObj instanceof File) {
-        formData.append(key, value.originFileObj);
-      } else if (value instanceof File) {
-        formData.append(key, value);
-      }
-
-      // Date
-      else if (value instanceof Date) {
-        formData.append(key, value.toISOString());
-      }
-
-      // Object
-      else if (typeof value === "object" && value !== null) {
-        formData.append(key, JSON.stringify(value));
-      }
-
-      // Normal data
-      else {
-        formData.append(key, String(value));
-      }
-    });
-
-    return formData;
-  };
+    // ফাইল হ্যান্ডলিং (আপনার thumbnail এর জন্য)
+    if (value && value.fileList) { // Ant Design এর ক্ষেত্রে এটি চেক করুন
+      formData.append(key, value.fileList[0].originFileObj);
+    } 
+    else if (value.originFileObj instanceof File) {
+      formData.append(key, value.originFileObj);
+    }
+    // ডেট হ্যান্ডলিং
+    else if (value && value.$isDayjsObject) {
+      formData.append(fieldName, value.toDate().toISOString());
+    }
+    // অ্যারে (social, education, bankAccounts)
+    else if (Array.isArray(value)) {
+      formData.append(fieldName, JSON.stringify(value));
+    }
+    // অবজেক্ট
+    else if (typeof value === "object" && value !== null) {
+      convertToFormData(value, formData, fieldName);
+    }
+    // সাধারণ ডাটা
+    else {
+      formData.append(fieldName, String(value));
+    }
+  });
+  return formData;
+};
 
   const handleAdd = async (data: TeacherFormData) => {
     try {

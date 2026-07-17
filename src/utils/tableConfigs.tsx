@@ -175,7 +175,65 @@ export const parentColumns: ColumnsType<any> = [
 
 
 ];
+/* =========================
+   📩 CONTACT
+========================= */
+export const contactColumns: ColumnsType<any> = [
+  slColumn,
 
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+    render: (name: string) => name || "-",
+  },
+
+  {
+    title: "Email",
+    dataIndex: "email",
+    key: "email",
+    render: (email: string) => (
+      <Typography.Text copyable>
+        {email || "-"}
+      </Typography.Text>
+    ),
+  },
+
+  {
+    title: "Phone",
+    dataIndex: "phone",
+    key: "phone",
+    render: (phone: string) => (
+      <Typography.Text copyable>
+        {phone || "-"}
+      </Typography.Text>
+    ),
+  },
+
+  {
+    title: "Subject",
+    dataIndex: "subject",
+    key: "subject",
+    render: (subject: string) => subject || "-",
+  },
+
+  {
+    title: "Message",
+    dataIndex: "message",
+    key: "message",
+    render: (message: string) => (
+      <Typography.Paragraph
+        ellipsis={{
+          rows: 2,
+          expandable: true,
+        }}
+        style={{ marginBottom: 0 }}
+      >
+        {message || "-"}
+      </Typography.Paragraph>
+    ),
+  },
+];
 /* =========================
    💰 DONATION
 ========================= */

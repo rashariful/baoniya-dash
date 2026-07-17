@@ -205,13 +205,13 @@ export const adminRoutes = [
     group: "Engagement",
     element: <GalleryPage />,
   },
-  {
-    name: "Banner",
-    path: "banner",
-    icon: <CalendarDays />,
-    group: "Engagement",
-    element: <BannerPage />,
-  },
+  // {
+  //   name: "Banner",
+  //   path: "banner",
+  //   icon: <CalendarDays />,
+  //   group: "Engagement",
+  //   element: <BannerPage />,
+  // },
   {
     name: "Contact",
     path: "contact",
@@ -219,13 +219,13 @@ export const adminRoutes = [
     group: "Engagement",
     element: <ContactPage />,
   },
-  {
-    name: "Parents",
-    path: "parents",
-    icon: <UserRound />,
-    group: "Engagement",
-    element: <ParentPage />,
-  },
+  // {
+  //   name: "Parents",
+  //   path: "parents",
+  //   icon: <UserRound />,
+  //   group: "Engagement",
+  //   element: <ParentPage />,
+  // },
 
   /* =========================
      SYSTEM
