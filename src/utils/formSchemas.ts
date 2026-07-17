@@ -632,6 +632,52 @@ export const studentFormFields: FormField[] = [
     placeholder: "Enter full address",
     span: 24,
   },
+    {
+    name: "dob",
+    label: "Date of Birth",
+    type: "date",
+    placeholder: "Enter Date of Birth",
+    span: 12,
+  },
+ {
+    name: "bloodGroup",
+    label: "Blood Group",
+    type: "select",
+    options: [
+      { label: "A+", value: "A+" },
+      { label: "A-", value: "A-" },
+      { label: "B+", value: "B+" },
+      { label: "B-", value: "B-" },
+      { label: "AB+", value: "AB+" },
+      { label: "AB-", value: "AB-" },
+      { label: "O+", value: "O+" },
+      { label: "O-", value: "O-" },
+    ],
+    span: 12,
+  },
+    // =========================
+  // Basic Information
+  // =========================
+  {
+    name: "thumbnail",
+    label: "Thumbnail",
+    type: "upload",
+    span: 24,
+    required: true,
+    rules: [
+      {
+        validator: (_, value) => {
+          if (value && value.size > 2 * 1024 * 1024) {
+            return Promise.reject(
+              new Error("Image size must be less than 2MB!")
+            );
+          }
+          return Promise.resolve();
+        },
+      },
+    ],
+  },
+ 
 ];
 /* =========================
    👨‍🏫 TEACHER

@@ -18,7 +18,6 @@ import { useTypedSelector } from "@/redux/hooks";
 export function TopBar() {
   const { open } = useSidebar();
     const { user } = useTypedSelector((state) => state.auth);
-    console.log(user, "user info")
   
   const logout = (redirect = "/login") => {
   try {

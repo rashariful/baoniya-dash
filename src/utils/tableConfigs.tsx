@@ -15,6 +15,17 @@ const slColumn: ColumnType<any> = {
 export const studentColumns: ColumnsType<any> = [
   slColumn,
   {
+    title: "Thumbnail",
+    dataIndex: "thumbnail",
+    key: "thumbnail",
+    render: (thumbnail: string) =>
+      thumbnail ? (
+        <Image width={50} height={50} src={thumbnail} alt="student" />
+      ) : (
+        "No Image"
+      ),
+  },
+  {
     title: "Student ID",
     dataIndex: "studentId",
     width: 140,
