@@ -168,6 +168,10 @@ const apiEndpoints = {
     all: "/role",
     withId: (id) => `/role/${id}`,
   },
+  notification: {
+    all: "/notification",
+    withId: (id) => `/notification/${id}`,
+  },
 
   permission: {
     all: "/permission",
@@ -198,6 +202,7 @@ export const {
   student,
   teacher,
   gallery,
+  notification,
 
   academicSession,
   section,

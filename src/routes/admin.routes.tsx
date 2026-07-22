@@ -21,6 +21,7 @@ import {
   Sliders,
   ClipboardList,
   GalleryThumbnails,
+  MessageCircle,
 } from "lucide-react";
 
 /* =========================
@@ -53,6 +54,7 @@ import GradeRulePage from "@/pages/GradeRule/GradeRulePage";
 import ResultSettingPage from "@/pages/ResultSetting/ResultSettingPage";
 import ExamResultPage from "@/pages/ExamResult/ExamResultPage";
 import GalleryPage from "@/pages/Gallery/GalleryPage";
+import MessagePage from "@/pages/Message/MessagePage";
 
 export const adminRoutes = [
   {
@@ -230,6 +232,13 @@ export const adminRoutes = [
   /* =========================
      SYSTEM
   ========================= */
+  {
+    name: "Messaage",
+    path: "message",
+    icon: <MessageCircle />,
+    group: "System",
+    element: <MessagePage />,
+  },
   {
     name: "Report",
     path: "report",

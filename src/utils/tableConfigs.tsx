@@ -1,5 +1,6 @@
 import { ColumnsType, ColumnType } from "antd/es/table";
 import { Tag, Typography, Tooltip, Image } from "antd";
+import dayjs from "dayjs";
 
 // টাইপ এরর সমাধানের জন্য এসএল কলাম
 const slColumn: ColumnType<any> = {
@@ -102,7 +103,7 @@ export const teacherColumns: ColumnsType<any> = [
 
   {
     title: "Teacher Index",
-    dataIndex: "teacherId",
+    dataIndex: "indexNumber",
   },
 
   {
@@ -353,18 +354,6 @@ export const attendanceColumns: ColumnsType<any> = [
   },
 
   {
-    title: "Marked By",
-    dataIndex: ["markedBy", "name"],
-    render: (value) => value || "--",
-  },
-
-  {
-    title: "Remarks",
-    dataIndex: "remarks",
-    render: (value) => value || "--",
-  },
-
-  {
     title: "Created",
     dataIndex: "createdAt",
     render: (value) =>
@@ -374,8 +363,6 @@ export const attendanceColumns: ColumnsType<any> = [
 /* =========================
    🏫 ADMISSION & OTHERS
 ========================= */
-
-import dayjs from "dayjs";
 
 export const admissionColumns: ColumnsType<any> = [
   slColumn,
@@ -451,22 +438,77 @@ export const classColumns: ColumnsType<any> = [
   { title: "Teacher", dataIndex: ["teacherId", "name"], render: (v) => v || "-" },
 ];
 
+/* =========================
+   📢 NOTICE TABLE COLUMNS
+========================= */
 export const noticeColumns: ColumnsType<any> = [
   slColumn,
-  { title: "Title", dataIndex: "title" },
-  { title: "Message", dataIndex: "message", render: (v) => <Tooltip title={v}>{v?.slice(0, 30)}...</Tooltip> },
+  { 
+    title: "Thumbnail", 
+    dataIndex: "thumbnail",
+    render: (url) => url ? (
+      <img src={url} alt="thumbnail" className="w-10 h-10 object-cover rounded-md border" />
+    ) : (
+      <span className="text-muted-foreground text-xs">No Image</span>
+    )
+  },
+  { 
+    title: "Title", 
+    dataIndex: "title",
+    render: (v) => <span className="font-semibold text-foreground">{v}</span>
+  },
+  { 
+    title: "Message", 
+    dataIndex: "message", 
+    render: (v) => v ? (
+      <Tooltip title={v}>
+        <span>{v.length > 30 ? `${v.slice(0, 30)}...` : v}</span>
+      </Tooltip>
+    ) : (
+      <span className="text-muted-foreground text-xs italic">Only Image</span>
+    )
+  },
+  { 
+    title: "Audience", 
+    dataIndex: "audience",
+    render: (v) => (
+      <span className="px-2 py-1 rounded-md text-xs font-medium bg-secondary text-secondary-foreground uppercase">
+        {v || "public"}
+      </span>
+    )
+  },
+  { 
+    title: "Priority", 
+    dataIndex: "priority",
+    render: (v) => {
+      const color = 
+        v === 'high' ? 'bg-red-500/10 text-red-500' :
+        v === 'medium' ? 'bg-yellow-500/10 text-yellow-600' :
+        'bg-green-500/10 text-green-600';
+      return (
+        <span className={`px-2.5 py-1 rounded-full text-xs font-semibold uppercase ${color}`}>
+          {v || 'medium'}
+        </span>
+      );
+    }
+  },
+  { 
+    title: "Start Date", 
+    dataIndex: "startDate",
+    render: (v) => v ? new Date(v).toLocaleDateString('bn-BD') : 'N/A'
+  },
+  { 
+    title: "End Date", 
+    dataIndex: "endDate",
+    render: (v) => v ? new Date(v).toLocaleDateString('bn-BD') : 'N/A'
+  },
 ];
-
 export const eventColumns: ColumnsType<any> = [
   slColumn,
   { title: "Title", dataIndex: "title" },
   { title: "Start Date", dataIndex: "startDate", render: (v) => new Date(v).toLocaleDateString() },
   { title: "Status", dataIndex: "isActive", render: (v) => <Tag color={v ? "green" : "red"}>{v ? "Active" : "Inactive"}</Tag> },
 ];
-
-
-
-
 
 /* =========================
    💸 FEES
@@ -509,10 +551,6 @@ export const settingsColumns: ColumnsType<any> = [
   { title: "Key", dataIndex: "key" },
   { title: "Value", dataIndex: "value" },
 ];
-
-
-
-
 
 /* =========================
    🏫 Academic Session

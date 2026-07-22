@@ -1,19 +1,10 @@
 
-import React from 'react'
-
-function BannerPage() {
-  return (
-    <div>BannerPage</div>
-  )
-}
-
-export default BannerPage
 
 // import React, { useState } from "react";
 // import { message } from "antd";
 // import CrudTemplate from "@/components/templates/CrudTemplate/CrudTemplate";
-// // import { bannerColumns } from "@/utils/tableConfigs";
-// // import { bannerFormFields } from "@/utils/formSchemas";
+// import { bannerColumns } from "@/utils/tableConfigs";
+// import { bannerFormFields } from "@/utils/formSchemas";
 // import {
 //   useCreateBannerMutation,
 //   useGetAllBannerQuery,
@@ -135,7 +126,7 @@ export default BannerPage
 //   return (
 //     <section>
 //       <div>
-//         {/* <CrudTemplate
+//         <CrudTemplate
 //           title="Banner Management"
 //           subtitle="Your all banner manage here "
 //           data={Array.isArray(banners?.data) ? banners.data : []}
@@ -147,7 +138,7 @@ export default BannerPage
 //           onDelete={handleDelete}
 //           onToggle={handleToggle}
 
-//         /> */}
+//         />
 //       </div>
 //     </section>
 //   );

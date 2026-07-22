@@ -11,6 +11,7 @@ export const tagTypes = {
   contact: "contact",
   admission: "admission",
   donate: "donate",
+  notification: "notification",
 
   // Academic
   academicSession: "academicSession",
@@ -25,6 +26,7 @@ export const tagTypes = {
   teacher: "teacher",
   parents: "parents",
   staff: "staff",
+  gallery: "gallery",
 
   // Attendance
   attendance: "attendance",

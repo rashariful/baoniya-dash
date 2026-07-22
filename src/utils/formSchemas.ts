@@ -683,94 +683,101 @@ export const studentFormFields: FormField[] = [
    👨‍🏫 TEACHER
 ========================= */
 export const teacherFormFields: FormField[] = [
-  // =========================
-  // Basic Information
-  // =========================
-  { name: "thumbnail", label: "Thumbnail", type: "upload", span: 24 },
+  
   { name: "name", label: "Teacher Name", type: "text", placeholder: "e.g. Md. Abul Hasan", span: 12, required: true },
+  { name: "indexNumber", label: "Index Number", type: "text", placeholder: "e.g. Index Number", span: 12, required: true },
   { name: "designation", label: "Designation", type: "text", placeholder: "e.g. Senior Lecturer", span: 12, required: true },
   { name: "phone", label: "Phone", type: "text", placeholder: "e.g. 017xxxxxxxx", span: 12, required: true },
-
-
-  // { name: "teacherId", label: "Teacher ID", type: "text", placeholder: "e.g. TCH-2026-001", span: 12, required: true },
-  { name: "indexNumber", label: "Index Number", type: "text", placeholder: "e.g. 12345678", span: 12 },
-  { name: "nid", label: "NID Number", type: "text", placeholder: "e.g. 19901234567890123", span: 12 },
-  { name: "birthCertificateNo", label: "Birth Certificate No", type: "text", placeholder: "e.g. 20001234567890123", span: 12 },
-  { name: "gender", label: "Gender", type: "select", options: [{ label: "Male", value: "Male" }, { label: "Female", value: "Female" }, { label: "Other", value: "Other" }], span: 12 },
-  { name: "dateOfBirth", label: "Date of Birth", type: "date", span: 12 },
-  { name: "bloodGroup", label: "Blood Group", type: "select", options: [{ label: "A+", value: "A+" }, { label: "A-", value: "A-" }, { label: "B+", value: "B+" }, { label: "B-", value: "B-" }, { label: "AB+", value: "AB+" }, { label: "AB-", value: "AB-" }, { label: "O+", value: "O+" }, { label: "O-", value: "O-" }], span: 12 },
-  { name: "religion", label: "Religion", type: "text", placeholder: "e.g. Islam", span: 12 },
-  { name: "maritalStatus", label: "Marital Status", type: "select", options: [{ label: "Single", value: "Single" }, { label: "Married", value: "Married" }, { label: "Divorced", value: "Divorced" }, { label: "Widowed", value: "Widowed" }], span: 12 },
-
-  // =========================
-  // Professional Information
-  // =========================
-  { name: "department", label: "Department", type: "text", placeholder: "e.g. Computer Science", span: 12 },
-  { name: "subject", label: "Subject", type: "text", placeholder: "e.g. Mathematics", span: 12 },
-  { name: "qualification", label: "Highest Qualification", type: "text", placeholder: "e.g. M.Sc in CSE", span: 12 },
-  { name: "teachingExperience", label: "Teaching Experience (Years)", type: "number", placeholder: "e.g. 5", span: 12 },
-  { name: "salary.governmentSalary", label: "Government Salary", type: "number", placeholder: "e.g. 25000", span: 12 },
-  { name: "salary.schoolSalary", label: "School Salary", type: "number", placeholder: "e.g. 15000", span: 12 },
-  { name: "joinDate", label: "Joining Date", type: "date", span: 12 },
-  { name: "schoolJoinDate", label: "School Joining Date", type: "date", span: 12 },
-  { name: "employmentType", label: "Employment Type", type: "select", options: [{ label: "Permanent", value: "Permanent" }, { label: "Contract", value: "Contract" }, { label: "Part Time", value: "Part Time" }], span: 12 },
-  { name: "status", label: "Status", type: "select", options: [{ label: "Active", value: "Active" }, { label: "Inactive", value: "Inactive" }, { label: "Resigned", value: "Resigned" }], span: 12 },
-  { name: "bio", label: "Biography", type: "textarea", placeholder: "Write something about the teacher...", span: 24 },
-
-  // =========================
-  // Contact Information
-  // =========================
-  { name: "alternativePhone", label: "Alternative Phone", type: "text", placeholder: "e.g. 018xxxxxxxx", span: 12 },
-  { name: "email", label: "Email", type: "email", placeholder: "e.g. teacher@example.com", span: 12 },
-  { name: "presentAddress", label: "Present Address", type: "textarea", placeholder: "House, Road, Area, City", span: 12 },
-  { name: "permanentAddress", label: "Permanent Address", type: "textarea", placeholder: "House, Road, Area, City", span: 12 },
-
-  // =========================
-  // Emergency Contact
-  // =========================
-  { name: "emergencyContact.name", label: "Emergency Name", type: "text", placeholder: "e.g. Father/Brother Name", span: 8 },
-  { name: "emergencyContact.relation", label: "Relation", type: "text", placeholder: "e.g. Father", span: 8 },
-  { name: "emergencyContact.phone", label: "Emergency Phone", type: "text", placeholder: "e.g. 019xxxxxxxx", span: 8 },
-
-  // =========================
-  // Dynamic Arrays
-  // =========================
-  {
-    name: "education",
-    label: "Education Qualification",
-    type: "dynamicList",
-    span: 24,
-    fields: [
-      { name: "label", label: "Degree/Exam", type: "text", placeholder: "e.g. B.Sc" },
-      { name: "institute", label: "Institute", type: "text", placeholder: "e.g. University of Dhaka" },
-      { name: "year", label: "Passing Year", type: "number", placeholder: "e.g. 2020" },
-      { name: "grade", label: "GPA/CGPA", type: "text", placeholder: "e.g. 3.50" },
-    ]
-  },
-  {
-    name: "bankAccounts",
-    label: "Bank Information",
-    type: "dynamicList",
-    span: 24,
-    fields: [
-      { name: "bankName", label: "Bank Name", type: "text", placeholder: "e.g. Sonali Bank" },
-      { name: "accountName", label: "Account Name", type: "text", placeholder: "e.g. MD. ABUL HASAN" },
-      { name: "accountNumber", label: "Account Number", type: "text", placeholder: "e.g. 1234567890" },
-      { name: "branchName", label: "Branch Name", type: "text", placeholder: "e.g. Gulshan Branch" },
-      { name: "routingNumber", label: "Routing Number", type: "text", placeholder: "e.g. 012345678" },
-    ]
-  },
-  {
-    name: "social",
-    label: "Social Links",
-    type: "dynamicList",
-    span: 24,
-    fields: [
-      { name: "platform", label: "Platform Name", type: "text", placeholder: "e.g. Facebook / LinkedIn" },
-      { name: "link", label: "Profile Link", type: "text", placeholder: "e.g. https://linkedin.com/in/..." },
-    ]
-  },
 ];
+// export const teacherFormFields: FormField[] = [
+//   // =========================
+//   // Basic Information
+//   // =========================
+//   { name: "thumbnail", label: "Thumbnail", type: "upload", span: 24 },
+//   { name: "name", label: "Teacher Name", type: "text", placeholder: "e.g. Md. Abul Hasan", span: 12, required: true },
+//   { name: "designation", label: "Designation", type: "text", placeholder: "e.g. Senior Lecturer", span: 12, required: true },
+//   { name: "phone", label: "Phone", type: "text", placeholder: "e.g. 017xxxxxxxx", span: 12, required: true },
+
+
+//   // { name: "teacherId", label: "Teacher ID", type: "text", placeholder: "e.g. TCH-2026-001", span: 12, required: true },
+//   { name: "indexNumber", label: "Index Number", type: "text", placeholder: "e.g. 12345678", span: 12 },
+//   { name: "nid", label: "NID Number", type: "text", placeholder: "e.g. 19901234567890123", span: 12 },
+//   { name: "birthCertificateNo", label: "Birth Certificate No", type: "text", placeholder: "e.g. 20001234567890123", span: 12 },
+//   { name: "gender", label: "Gender", type: "select", options: [{ label: "Male", value: "Male" }, { label: "Female", value: "Female" }, { label: "Other", value: "Other" }], span: 12 },
+//   { name: "dateOfBirth", label: "Date of Birth", type: "date", span: 12 },
+//   { name: "bloodGroup", label: "Blood Group", type: "select", options: [{ label: "A+", value: "A+" }, { label: "A-", value: "A-" }, { label: "B+", value: "B+" }, { label: "B-", value: "B-" }, { label: "AB+", value: "AB+" }, { label: "AB-", value: "AB-" }, { label: "O+", value: "O+" }, { label: "O-", value: "O-" }], span: 12 },
+//   { name: "religion", label: "Religion", type: "text", placeholder: "e.g. Islam", span: 12 },
+//   { name: "maritalStatus", label: "Marital Status", type: "select", options: [{ label: "Single", value: "Single" }, { label: "Married", value: "Married" }, { label: "Divorced", value: "Divorced" }, { label: "Widowed", value: "Widowed" }], span: 12 },
+
+//   // =========================
+//   // Professional Information
+//   // =========================
+//   { name: "department", label: "Department", type: "text", placeholder: "e.g. Computer Science", span: 12 },
+//   { name: "subject", label: "Subject", type: "text", placeholder: "e.g. Mathematics", span: 12 },
+//   { name: "qualification", label: "Highest Qualification", type: "text", placeholder: "e.g. M.Sc in CSE", span: 12 },
+//   { name: "teachingExperience", label: "Teaching Experience (Years)", type: "number", placeholder: "e.g. 5", span: 12 },
+//   { name: "salary.governmentSalary", label: "Government Salary", type: "number", placeholder: "e.g. 25000", span: 12 },
+//   { name: "salary.schoolSalary", label: "School Salary", type: "number", placeholder: "e.g. 15000", span: 12 },
+//   { name: "joinDate", label: "Joining Date", type: "date", span: 12 },
+//   { name: "schoolJoinDate", label: "School Joining Date", type: "date", span: 12 },
+//   { name: "employmentType", label: "Employment Type", type: "select", options: [{ label: "Permanent", value: "Permanent" }, { label: "Contract", value: "Contract" }, { label: "Part Time", value: "Part Time" }], span: 12 },
+//   { name: "status", label: "Status", type: "select", options: [{ label: "Active", value: "Active" }, { label: "Inactive", value: "Inactive" }, { label: "Resigned", value: "Resigned" }], span: 12 },
+//   { name: "bio", label: "Biography", type: "textarea", placeholder: "Write something about the teacher...", span: 24 },
+
+//   // =========================
+//   // Contact Information
+//   // =========================
+//   { name: "alternativePhone", label: "Alternative Phone", type: "text", placeholder: "e.g. 018xxxxxxxx", span: 12 },
+//   { name: "email", label: "Email", type: "email", placeholder: "e.g. teacher@example.com", span: 12 },
+//   { name: "presentAddress", label: "Present Address", type: "textarea", placeholder: "House, Road, Area, City", span: 12 },
+//   { name: "permanentAddress", label: "Permanent Address", type: "textarea", placeholder: "House, Road, Area, City", span: 12 },
+
+//   // =========================
+//   // Emergency Contact
+//   // =========================
+//   { name: "emergencyContact.name", label: "Emergency Name", type: "text", placeholder: "e.g. Father/Brother Name", span: 8 },
+//   { name: "emergencyContact.relation", label: "Relation", type: "text", placeholder: "e.g. Father", span: 8 },
+//   { name: "emergencyContact.phone", label: "Emergency Phone", type: "text", placeholder: "e.g. 019xxxxxxxx", span: 8 },
+
+//   // =========================
+//   // Dynamic Arrays
+//   // =========================
+//   {
+//     name: "education",
+//     label: "Education Qualification",
+//     type: "dynamicList",
+//     span: 24,
+//     fields: [
+//       { name: "label", label: "Degree/Exam", type: "text", placeholder: "e.g. B.Sc" },
+//       { name: "institute", label: "Institute", type: "text", placeholder: "e.g. University of Dhaka" },
+//       { name: "year", label: "Passing Year", type: "number", placeholder: "e.g. 2020" },
+//       { name: "grade", label: "GPA/CGPA", type: "text", placeholder: "e.g. 3.50" },
+//     ]
+//   },
+//   {
+//     name: "bankAccounts",
+//     label: "Bank Information",
+//     type: "dynamicList",
+//     span: 24,
+//     fields: [
+//       { name: "bankName", label: "Bank Name", type: "text", placeholder: "e.g. Sonali Bank" },
+//       { name: "accountName", label: "Account Name", type: "text", placeholder: "e.g. MD. ABUL HASAN" },
+//       { name: "accountNumber", label: "Account Number", type: "text", placeholder: "e.g. 1234567890" },
+//       { name: "branchName", label: "Branch Name", type: "text", placeholder: "e.g. Gulshan Branch" },
+//       { name: "routingNumber", label: "Routing Number", type: "text", placeholder: "e.g. 012345678" },
+//     ]
+//   },
+//   {
+//     name: "social",
+//     label: "Social Links",
+//     type: "dynamicList",
+//     span: 24,
+//     fields: [
+//       { name: "platform", label: "Platform Name", type: "text", placeholder: "e.g. Facebook / LinkedIn" },
+//       { name: "link", label: "Profile Link", type: "text", placeholder: "e.g. https://linkedin.com/in/..." },
+//     ]
+//   },
+// ];
 /* =========================
    📅 ATTENDANCE
 ========================= */
@@ -1017,24 +1024,29 @@ export const resultFormFields: FormField[] = [
 ];
 
 /* =========================
-   📢 NOTICE
+   📢 NOTICE FORM FIELDS
 ========================= */
-export const noticeFormFields: FormField[] = [
+export const noticeFormFields = [
   {
     name: "title",
     label: "Notice Title",
     type: "text",
     placeholder: "Enter title",
-    span: 12,
+    span: 24,
     required: true,
   },
   {
-    name: "message",
-    label: "Message",
-    type: "textarea",
-    placeholder: "Write notice details here...",
-    span: 24,
+    name: "priority",
+    label: "Priority",
+    type: "select",
+    placeholder: "Select priority",
+    span: 12,
     required: true,
+    options: [
+      { label: "Low", value: "low" },
+      { label: "Medium", value: "medium" },
+      { label: "High", value: "high" },
+    ],
   },
   {
     name: "audience",
@@ -1047,6 +1059,36 @@ export const noticeFormFields: FormField[] = [
       { label: "Students", value: "students" },
       { label: "Teachers", value: "teachers" },
     ],
+  },
+ 
+  {
+    name: "startDate",
+    label: "Start Date",
+    type: "date",
+    span: 12,
+    required: true,
+  },
+  {
+    name: "endDate",
+    label: "End Date",
+    type: "date",
+    span: 12,
+    required: true,
+  },
+  {
+    name: "message",
+    label: "Message",
+    type: "textarea",
+    placeholder: "Write notice details here...",
+    span: 24,
+    required: false, // যেহেতু স্কিমা অনুযায়ী মেসেজ বা থাম্বনেইল যেকোনো একটি থাকলেই হবে
+  },
+   {
+    name: "thumbnail",
+    label: "Thumbnail / Image URL",
+    type: "upload", // অথবা আপনার প্রজেক্ট অনুযায়ী ফাইল আপলোড টাইপ থাকলে সেটি দিতে পারেন
+    placeholder: "Enter image URL or upload file",
+    span: 12,
   },
 ];
 /* =========================
