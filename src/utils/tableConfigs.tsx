@@ -142,7 +142,7 @@ export const teacherColumns: ColumnsType<any> = [
     title: "Status",
     dataIndex: "status",
     render: (value) => (
-      <Tag color={value === "Active" ? "green" : value === "Inactive" ? "orange" : "red"}>
+      <Tag color={value === "active" ? "green" : value === "inactive" ? "orange" : "red"}>
         {value}
       </Tag>
     ),

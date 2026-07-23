@@ -33,21 +33,104 @@ const { Option } = Select;
 const { TextArea } = Input;
 
 // ── Improved FormData Converter ─────────────────────────────────────────────
-const convertToFormData = (data) => {
+// const convertToFormData = (data) => {
+//   const formData = new FormData();
+
+//   const appendValue = (key, value) => {
+//     if (value === undefined || value === null || value === "") return;
+
+//     // File
+//     if (value instanceof File) {
+//       formData.append(key, value);
+//       return;
+//     }
+
+//     // AntD Upload fileList
+//     if (Array.isArray(value) && value[0]?.originFileObj instanceof File) {
+//       formData.append(key, value[0].originFileObj);
+//       return;
+//     }
+
+//     // dayjs / Date
+//     if (value?.$isDayjsObject || typeof value?.toDate === "function") {
+//       formData.append(key, value.toDate().toISOString());
+//       return;
+//     }
+//     if (value instanceof Date) {
+//       formData.append(key, value.toISOString());
+//       return;
+//     }
+
+//     // Nested Objects → Flatten (salary, emergencyContact)
+//     if (typeof value === "object" && !Array.isArray(value)) {
+//       Object.entries(value).forEach(([subKey, subValue]) => {
+//         if (subValue !== undefined && subValue !== null && subValue !== "") {
+//           formData.append(`${key}.${subKey}`, subValue);
+//         }
+//       });
+//       return;
+//     }
+
+//     // Arrays
+//     if (Array.isArray(value)) {
+//       formData.append(key, JSON.stringify(value));
+//       return;
+//     }
+
+//     // Plain value
+//     formData.append(key, String(value));
+//   };
+
+//   Object.entries(data).forEach(([key, value]) => appendValue(key, value));
+//   return formData;
+// };
+  // const convertToFormData = (data: Record<string, any>) => {
+  //   const formData = new FormData();
+
+  //   Object.entries(data).forEach(([key, value]) => {
+  //     if (!value && value !== 0) return;
+
+  //     // Upload File
+  //     if (value?.originFileObj instanceof File) {
+  //       formData.append(key, value.originFileObj);
+  //     } else if (value instanceof File) {
+  //       formData.append(key, value);
+  //     }
+
+  //     // Date
+  //     else if (value instanceof Date) {
+  //       formData.append(key, value.toISOString());
+  //     }
+
+  //     // Object
+  //     else if (typeof value === "object" && value !== null) {
+  //       formData.append(key, JSON.stringify(value));
+  //     }
+
+  //     // Primitive
+  //     else {
+  //       formData.append(key, String(value));
+  //     }
+  //   });
+
+  //   return formData;
+  // };
+  const convertToFormData = (data: Record<string, any>) => {
   const formData = new FormData();
 
-  const appendValue = (key, value) => {
+  Object.entries(data).forEach(([key, value]) => {
     if (value === undefined || value === null || value === "") return;
-
-    // File
-    if (value instanceof File) {
-      formData.append(key, value);
-      return;
-    }
+    if (typeof value !== "number" && !value) return; // 0 allow korar jonno
 
     // AntD Upload fileList
     if (Array.isArray(value) && value[0]?.originFileObj instanceof File) {
       formData.append(key, value[0].originFileObj);
+      return;
+    }
+
+    // Direct File
+    if (value instanceof File) {
+      formData.append(key, value);
       return;
     }
 
@@ -61,30 +144,18 @@ const convertToFormData = (data) => {
       return;
     }
 
-    // Nested Objects → Flatten (salary, emergencyContact)
-    if (typeof value === "object" && !Array.isArray(value)) {
-      Object.entries(value).forEach(([subKey, subValue]) => {
-        if (subValue !== undefined && subValue !== null && subValue !== "") {
-          formData.append(`${key}.${subKey}`, subValue);
-        }
-      });
-      return;
-    }
-
-    // Arrays
-    if (Array.isArray(value)) {
+    // Object (salary, emergencyContact) or Array (social, education, bankAccounts)
+    if (typeof value === "object") {
       formData.append(key, JSON.stringify(value));
       return;
     }
 
-    // Plain value
+    // Primitive
     formData.append(key, String(value));
-  };
+  });
 
-  Object.entries(data).forEach(([key, value]) => appendValue(key, value));
   return formData;
 };
-
 // Color mapping for education
 const colorMap = {
   blue: { border: "border-blue-500", dotColor: "bg-blue-500" },
@@ -650,7 +721,7 @@ const TeacherProfile = () => {
 
         {/* Main Profile Card */}
         <Card className="shadow-xl rounded-2xl overflow-hidden border-0">
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-700 -mx-6 -mt-6 px-6 py-8 mb-6">
+          <div className="bg-gradient-to-r from-primary to-primary/90 -mx-6 -mt-6 px-6 py-8 mb-6">
             <div className="flex flex-col md:flex-row items-center gap-6">
               <div className="relative">
                 <Avatar
@@ -678,7 +749,7 @@ const TeacherProfile = () => {
               </div>
               <div className="flex-1 text-center md:text-left">
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
-                  <h2 className="text-2xl md:text-3xl font-bold text-white">{teacher.name}</h2>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white capitalize">{teacher.name}</h2>
                   <Tag color="green">{teacher.status || "Active"}</Tag>
                   <Tag color="blue">{teacher.employmentType || "Permanent"}</Tag>
                 </div>
