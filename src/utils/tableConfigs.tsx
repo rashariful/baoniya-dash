@@ -81,7 +81,47 @@ export const studentColumns: ColumnsType<any> = [
 /* =========================
    👨‍🏫 TEACHER
 ========================= */
+/* =========================
+   📦 ASSET
+========================= */
 
+export const assetColumns: ColumnsType<any> = [
+  slColumn,
+  {
+    title: "Asset Name",
+    dataIndex: "name",
+    key: "name",
+    sorter: (a: any, b: any) => a.name.localeCompare(b.name),
+  },
+  {
+    title: "Category",
+    dataIndex: "category",
+    key: "category",
+    render: (value: string) => value || "-",
+  },
+  {
+    title: "Quantity",
+    dataIndex: "quantity",
+    key: "quantity",
+  },
+  {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+    render: (value: string) => {
+      let color = "green";
+      if (value === "not_available") color = "orange";
+      if (value === "damaged") color = "red";
+      if (value === "in_repair") color = "geekblue";
+
+      return (
+        <Tag color={color}>
+          {value ? value.replace("_", " ").toUpperCase() : "-"}
+        </Tag>
+      );
+    },
+  },
+];
 export const teacherColumns: ColumnsType<any> = [
   slColumn,
   {
@@ -148,7 +188,47 @@ export const teacherColumns: ColumnsType<any> = [
     ),
   },
 ];
+/* =========================
+   📚 LIBRARY
+========================= */
 
+export const libraryColumns: ColumnsType<any> = [
+  slColumn,
+  {
+    title: "Book Name",
+    dataIndex: "bookName",
+    key: "bookName",
+    sorter: (a: any, b: any) => a.bookName.localeCompare(b.bookName),
+  },
+  {
+    title: "Student",
+    dataIndex: "student",
+    key: "student",
+    render: (student: any) => student?.name || "N/A",
+  },
+  {
+    title: "Return Date",
+    dataIndex: "returnDate",
+    key: "returnDate",
+    render: (value: string) => (value ? new Date(value).toLocaleDateString() : "-"),
+  },
+  {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+    render: (value: string) => {
+      let color = "geekblue";
+      if (value === "returned") color = "green";
+      if (value === "overdue") color = "red";
+
+      return (
+        <Tag color={color}>
+          {value ? value.toUpperCase() : "-"}
+        </Tag>
+      );
+    },
+  },
+];
 /* =========================
    👨‍👩‍👧 PARENTS
 ========================= */

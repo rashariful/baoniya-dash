@@ -138,8 +138,8 @@ const apiEndpoints = {
   },
 
   library: {
-    all: "/libarary",
-    withId: (id) => `/libarary/${id}`,
+    all: "/library",
+    withId: (id) => `/library/${id}`,
   },
 
   studentAcademicRecord: {

@@ -22,6 +22,7 @@ import {
   ClipboardList,
   GalleryThumbnails,
   MessageCircle,
+  Library,
 } from "lucide-react";
 
 /* =========================
@@ -55,6 +56,8 @@ import ResultSettingPage from "@/pages/ResultSetting/ResultSettingPage";
 import ExamResultPage from "@/pages/ExamResult/ExamResultPage";
 import GalleryPage from "@/pages/Gallery/GalleryPage";
 import MessagePage from "@/pages/Message/MessagePage";
+import AssetPage from "@/pages/Asset/AssetPage";
+import LibraryPage from "@/pages/Library/LibraryPage";
 
 export const adminRoutes = [
   {
@@ -174,6 +177,20 @@ export const adminRoutes = [
     icon: <Briefcase />,
     group: "Operations",
     element: <Staffpage />,
+  },
+  {
+    name: "Asset",
+    path: "asset",
+    icon: <Briefcase />,
+    group: "Operations",
+    element: <AssetPage />,
+  },
+  {
+    name: "Library",
+    path: "library",
+    icon: <Library />,
+    group: "Operations",
+    element: <LibraryPage />,
   },
   {
     name: "Donate",

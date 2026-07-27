@@ -34,6 +34,96 @@ export const academicSessionFormFields: FormField[] = [
 ];
 
 /* =========================
+   📦 ASSET FORM FIELDS
+========================= */
+
+export const assetFormFields: FormField[] = [
+  {
+    name: "name",
+    label: "Asset Name",
+    type: "text",
+    placeholder: "Enter asset name",
+    span: 12,
+    required: true,
+  },
+  {
+    name: "category",
+    label: "Category",
+    type: "text",
+    placeholder: "e.g. Furniture, Electronics",
+    span: 12,
+    required: false,
+  },
+  {
+    name: "quantity",
+    label: "Quantity",
+    type: "number",
+    placeholder: "Enter quantity",
+    span: 12,
+    required: true,
+    
+  },
+  {
+    name: "status",
+    label: "Status",
+    type: "select",
+    placeholder: "Select status",
+    span: 12,
+    required: true,
+    
+    options: [
+      { label: "Available", value: "available" },
+      { label: "Not Available", value: "not_available" },
+      { label: "Damaged", value: "damaged" },
+      { label: "In Repair", value: "in_repair" },
+    ],
+  },
+];
+/* =========================
+   📚 LIBRARY FORM FIELDS
+========================= */
+
+export const libraryFormFields: FormField[] = [
+  {
+    name: "bookName",
+    label: "Book Name",
+    type: "text",
+    placeholder: "Enter book name",
+    span: 12,
+    required: true,
+  },
+  {
+    name: "student",
+    label: "Student",
+    type: "select",
+    placeholder: "Select student",
+    span: 12,
+    required: false,
+    options: [], // Dynamically populated via useMemo in LibraryPage
+  },
+  {
+    name: "returnDate",
+    label: "Return Date",
+    type: "date",
+    placeholder: "Select return date",
+    span: 12,
+    required: false,
+  },
+  {
+    name: "status",
+    label: "Status",
+    type: "select",
+    placeholder: "Select status",
+    span: 12,
+    required: true,
+    options: [
+      { label: "Borrowed", value: "borrowed" },
+      { label: "Returned", value: "returned" },
+      { label: "Overdue", value: "overdue" },
+    ],
+  },
+];
+/* =========================
    🏫 CLASS
 ========================= */
 export const classesFormFields: FormField[] = [
