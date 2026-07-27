@@ -1,3 +1,5 @@
+
+
 const apiEndpoints = {
   auth: {
     login: "/auth/login",
@@ -87,14 +89,15 @@ const apiEndpoints = {
     all: "/report",
     withId: (id) => `/report/${id}`,
   },
+
   gallery: {
     all: "/gallery",
     withId: (id) => `/gallery/${id}`,
   },
 
   settings: {
-    all: "/settings",
-    withId: (id) => `/settings/${id}`,
+    all: "/setting",
+    withId: (id) => `/setting/${id}`,
   },
 
   staff: {
@@ -110,6 +113,43 @@ const apiEndpoints = {
   teacher: {
     all: "/teacher",
     withId: (id) => `/teacher/${id}`,
+  },
+
+  // ================= Newly Added Backend Endpoints =================
+
+  finalResult: {
+    all: "/fnal-result",
+    withId: (id) => `/fnal-result/${id}`,
+  },
+
+  gradingScale: {
+    all: "/grading-scale",
+    withId: (id) => `/grading-scale/${id}`,
+  },
+
+  classGroup: {
+    all: "/class-group",
+    withId: (id) => `/class-group/${id}`,
+  },
+
+  asset: {
+    all: "/asset",
+    withId: (id) => `/asset/${id}`,
+  },
+
+  library: {
+    all: "/libarary",
+    withId: (id) => `/libarary/${id}`,
+  },
+
+  studentAcademicRecord: {
+    all: "/student-academic-record",
+    withId: (id) => `/student-academic-record/${id}`,
+  },
+
+  sms: {
+    all: "/Sms",
+    withId: (id) => `/Sms/${id}`,
   },
 
   // ================= Academic =================
@@ -168,6 +208,7 @@ const apiEndpoints = {
     all: "/role",
     withId: (id) => `/role/${id}`,
   },
+
   notification: {
     all: "/notification",
     withId: (id) => `/notification/${id}`,
@@ -203,7 +244,13 @@ export const {
   teacher,
   gallery,
   notification,
-
+  finalResult,
+  gradingScale,
+  classGroup,
+  asset,
+  library,
+  studentAcademicRecord,
+  sms,
   academicSession,
   section,
   subject,
@@ -217,6 +264,7 @@ export const {
   role,
   permission,
 } = apiEndpoints;
+
 
 // const apiEndpoints = {
 //   auth: {
@@ -307,6 +355,10 @@ export const {
 //     all: "/report",
 //     withId: (id) => `/report/${id}`,
 //   },
+//   gallery: {
+//     all: "/gallery",
+//     withId: (id) => `/gallery/${id}`,
+//   },
 
 //   settings: {
 //     all: "/settings",
@@ -326,6 +378,72 @@ export const {
 //   teacher: {
 //     all: "/teacher",
 //     withId: (id) => `/teacher/${id}`,
+//   },
+
+//   // ================= Academic =================
+
+//   academicSession: {
+//     all: "/academic-session",
+//     withId: (id) => `/academic-session/${id}`,
+//   },
+
+//   section: {
+//     all: "/section",
+//     withId: (id) => `/section/${id}`,
+//   },
+
+//   subject: {
+//     all: "/subject",
+//     withId: (id) => `/subject/${id}`,
+//   },
+
+//   exam: {
+//     all: "/exam",
+//     withId: (id) => `/exam/${id}`,
+//   },
+
+//   examResult: {
+//     all: "/exam-result",
+//     withId: (id) => `/exam-result/${id}`,
+//   },
+
+//   gradeRule: {
+//     all: "/grade-rule",
+//     withId: (id) => `/grade-rule/${id}`,
+//   },
+
+//   resultSetting: {
+//     all: "/result-setting",
+//     withId: (id) => `/result-setting/${id}`,
+//   },
+
+//   routine: {
+//     all: "/routine",
+//     withId: (id) => `/routine/${id}`,
+//   },
+
+//   syllabus: {
+//     all: "/syllabus",
+//     withId: (id) => `/syllabus/${id}`,
+//   },
+
+//   payment: {
+//     all: "/payment",
+//     withId: (id) => `/payment/${id}`,
+//   },
+
+//   role: {
+//     all: "/role",
+//     withId: (id) => `/role/${id}`,
+//   },
+//   notification: {
+//     all: "/notification",
+//     withId: (id) => `/notification/${id}`,
+//   },
+
+//   permission: {
+//     all: "/permission",
+//     withId: (id) => `/permission/${id}`,
 //   },
 // };
 
@@ -351,4 +469,19 @@ export const {
 //   staff,
 //   student,
 //   teacher,
+//   gallery,
+//   notification,
+
+//   academicSession,
+//   section,
+//   subject,
+//   exam,
+//   examResult,
+//   gradeRule,
+//   resultSetting,
+//   routine,
+//   syllabus,
+//   payment,
+//   role,
+//   permission,
 // } = apiEndpoints;
