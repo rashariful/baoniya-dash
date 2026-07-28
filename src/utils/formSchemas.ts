@@ -436,6 +436,116 @@ export const resultSettingFormFields: FormField[] = [
 //   },
 // ];
 
+// export const examResultFormFields: FormField[] = [
+//   {
+//     name: "studentId",
+//     label: "Student",
+//     type: "select",
+//     span: 12,
+//     required: true,
+//     dynamicOptions: true,
+//   },
+
+//   {
+//     name: "examId",
+//     label: "Exam",
+//     type: "select",
+//     span: 12,
+//     required: true,
+//     dynamicOptions: true,
+//   },
+
+//   {
+//     name: "sessionId",
+//     label: "Session",
+//     type: "select",
+//     span: 12,
+//     required: true,
+//     dynamicOptions: true,
+//   },
+
+//   {
+//     name: "subjects",
+//     label: "Subjects Result",
+//     type: "dynamicList",
+//      dynamicOptions: true,
+//     span: 24,
+//     fields: [
+//       {
+//         name: "subjectId",
+//         label: "Subject",
+//         type: "select",
+//         required: true,
+//         span: 6,
+//         dynamicOptions: true,
+//       },
+//       {
+//         name: "CA",
+//         label: "ca",
+//         type: "number",
+//         span: 4,
+//       },
+//       {
+//         name: "written",
+//         label: "Written",
+//         type: "number",
+//         span: 4,
+//       },
+//       {
+//         name: "mcq",
+//         label: "MCQ",
+//         type: "number",
+//         span: 4,
+//       },
+//       {
+//         name: "practical",
+//         label: "Practical",
+//         type: "number",
+//         span: 4,
+//       },
+//       {
+//         name: "total",
+//         label: "Total",
+//         type: "number",
+//         span: 6,
+//       },
+//       {
+//         name: "grade",
+//         label: "Grade",
+//         type: "text",
+//         span: 4,
+//       },
+//       {
+//         name: "gradePoint",
+//         label: "GPA",
+//         type: "number",
+//         span: 4,
+//       },
+//       {
+//         name: "status",
+//         label: "Status",
+//         type: "select",
+//         span: 4,
+//         options: [
+//           { label: "Pass", value: "Pass" },
+//           { label: "Fail", value: "Fail" },
+//           { label: "Absent", value: "Absent" },
+//         ],
+//       },
+//     ],
+//   },
+
+//   {
+//     name: "isPublished",
+//     label: "Publish Result",
+//     type: "switch",
+//     span: 12,
+//   },
+// ];
+
+
+
+
 export const examResultFormFields: FormField[] = [
   {
     name: "studentId",
@@ -445,7 +555,6 @@ export const examResultFormFields: FormField[] = [
     required: true,
     dynamicOptions: true,
   },
-
   {
     name: "examId",
     label: "Exam",
@@ -454,7 +563,6 @@ export const examResultFormFields: FormField[] = [
     required: true,
     dynamicOptions: true,
   },
-
   {
     name: "sessionId",
     label: "Session",
@@ -468,68 +576,77 @@ export const examResultFormFields: FormField[] = [
     name: "subjects",
     label: "Subjects Result",
     type: "dynamicList",
-     dynamicOptions: true,
     span: 24,
+    dynamicOptions: true,
     fields: [
       {
         name: "subjectId",
         label: "Subject",
         type: "select",
-        required: true,
         span: 6,
+        required: true,
         dynamicOptions: true,
       },
       {
-        name: "CA",
-        label: "ca",
+        name: "ca",
+        label: "CA",
         type: "number",
-        span: 4,
+        span: 3,
       },
       {
         name: "written",
         label: "Written",
         type: "number",
-        span: 4,
+        span: 3,
       },
       {
         name: "mcq",
         label: "MCQ",
         type: "number",
-        span: 4,
+        span: 3,
       },
       {
         name: "practical",
         label: "Practical",
         type: "number",
-        span: 4,
+        span: 3,
       },
       {
         name: "total",
         label: "Total",
         type: "number",
-        span: 6,
+        span: 3,
       },
       {
         name: "grade",
         label: "Grade",
         type: "text",
-        span: 4,
+        span: 3,
       },
       {
         name: "gradePoint",
-        label: "GPA",
+        label: "Grade Point",
         type: "number",
-        span: 4,
+        span: 3,
       },
       {
         name: "status",
         label: "Status",
         type: "select",
-        span: 4,
+        span: 3,
         options: [
-          { label: "Pass", value: "Pass" },
-          { label: "Fail", value: "Fail" },
-          { label: "Absent", value: "Absent" },
+          {
+            label: "Pass",
+            value: "Pass",
+          },
+          {
+            label: "Fail",
+            value: "Fail",
+          },
+          {
+            label: "Absent",
+            value: "Absent",
+          },
         ],
       },
     ],
@@ -542,12 +659,6 @@ export const examResultFormFields: FormField[] = [
     span: 12,
   },
 ];
-
-
-
-
-
-
 
 
 /* =========================

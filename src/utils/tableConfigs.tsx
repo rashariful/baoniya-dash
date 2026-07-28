@@ -848,44 +848,70 @@ export const resultSettingColumns: ColumnsType<any> = [
 /* =========================
    📊 Exam Result (IMPORTANT)
 ========================= */
+/* =========================
+   📊 Exam Result (IMPORTANT)
+========================= */
+
 export const examResultColumns: ColumnsType<any> = [
   slColumn,
-  { title: "Student", dataIndex: ["studentId", "name"] },
-  { title: "Roll", dataIndex: ["studentId", "roll"] },
-  { title: "Exam", dataIndex: ["examId", "name"] },
-  { title: "Session", dataIndex: ["sessionId", "year"] },
+
+  {
+    title: "Student",
+    dataIndex: ["studentId", "name"],
+  },
+
+  {
+    title: "Student ID",
+    dataIndex: ["studentId", "studentId"],
+  },
+
+  {
+    title: "Exam",
+    dataIndex: ["examId", "name"],
+  },
+
+  {
+    title: "Session",
+    dataIndex: ["sessionId", "year"],
+  },
 
   {
     title: "Total Marks",
     render: (_, record) =>
-      record.subjects?.reduce((sum, s) => sum + (s.total || 0), 0),
+      record.subjects?.reduce(
+        (sum: number, subject: any) => sum + (subject.total || 0),
+        0
+      ) ?? 0,
   },
 
   {
     title: "GPA",
-    render: (_, record) => {
-      const totalGp =
-        record.subjects?.reduce((sum, s) => sum + (s.gradePoint || 0), 0) || 0;
-      const count = record.subjects?.length || 1;
-      return (totalGp / count).toFixed(2);
-    },
+    dataIndex: "gpa",
+    render: (value) => Number(value || 0).toFixed(2),
   },
 
   {
-    title: "Status",
-    render: (_, record) =>
-      record.subjects?.some((s) => s.status === "Fail") ? "Fail" : "Pass",
+    title: "Overall Status",
+    dataIndex: "overallStatus",
+  },
+
+  {
+    title: "Published",
+    dataIndex: "isPublished",
+    render: (value) => (
+      <Tag color={value ? "green" : "red"}>
+        {value ? "Published" : "Draft"}
+      </Tag>
+    ),
   },
 
   {
     title: "Created At",
     dataIndex: "createdAt",
-    render: (v) => new Date(v).toLocaleDateString(),
+    render: (value) =>
+      value ? new Date(value).toLocaleDateString() : "-",
   },
 ];
-
-
-
 
 
 

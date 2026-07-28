@@ -17,6 +17,8 @@ import { useGetAllStudentQuery } from "@/redux/api/studentApi";
 import { useGetAllExaminationQuery } from "@/redux/api/examinationApi";
 import { useGetAllAcademicSessionQuery } from "@/redux/api/academicSessionApi";
 import { useGetAllSubjectQuery } from "@/redux/api/subjectApi";
+import ExamTest from "./ExamTest";
+import FinalResult from "./FinalResult";
 
 const ExamResultPage = () => {
   const { data, isLoading, refetch } = useGetAllExamResultQuery();
@@ -110,17 +112,23 @@ const ExamResultPage = () => {
   };
 
   return (
-    <CrudTemplate
-      title="Exam Result Management"
-      subtitle="Manage student exam results"
-      data={data?.data || []}
-      columns={examResultColumns}
-      formFields={dynamicFormFields}
-      loading={isLoading}
-      onAdd={handleAdd}
-      onEdit={handleEdit}
-      onDelete={handleDelete}
-    />
+    <div>
+      <ExamTest/>
+      <FinalResult/>
+
+
+      <CrudTemplate
+        title="Exam Result Management"
+        subtitle="Manage student exam results"
+        data={data?.data || []}
+        columns={examResultColumns}
+        formFields={dynamicFormFields}
+        loading={isLoading}
+        onAdd={handleAdd}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
+    </div>
   );
 };
 
