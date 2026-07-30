@@ -12,6 +12,23 @@ const finalResultApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.finalResult],
     }),
+generateBulkFinalResult: builder.mutation({
+  query: (data) => ({
+    url: `${finalResult.all}/generate-bulk`, // আপনার রাউটের সাথে মিলিয়ে নেবেন
+    method: "POST",
+    data,
+  }),
+  invalidatesTags: [tagTypes.finalResult],
+}),
+    // New: Generate Final Result mutation added here
+    generateFinalResult: builder.mutation({
+      query: (data) => ({
+        url: `${finalResult.all}/generate`, // router.post("/generate", ...) er sathe match korar jonno
+        method: "POST",
+        data,
+      }),
+      invalidatesTags: [tagTypes.finalResult],
+    }),
 
     getAllFinalResult: builder.query({
       query: (args) => {
@@ -61,9 +78,11 @@ const finalResultApi = baseApi.injectEndpoints({
 
 export const {
   useCreateFinalResultMutation,
+  useGenerateFinalResultMutation, // Exported new hook
   useGetAllFinalResultQuery,
   useLazyGetAllFinalResultQuery,
   useGetSingleFinalResultQuery,
   useUpdateFinalResultMutation,
   useDeleteFinalResultMutation,
+  useGenerateBulkFinalResultMutation
 } = finalResultApi;

@@ -23,6 +23,7 @@ import {
   GalleryThumbnails,
   MessageCircle,
   Library,
+  EthernetPort,
 } from "lucide-react";
 
 /* =========================
@@ -58,6 +59,7 @@ import GalleryPage from "@/pages/Gallery/GalleryPage";
 import MessagePage from "@/pages/Message/MessagePage";
 import AssetPage from "@/pages/Asset/AssetPage";
 import LibraryPage from "@/pages/Library/LibraryPage";
+import TeacherMarkEntry from "@/pages/TeacherMarkEntry/TeacherMarkEntry";
 
 export const adminRoutes = [
   {
@@ -145,6 +147,13 @@ export const adminRoutes = [
     icon: <Sigma />,
     group: "Examination",
     element: <ExamResultPage />,
+  },
+  {
+    name: "Mark Entry",
+    path: "mark-entry",
+    icon: <EthernetPort />,
+    group: "Examination",
+    element: <TeacherMarkEntry />,
   },
   {
     name: "Grade Rule",

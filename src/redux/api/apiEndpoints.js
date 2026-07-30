@@ -118,8 +118,8 @@ const apiEndpoints = {
   // ================= Newly Added Backend Endpoints =================
 
   finalResult: {
-    all: "/fnal-result",
-    withId: (id) => `/fnal-result/${id}`,
+    all: "/final-result",
+    withId: (id) => `/final-result/${id}`,
   },
 
   gradingScale: {
