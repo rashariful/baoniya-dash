@@ -660,14 +660,39 @@ export const academicSessionColumns: ColumnsType<any> = [
 ========================= */
 export const classesColumns: ColumnsType<any> = [
   slColumn,
-  { title: "Class Name", dataIndex: "name" },
-  { title: "Code number", dataIndex: "code" },
-  {
-    title: "Created At",
-    dataIndex: "createdAt",
-    render: (v) => new Date(v).toLocaleDateString(),
+  { 
+    title: "Class Name", 
+    dataIndex: "name" 
+  },
+  { 
+    title: "Class Code", 
+    dataIndex: "code" 
+  },
+  { 
+    title: "Class Group", 
+    dataIndex: ["classGroupId", "name"], // Populate করা থাকলে সরাসরি Group-এর নাম দেখাবে
+    render: (v) => v || "-" 
+  },
+  { 
+    title: "Status", 
+    dataIndex: "isActive", 
+    render: (isActive: boolean) => (
+      <span className={isActive ? "text-green-600" : "text-red-600"}>
+        {isActive ? "Active" : "Inactive"}
+      </span>
+    ) 
   },
 ];
+// export const classesColumns: ColumnsType<any> = [
+//   slColumn,
+//   { title: "Class Name", dataIndex: "name" },
+//   { title: "Code number", dataIndex: "code" },
+//   {
+//     title: "Created At",
+//     dataIndex: "createdAt",
+//     render: (v) => new Date(v).toLocaleDateString(),
+//   },
+// ];
 
 /* =========================
    🏷️ Section

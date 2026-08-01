@@ -124,7 +124,7 @@ export const libraryFormFields: FormField[] = [
   },
 ];
 /* =========================
-   🏫 CLASS
+    🏫 CLASS FORM FIELDS
 ========================= */
 export const classesFormFields: FormField[] = [
   {
@@ -138,10 +138,21 @@ export const classesFormFields: FormField[] = [
   {
     name: "code",
     label: "Class Code",
-    type: "number",
-    placeholder: "1",
+    type: "text", // Mongoose schema-য় String করা হয়েছে, তাই type text ভালো
+    placeholder: "e.g. C-01",
     span: 12,
+    required: true,
   },
+  {
+    name: "classGroupId",
+    label: "Class Group",
+    type: "select",
+    placeholder: "Select Class Group",
+    span: 12,
+    required: true,
+    dynamicOptions: true, // ডায়নামিক অপশন ফেচ করার জন্য ফ্ল্যাগ
+  },
+
 ];
 
 /* =========================
