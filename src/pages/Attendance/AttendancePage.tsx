@@ -52,7 +52,7 @@ const AttendancePage = () => {
   return (
     <CrudTemplate
       title="Attendance"
-      subtitle="Manage student attendance"
+      subtitle="Manage student attendance" 
       data={data?.data || []}
       columns={attendanceColumns}
       formFields={attendanceFormFields}
