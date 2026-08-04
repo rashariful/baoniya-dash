@@ -180,7 +180,7 @@ export default function GenerateFinalResult() {
           <button
             type="submit"
             disabled={isLoading}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-3 rounded-lg shadow transition-all flex items-center gap-2 disabled:bg-gray-400"
+            className="bg-primary hover:bg-primary/85 text-white font-medium px-6 py-3 rounded-lg shadow transition-all flex items-center gap-2 disabled:bg-gray-400"
           >
             {isLoading ? 'Processing Bulk Results...' : '⚡ Generate Class Final Results'}
           </button>

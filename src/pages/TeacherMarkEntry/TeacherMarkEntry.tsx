@@ -226,7 +226,7 @@ const { data: classesRes } = useGetAllClassesQuery(
   return (
     <div className="min-h-screen bg-[#F3EEE1] font-sans">
       
-      <div className="bg-[#1D2438] text-white">
+      <div className="bg-primary rounded-md text-white">
         <div className="max-w-6xl mx-auto px-6 py-5 flex items-center gap-3">
           <ClipboardList className="w-6 h-6 text-[#C79A49]" />
           <div>
@@ -241,7 +241,7 @@ const { data: classesRes } = useGetAllClassesQuery(
           <button
             onClick={() => setMode('bulk')}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium border ${
-              mode === 'bulk' ? 'bg-[#1D2438] text-white border-[#1D2438]' : 'bg-white text-[#4B5273] border-[#E4D9BC]'
+              mode === 'bulk' ? 'bg-primary text-white border-pribg-primary' : 'bg-white text-[#4B5273] border-[#E4D9BC]'
             }`}
           >
             <Users className="w-4 h-4" />
@@ -250,7 +250,7 @@ const { data: classesRes } = useGetAllClassesQuery(
           <button
             onClick={() => setMode('student')}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium border ${
-              mode === 'student' ? 'bg-[#1D2438] text-white border-[#1D2438]' : 'bg-white text-[#4B5273] border-[#E4D9BC]'
+              mode === 'student' ? 'bg-primary text-white border-pribg-primary' : 'bg-white text-[#4B5273] border-[#E4D9BC]'
             }`}
           >
             <UserCheck className="w-4 h-4" />
@@ -290,7 +290,7 @@ const { data: classesRes } = useGetAllClassesQuery(
         {mode === 'bulk' && subjectId && students.length > 0 && (
           <div className="bg-white border border-[#E4D9BC] rounded-lg overflow-hidden">
             <div className="px-4 py-3 border-b border-[#EFE7D2] flex items-center gap-2 text-sm text-[#4B5273]">
-              <BookOpen className="w-4 h-4 text-[#A9752B]" />
+              <BookOpen className="w-4 h-4 text-pribg-primary" />
               {selectedSubject?.name} — পূর্ণমান {selectedSubject?.fullMarks}, পাস নম্বর {selectedSubject?.passMarks}
             </div>
             <div className="overflow-x-auto">
@@ -344,7 +344,7 @@ const { data: classesRes } = useGetAllClassesQuery(
               <button
                 onClick={handleSubmitBulk}
                 disabled={submitting}
-                className="flex items-center gap-2 px-5 py-2 bg-[#A9752B] hover:bg-[#96631F] text-white text-sm rounded-md disabled:opacity-60"
+                className="flex items-center gap-2 px-5 py-2 bg-primary hover:bg-primary/85 text-white text-sm rounded-md disabled:opacity-60"
               >
                 {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                 সব শিক্ষার্থীর মার্ক সাবমিট করুন
@@ -356,7 +356,7 @@ const { data: classesRes } = useGetAllClassesQuery(
         {mode === 'student' && studentId && subjects.length > 0 && (
           <div className="bg-white border border-[#E4D9BC] rounded-lg overflow-hidden">
             <div className="px-4 py-3 border-b border-[#EFE7D2] flex items-center gap-2 text-sm text-[#4B5273]">
-              <UserCheck className="w-4 h-4 text-[#A9752B]" />
+              <UserCheck className="w-4 h-4 text-pribg-primary" />
               {studentOptions.find((s) => s._id === studentId)?.label}
             </div>
             <div className="overflow-x-auto">
@@ -409,7 +409,7 @@ const { data: classesRes } = useGetAllClassesQuery(
               <button
                 onClick={handleSubmitStudent}
                 disabled={submitting}
-                className="flex items-center gap-2 px-5 py-2 bg-[#A9752B] hover:bg-[#96631F] text-white text-sm rounded-md disabled:opacity-60"
+                className="flex items-center gap-2 px-5 py-2 bg-primary hover:bg-[#96631F] text-white text-sm rounded-md disabled:opacity-60"
               >
                 {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                 সব বিষয়ের মার্ক সাবমিট করুন

@@ -316,36 +316,45 @@ const AttendancePage = () => {
     URL.revokeObjectURL(url);
   };
 
-  const generateReport = (start: string, end: string, label: string) => {
-    const reportData = attendanceData.filter(
-      (item) => item.date >= start && item.date <= end
-    );
+const generateReport = (start: string, end: string, label: string) => {
+  const reportData = attendanceData.filter(
+    (item) => item.date >= start && item.date <= end
+  );
 
-    if (reportData.length === 0) {
-      message.warning("Selected somoy-er jonno kono attendance record paoa jayni");
-      return;
-    }
+  if (reportData.length === 0) {
+    message.warning("Selected somoy-er jonno kono attendance record paoa jayni");
+    return;
+  }
 
-    const headers = [
-      "Name",
-      "Email",
-      "Phone",
-      "Date",
-      "Status",
-      "Source",
-      "Method",
-      "Check In",
-      "Check Out",
-      "Working Minutes",
-      "Sessions",
-      "Device",
-      "Remarks",
-    ];
+  const headers = [
+    "Name",
+    "Email",
+    "Phone",
+    "Designation",
+    "Date",
+    "Status",
+    "Source",
+    "Method",
+    "Check In",
+    "Check Out",
+    "Working Minutes",
+    "Sessions",
+    "Device",
+    "Remarks",
+  ];
 
-    const rows = reportData.map((item) => [
-      item?.userId?.email?.split("@")[0] || "N/A",
-      item?.userId?.email || "N/A",
-      item?.userId?.phone || "N/A",
+  const rows = reportData.map((item) => {
+    const teacher = item?.userId; // Teacher document
+    const name = teacher?.name || "N/A";
+    const email = teacher?.userId?.email || "N/A"; // nested User
+    const phone = teacher?.phone || "N/A";
+    const designation = teacher?.designation || "N/A";
+
+    return [
+      name,
+      email,
+      phone,
+      designation,
       item.date,
       item.status,
       item.source,
@@ -356,15 +365,16 @@ const AttendancePage = () => {
       item.sessions?.length || 0,
       item.deviceId || "-",
       item.remarks || "-",
-    ]);
+    ];
+  });
 
-    downloadCSV(
-      rows,
-      headers,
-      `attendance_report_${label}_${start}_to_${end}.csv`
-    );
-    message.success(`Report download shuru hoyeche (${start} theke ${end})`);
-  };
+  downloadCSV(
+    rows,
+    headers,
+    `attendance_report_${label}_${start}_to_${end}.csv`
+  );
+  message.success(`Report download shuru hoyeche (${start} theke ${end})`);
+};
 
   const reportMenuItems: MenuProps["items"] = [
     { key: "today", label: "Today" },

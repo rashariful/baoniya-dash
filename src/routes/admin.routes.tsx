@@ -140,13 +140,13 @@ export const adminRoutes = [
     group: "Academic Setup",
     element: <SubjectPage />,
   },
-  {
-    name: "Exam",
-    path: "exam",
-    icon: <ClipboardCheck />,
-    group: "Examination",
-    element: <ExaminationPage />,
-  },
+  // {
+  //   name: "Exam",
+  //   path: "exam",
+  //   icon: <ClipboardCheck />,
+  //   group: "Examination",
+  //   element: <ExaminationPage />,
+  // },
   {
     name: "Mark Entry",
     path: "mark-entry",

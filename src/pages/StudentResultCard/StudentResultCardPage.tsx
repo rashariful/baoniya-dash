@@ -6,45 +6,28 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import logo from "@/assets/logo.jpeg"
 
-// ★ Theme map — change schoolInfo.primary to switch the whole card's color
+// ★ Theme map — brand color (emerald green + golden yellow) ব্যবহার করা হচ্ছে,
+// পুরো ওয়েবসাইটের সাথে consistent রাখার জন্য।
+// Primary: Emerald Green #033320 | Secondary: Golden Yellow #CF962C | Accent: #014B27
 const THEMES = {
-  blue: {
-    gradientHeader: 'from-blue-600 to-blue-800',
-    gradientHeaderBar: 'from-blue-600 to-blue-700',
-    text: 'text-blue-700',
-    textStrong: 'from-blue-600 to-blue-800',
-    bgSoft: 'from-blue-50 to-gray-50',
-    bgSofter: 'from-blue-50 to-blue-100',
-    border: 'border-blue-200',
-    borderDashed: 'border-blue-300',
-    ring: 'focus:ring-blue-500',
-    chipBg: 'bg-blue-100 text-blue-700',
-    badge: 'bg-blue-600',
-    btnGradient: 'from-blue-600 to-blue-700',
-    selectedBorder: 'border-blue-600',
-    selectedBg: 'from-blue-50 to-white',
-    hoverBorder: 'hover:border-blue-400',
-    hoverRow: 'hover:bg-blue-50',
-    avatarGradient: 'from-blue-500 to-blue-600',
-  },
-  purple: {
-    gradientHeader: 'from-purple-600 to-purple-800',
-    gradientHeaderBar: 'from-purple-600 to-purple-700',
-    text: 'text-purple-700',
-    textStrong: 'from-purple-600 to-purple-800',
-    bgSoft: 'from-purple-50 to-gray-50',
-    bgSofter: 'from-purple-50 to-purple-100',
-    border: 'border-purple-200',
-    borderDashed: 'border-purple-300',
-    ring: 'focus:ring-purple-500',
-    chipBg: 'bg-purple-100 text-purple-700',
-    badge: 'bg-purple-600',
-    btnGradient: 'from-purple-600 to-purple-700',
-    selectedBorder: 'border-purple-600',
-    selectedBg: 'from-purple-50 to-white',
-    hoverBorder: 'hover:border-purple-400',
-    hoverRow: 'hover:bg-purple-50',
-    avatarGradient: 'from-purple-500 to-purple-600',
+  brand: {
+    gradientHeader: 'from-[#033320] to-[#014B27]',
+    gradientHeaderBar: 'from-[#033320] to-[#02291a]',
+    text: 'text-[#033320]',
+    textStrong: 'from-[#033320] to-[#014B27]',
+    bgSoft: 'from-[#f0f9f4] to-gray-50',
+    bgSofter: 'from-[#e6f4ec] to-[#d9efe3]',
+    border: 'border-[#c9e4d4]',
+    borderDashed: 'border-[#a8d4bb]',
+    ring: 'focus:ring-[#CF962C]',
+    chipBg: 'bg-[#e6f4ec] text-[#033320]',
+    badge: 'bg-[#033320]',
+    btnGradient: 'from-[#033320] to-[#014B27]',
+    selectedBorder: 'border-[#033320]',
+    selectedBg: 'from-[#f0f9f4] to-white',
+    hoverBorder: 'hover:border-[#CF962C]',
+    hoverRow: 'hover:bg-[#f0f9f4]',
+    avatarGradient: 'from-[#033320] to-[#014B27]',
   },
 };
 
@@ -67,12 +50,12 @@ function StudentResultCard() {
     address: "বাওনিয়া রোড, ঢাকা-১২৩০",
     phone: "০১৯৮০৪৭৬০১১",
     email: "support@baoniyaschool.com",
-    logo: "🏫",
+    logo: logo,
     motto: "শিক্ষাই আলো",
     primary: "blue", // ← change this to "purple" (or add more themes above) to switch color
   };
 
-  const t = THEMES[schoolInfo.primary] || THEMES.blue;
+  const t = THEMES[schoolInfo.primary] || THEMES.brand;
 
   // ★ Memoized values — ALL hooks (including these) must stay above any early return
   const classNameMap = useMemo(() => {
@@ -184,8 +167,9 @@ function StudentResultCard() {
         <div className={`bg-gradient-to-r ${t.gradientHeader} -mx-8 -mt-8 px-8 py-6 rounded-t-2xl`}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="text-5xl bg-white/20 p-3 rounded-xl backdrop-blur-sm">
-                {schoolInfo.logo}
+              <div className="text-5xl bg-white/20 p-1 rounded-xl backdrop-blur-sm">
+              <img src={schoolInfo.logo} className='h-12 w-12 rounded-md' alt="" />
+                {/* {schoolInfo.logo} */}
               </div>
               <div className="text-white">
                 <h1 className="text-3xl font-bold">{schoolInfo.name}</h1>
