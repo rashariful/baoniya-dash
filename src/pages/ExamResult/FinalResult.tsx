@@ -15,8 +15,8 @@ import {
   Globe,
 } from 'lucide-react';
 // import ResultCardSwitcher from './ResultCards';
-import CoverPage from './CoverPage';
-import ResultCardSwitcher from './Resultcards';
+import CoverPage from '../FinalResult/CoverPage';
+import ResultCardSwitcher from '../FinalResult/Resultcards';
 
 const schoolInfo = {
   name: 'বাওনিয়া আব্দুল জলিল উচ্চ বিদ্যালয়',
@@ -316,6 +316,9 @@ export default function FinalResult() {
     </div>
   );
 }
+
+
+
 // import React, { useRef, useState, useEffect, useMemo } from 'react';
 // import axios from 'axios';
 // import html2canvas from 'html2canvas';

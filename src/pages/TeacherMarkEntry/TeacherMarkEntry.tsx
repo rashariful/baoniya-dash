@@ -23,7 +23,6 @@ import {
   useSubmitStudentAllSubjectsMutation,
   useSubmitSubjectAllStudentsMutation,
 } from '../../redux/api/examResultApi';
-import GenerateFinalResult from './GenerateFinalResultPage.js';
 
 function FieldSelect({ label, value, onChange, options, placeholder, disabled }) {
   return (
@@ -226,7 +225,7 @@ const { data: classesRes } = useGetAllClassesQuery(
 
   return (
     <div className="min-h-screen bg-[#F3EEE1] font-sans">
-        <GenerateFinalResult/>
+      
       <div className="bg-[#1D2438] text-white">
         <div className="max-w-6xl mx-auto px-6 py-5 flex items-center gap-3">
           <ClipboardList className="w-6 h-6 text-[#C79A49]" />

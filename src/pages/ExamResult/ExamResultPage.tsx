@@ -113,8 +113,8 @@ const ExamResultPage = () => {
 
   return (
     <div>
-      <ExamTest/>
-      <FinalResult/>
+      {/* <ExamTest/> */}
+      {/* <FinalResult/> */}
 
 
       <CrudTemplate

@@ -24,6 +24,9 @@ import {
   MessageCircle,
   Library,
   EthernetPort,
+  ScrollText,
+  Award,
+  FileSpreadsheet,
 } from "lucide-react";
 
 /* =========================
@@ -32,7 +35,6 @@ import {
 import AdminDashboard from "@/pages/Dashboard";
 import AdmissionPage from "@/pages/Admission/AdmissionPage";
 import AttendancePage from "@/pages/Attendance/AttendancePage";
-import BannerPage from "@/pages/Banner/BannerPage";
 import ClassesPage from "@/pages/Classes/ClassesPage";
 import ContactPage from "@/pages/Contact/ContactPage";
 import DonatePage from "@/pages/Donate/DonatePage";
@@ -60,6 +62,10 @@ import MessagePage from "@/pages/Message/MessagePage";
 import AssetPage from "@/pages/Asset/AssetPage";
 import LibraryPage from "@/pages/Library/LibraryPage";
 import TeacherMarkEntry from "@/pages/TeacherMarkEntry/TeacherMarkEntry";
+import GenerateFinalResult from "@/pages/TeacherMarkEntry/GenerateFinalResultPage";
+import StudentResultCard from "@/pages/StudentResultCard/StudentResultCardPage";
+import FinalResultPage from "@/pages/FinalResult/FinalResultPage";
+// import ExamTest from "@/pages/ExamTest/ExamTest";
 
 export const adminRoutes = [
   {
@@ -142,13 +148,6 @@ export const adminRoutes = [
     element: <ExaminationPage />,
   },
   {
-    name: "Exam Result",
-    path: "exam-result",
-    icon: <Sigma />,
-    group: "Examination",
-    element: <ExamResultPage />,
-  },
-  {
     name: "Mark Entry",
     path: "mark-entry",
     icon: <EthernetPort />,
@@ -156,19 +155,54 @@ export const adminRoutes = [
     element: <TeacherMarkEntry />,
   },
   {
-    name: "Grade Rule",
-    path: "grade-rule",
-    icon: <Sliders />,
+    name: "Exam Result",
+    path: "exam-result",
+    icon: <Sigma />,
     group: "Examination",
-    element: <GradeRulePage />,
+    element: <ExamResultPage />,
+  },
+  // {
+  //   name: "Result Card Preview",
+  //   path: "exam-test",
+  //   icon: <ScrollText />,
+  //   group: "Examination",
+  //   element: <ExamTest />,
+  // },
+  {
+    name: "Generate Final Result",
+    path: "generate-final-result",
+    icon: <Award />,
+    group: "Examination",
+    element: <GenerateFinalResult />,
   },
   {
-    name: "Result Setting",
-    path: "result-setting",
-    icon: <ClipboardList />,
+    name: "Student Result Card",
+    path: "student-result-card",
+    icon: <FileSpreadsheet />,
     group: "Examination",
-    element: <ResultSettingPage />,
+    element: <StudentResultCard />,
   },
+  {
+    name: "Final Result",
+    path: "final-result",
+    icon: <Award />,
+    group: "Examination",
+    element: <FinalResultPage />,
+  },
+  // {
+  //   name: "Grade Rule",
+  //   path: "grade-rule",
+  //   icon: <Sliders />,
+  //   group: "Examination",
+  //   element: <GradeRulePage />,
+  // },
+  // {
+  //   name: "Result Setting",
+  //   path: "result-setting",
+  //   icon: <ClipboardList />,
+  //   group: "Examination",
+  //   element: <ResultSettingPage />,
+  // },
 
   /* =========================
      OPERATIONS
@@ -243,7 +277,7 @@ export const adminRoutes = [
   {
     name: "Contact",
     path: "contact",
-    icon: <CalendarDays />,
+    icon: <UserRound />,
     group: "Engagement",
     element: <ContactPage />,
   },
@@ -259,7 +293,7 @@ export const adminRoutes = [
      SYSTEM
   ========================= */
   {
-    name: "Messaage",
+    name: "Message",
     path: "message",
     icon: <MessageCircle />,
     group: "System",
@@ -292,9 +326,7 @@ export const adminRoutes = [
 //   Home,
 //   UserPlus,
 //   CalendarCheck,
-//   Image,
 //   GraduationCap,
-//   MessageSquare,
 //   Users,
 //   HeartHandshake,
 //   CalendarDays,
@@ -306,30 +338,54 @@ export const adminRoutes = [
 //   Settings as SettingsIcon,
 //   Briefcase,
 //   BookOpen,
-//   Settings,
 //   File,
+//   BookCopy,
+//   ListChecks,
+//   Sigma,
+//   Sliders,
+//   ClipboardList,
+//   GalleryThumbnails,
+//   MessageCircle,
+//   Library,
+//   EthernetPort,
 // } from "lucide-react";
 
+// /* =========================
+//    PAGES
+// ========================= */
 // import AdminDashboard from "@/pages/Dashboard";
 // import AdmissionPage from "@/pages/Admission/AdmissionPage";
 // import AttendancePage from "@/pages/Attendance/AttendancePage";
-// import BannerPage from "@/pages/Banner/BannerPage";
 // import ClassesPage from "@/pages/Classes/ClassesPage";
 // import ContactPage from "@/pages/Contact/ContactPage";
-// // import CustomerPage from "@/pages/Customer/CustomerPage";
 // import DonatePage from "@/pages/Donate/DonatePage";
 // import EventPage from "@/pages/Event/EventPage";
 // import ExaminationPage from "@/pages/Examination/ExaminationPage";
 // import FeesPage from "@/pages/Fees/FeesPage";
-// // import NoticePage from "@/pages/Notice/NoticePage";
-// // import ParentsPage from "@/pages/Parents/ParentsPage";
 // import ReportPage from "@/pages/Report/ReportPage";
-// // import StaffPage from "@/pages/Staff/StaffPage";
 // import StudentPage from "@/pages/Student/StudentPage";
 // import TeacherPage from "@/pages/Teacher/TeacherPage";
 // import Noticepage from "@/pages/Notice/Noticepage";
 // import Staffpage from "@/pages/Staff/Staffpage";
 // import ParentPage from "@/pages/Parent/ParentPage";
+
+// /* =========================
+//    ACADEMIC ERP MODULES (NEW)
+// ========================= */
+// import AcademicSessionPage from "@/pages/AcademicSession/AcademicSessionPage";
+// import SectionPage from "@/pages/Section/SectionPage";
+// import SubjectPage from "@/pages/Subject/SubjectPage";
+// import GradeRulePage from "@/pages/GradeRule/GradeRulePage";
+// import ResultSettingPage from "@/pages/ResultSetting/ResultSettingPage";
+// import ExamResultPage from "@/pages/ExamResult/ExamResultPage";
+// import GalleryPage from "@/pages/Gallery/GalleryPage";
+// import MessagePage from "@/pages/Message/MessagePage";
+// import AssetPage from "@/pages/Asset/AssetPage";
+// import LibraryPage from "@/pages/Library/LibraryPage";
+// import TeacherMarkEntry from "@/pages/TeacherMarkEntry/TeacherMarkEntry";
+// import GenerateFinalResult from "@/pages/TeacherMarkEntry/GenerateFinalResultPage";
+// import StudentResultCard from "@/pages/StudentResultCard/StudentResultCardPage";
+// import FinalResultPage from "@/pages/FinalResult/FinalResultPage";
 
 // export const adminRoutes = [
 //   {
@@ -340,6 +396,10 @@ export const adminRoutes = [
 //     group: "Overview",
 //     element: <AdminDashboard />,
 //   },
+
+//   /* =========================
+//      ACADEMIC CORE
+//   ========================= */
 //   {
 //     name: "Student",
 //     path: "student",
@@ -369,19 +429,97 @@ export const adminRoutes = [
 //     element: <ClassesPage />,
 //   },
 //   {
-//     name: "Examination",
-//     path: "examination",
-//     icon: <ClipboardCheck />,
-//     group: "Academic",
-//     element: <ExaminationPage />,
-//   },
-//   {
 //     name: "Teacher",
 //     path: "teacher",
 //     icon: <BookOpen />,
 //     group: "Academic",
 //     element: <TeacherPage />,
 //   },
+
+//   /* =========================
+//      📘 ACADEMIC ERP (NEW MODULES)
+//   ========================= */
+//   {
+//     name: "Academic Session",
+//     path: "academic-session",
+//     icon: <CalendarDays />,
+//     group: "Academic Setup",
+//     element: <AcademicSessionPage />,
+//   },
+//   {
+//     name: "Section",
+//     path: "section",
+//     icon: <ListChecks />,
+//     group: "Academic Setup",
+//     element: <SectionPage />,
+//   },
+//   {
+//     name: "Subject",
+//     path: "subject",
+//     icon: <BookCopy />,
+//     group: "Academic Setup",
+//     element: <SubjectPage />,
+//   },
+//   {
+//     name: "Exam",
+//     path: "exam",
+//     icon: <ClipboardCheck />,
+//     group: "Examination",
+//     element: <ExaminationPage />,
+//   },
+//   {
+//     name: "Exam Result",
+//     path: "exam-result",
+//     icon: <Sigma />,
+//     group: "Examination",
+//     element: <ExamResultPage />,
+//   },
+//   {
+//     name: "Generate Final Result",
+//     path: "generate-final-result",
+//     icon: <Sigma />,
+//     group: "Examination",
+//     element: <GenerateFinalResult/>,
+//   },
+//   {
+//     name: "Student Result Card",
+//     path: "student-result-card",
+//     icon: <Sigma />,
+//     group: "Examination",
+//     element: <StudentResultCard/>,
+//   },
+//   {
+//     name: "Mark Entry",
+//     path: "mark-entry",
+//     icon: <EthernetPort />,
+//     group: "Examination",
+//     element: <TeacherMarkEntry />,
+//   },
+//   {
+//     name: "Final Result",
+//     path: "final-result",
+//     icon: <EthernetPort />,
+//     group: "Examination",
+//     element: <FinalResultPage />,
+//   },
+//   // {
+//   //   name: "Grade Rule",
+//   //   path: "grade-rule",
+//   //   icon: <Sliders />,
+//   //   group: "Examination",
+//   //   element: <GradeRulePage />,
+//   // },
+//   // {
+//   //   name: "Result Setting",
+//   //   path: "result-setting",
+//   //   icon: <ClipboardList />,
+//   //   group: "Examination",
+//   //   element: <ResultSettingPage />,
+//   // },
+
+//   /* =========================
+//      OPERATIONS
+//   ========================= */
 //   {
 //     name: "Fees",
 //     path: "fees",
@@ -397,19 +535,36 @@ export const adminRoutes = [
 //     element: <Staffpage />,
 //   },
 //   {
+//     name: "Asset",
+//     path: "asset",
+//     icon: <Briefcase />,
+//     group: "Operations",
+//     element: <AssetPage />,
+//   },
+//   {
+//     name: "Library",
+//     path: "library",
+//     icon: <Library />,
+//     group: "Operations",
+//     element: <LibraryPage />,
+//   },
+//   {
+//     name: "Donate",
+//     path: "donate",
+//     icon: <HeartHandshake />,
+//     group: "Operations",
+//     element: <DonatePage />,
+//   },
+
+//   /* =========================
+//      ENGAGEMENT
+//   ========================= */
+//   {
 //     name: "Notice",
 //     path: "notice",
 //     icon: <Bell />,
 //     group: "Engagement",
 //     element: <Noticepage />,
-//   },
-//     {
-//     name: "Donate",
-//     path: "donate",
-//         group: "Operations",
-
-//     icon: <HeartHandshake />,
-//     element: <DonatePage />,
 //   },
 //   {
 //     name: "Event",
@@ -419,12 +574,19 @@ export const adminRoutes = [
 //     element: <EventPage />,
 //   },
 //   {
-//     name: "Banner",
-//     path: "banner",
-//     icon: <CalendarDays />,
+//     name: "Gallery",
+//     path: "gallery",
+//     icon: <GalleryThumbnails />,
 //     group: "Engagement",
-//     element: <BannerPage />,
+//     element: <GalleryPage />,
 //   },
+//   // {
+//   //   name: "Banner",
+//   //   path: "banner",
+//   //   icon: <CalendarDays />,
+//   //   group: "Engagement",
+//   //   element: <BannerPage />,
+//   // },
 //   {
 //     name: "Contact",
 //     path: "contact",
@@ -432,12 +594,23 @@ export const adminRoutes = [
 //     group: "Engagement",
 //     element: <ContactPage />,
 //   },
+//   // {
+//   //   name: "Parents",
+//   //   path: "parents",
+//   //   icon: <UserRound />,
+//   //   group: "Engagement",
+//   //   element: <ParentPage />,
+//   // },
+
+//   /* =========================
+//      SYSTEM
+//   ========================= */
 //   {
-//     name: "Parents",
-//     path: "parents",
-//     icon: <UserRound />,
-//     group: "Engagement",
-//     element: <ParentPage />,
+//     name: "Messaage",
+//     path: "message",
+//     icon: <MessageCircle />,
+//     group: "System",
+//     element: <MessagePage />,
 //   },
 //   {
 //     name: "Report",
@@ -456,8 +629,8 @@ export const adminRoutes = [
 //   {
 //     name: "Settings",
 //     path: "settings",
-//     icon: <Settings />,
+//     icon: <SettingsIcon />,
 //     group: "System",
-//     element: <Settings />,
+//     element: <ReportPage />,
 //   },
 // ];
