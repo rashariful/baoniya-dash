@@ -33,6 +33,10 @@ const THEMES = {
 
 const PAGE_SIZE = 20;
 
+// 🔥 Captured card er fixed width — html2canvas ke off-screen e o
+// thik ei width e render korte bolar jonno (max-w-5xl ~ 1024px)
+const CARD_CAPTURE_WIDTH = 1024;
+
 function StudentResultCard() {
   // ★ All hooks must be called at the top level, in the same order every time
   const { data, isLoading, isError, error } = useGetAllExamResultQuery();
@@ -169,7 +173,28 @@ function StudentResultCard() {
         scale: 2,
         useCORS: true,
         logging: false,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        // 🔥 Fixed capture window so layout doesn't collapse/shrink off-screen
+        windowWidth: CARD_CAPTURE_WIDTH,
+        width: CARD_CAPTURE_WIDTH,
+        // 🔥 html2canvas doesn't support backdrop-filter / bg-clip-text well —
+        // strip those out on the CLONE only (screen version stays untouched)
+        onclone: (clonedDoc) => {
+          const clone = clonedDoc.getElementById('print-result-card');
+          if (!clone) return;
+          clone.querySelectorAll('.pdf-safe-text').forEach((el) => {
+            el.style.background = 'none';
+            el.style.webkitBackgroundClip = 'unset';
+            el.style.backgroundClip = 'unset';
+            el.style.webkitTextFillColor = 'unset';
+            el.style.color = '#033320';
+          });
+          clone.querySelectorAll('.pdf-safe-blur').forEach((el) => {
+            el.style.backdropFilter = 'none';
+            el.style.webkitBackdropFilter = 'none';
+            el.style.backgroundColor = 'rgba(255,255,255,0.25)';
+          });
+        },
       });
 
       const imgData = canvas.toDataURL('image/png');
@@ -206,13 +231,18 @@ function StudentResultCard() {
     const info = getStudentInfo(result);
 
     return (
-      <div ref={resultRef} className="bg-white p-8 max-w-5xl mx-auto shadow-2xl rounded-2xl border border-gray-100">
+      <div
+        ref={resultRef}
+        style={{ width: CARD_CAPTURE_WIDTH }}
+        className="bg-white p-8 mx-auto rounded-2xl border border-gray-100"
+      >
         {/* School Header */}
         <div className={`bg-gradient-to-r ${t.gradientHeader} -mx-8 -mt-8 px-8 py-6 rounded-t-2xl`}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="text-5xl bg-white/20 p-1 rounded-xl backdrop-blur-sm">
-                <img src={schoolInfo.logo} className='h-12 w-12 rounded-md' alt="" />
+              {/* pdf-safe-blur: backdrop-blur is stripped for the PDF clone (see onclone) */}
+              <div className="pdf-safe-blur text-5xl bg-white/20 p-1 rounded-xl backdrop-blur-sm">
+                <img src={schoolInfo.logo} className='h-12 w-12 rounded-md object-cover' alt="" />
               </div>
               <div className="text-white">
                 <h1 className="text-3xl font-bold">{schoolInfo.name}</h1>
@@ -265,11 +295,11 @@ function StudentResultCard() {
           </div>
         </div>
 
-        {/* GPA Display */}
+        {/* GPA Display — pdf-safe-text: gradient-clip text is stripped for the PDF clone (renders solid green instead) */}
         <div className="text-center my-6">
           <div className={`inline-block bg-gradient-to-br ${t.bgSofter} px-10 py-4 rounded-2xl shadow-md border ${t.border}`}>
             <p className={`text-sm ${t.text} font-semibold uppercase tracking-wider`}>Grade Point Average (GPA)</p>
-            <p className={`text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${t.textStrong}`}>
+            <p className={`pdf-safe-text text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${t.textStrong}`}>
               {Number(info.gpa).toFixed(2)}
             </p>
           </div>
@@ -296,7 +326,7 @@ function StudentResultCard() {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {info.subjects.map((subject, index) => (
-                  <tr key={subject._id || index} className={`${t.hoverRow} transition-colors duration-150`}>
+                  <tr key={subject._id || index} className={index % 2 === 1 ? 'bg-gray-50/60' : ''}>
                     <td className="px-4 py-3 text-sm text-gray-600 font-medium">{index + 1}</td>
                     <td className="px-4 py-3 text-sm font-semibold text-gray-800">
                       {subject.subjectId?.name || 'N/A'}
@@ -367,15 +397,16 @@ function StudentResultCard() {
       </h1>
 
       {/* Filters */}
-      <div className={`mb-6 bg-white p-6 rounded-2xl shadow-lg border ${t.border} print:hidden`}>
-        <div className="flex flex-wrap gap-4 items-center">
-          <div className="flex-1 min-w-[200px]">
+      <div className={`mb-6 bg-white p-6 rounded-2xl shadow-lg border ${t.border} print:hidden sticky top-2 z-10`}>
+        <div className="flex flex-wrap gap-3 items-center">
+          <div className="flex-1 min-w-[220px] relative">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm pointer-events-none">🔍</span>
             <input
               type="text"
-              placeholder="🔍 Search by name or Student ID..."
+              placeholder="Search by name or Student ID..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className={`w-full pl-4 pr-10 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 ${t.ring} focus:border-transparent transition-all`}
+              className={`w-full pl-9 pr-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 ${t.ring} focus:border-transparent transition-all`}
             />
           </div>
 
@@ -420,9 +451,23 @@ function StudentResultCard() {
             <option value="Fail">❌ Fail</option>
             <option value="Absent">⏳ Absent</option>
           </select>
+
+          {(searchTerm || selectedClassId || selectedSectionId || statusFilter !== 'All') && (
+            <button
+              onClick={() => {
+                setSearchTerm('');
+                setSelectedClassId('');
+                setSelectedSectionId('');
+                setStatusFilter('All');
+              }}
+              className="px-4 py-2.5 text-sm font-semibold rounded-xl border-2 border-gray-200 text-gray-500 hover:bg-gray-50 transition-all"
+            >
+              ✕ Clear
+            </button>
+          )}
         </div>
 
-        <div className={`mt-4 text-sm text-gray-600 px-4 py-2 rounded-lg ${t.chipBg.split(' ')[0]}/50`}>
+        <div className={`mt-4 text-sm text-gray-600 px-4 py-2 rounded-lg ${t.chipBg.split(' ')[0]}/50 inline-block`}>
           Showing <span className={`font-bold ${t.text}`}>{filteredResults.length}</span> of {examResults.length} students
         </div>
       </div>
@@ -431,7 +476,7 @@ function StudentResultCard() {
       <div className={`bg-white rounded-2xl shadow-lg border ${t.border} overflow-hidden print:hidden`}>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead>
+            <thead className="sticky top-0 z-[1]">
               <tr className={`bg-gradient-to-r ${t.gradientHeaderBar} text-white`}>
                 <th className="px-4 py-3 text-left text-sm font-bold">SL</th>
                 <th className="px-4 py-3 text-left text-sm font-bold">Student</th>
@@ -450,7 +495,7 @@ function StudentResultCard() {
                 const isBusy = processingResult?._id === result._id;
 
                 return (
-                  <tr key={result._id} className={`${t.hoverRow} transition-colors duration-150`}>
+                  <tr key={result._id} className={`${t.hoverRow} transition-colors duration-150 ${index % 2 === 1 ? 'bg-gray-50/40' : ''}`}>
                     <td className="px-4 py-3 text-sm text-gray-500">
                       {(currentPage - 1) * PAGE_SIZE + index + 1}
                     </td>
@@ -536,11 +581,12 @@ function StudentResultCard() {
       {/*
         ★ Render target for the card being processed, used for both
         PDF capture (html2canvas) and browser printing.
-        - For PDF: pushed off-screen (still laid out/painted, which
-          html2canvas needs, just not visible to the user).
+        - For PDF: pushed off-screen with a FIXED width (see CARD_CAPTURE_WIDTH)
+          so the layout doesn't collapse/shrink while hidden.
         - For Print: rendered in-place and shown normally; a print
           stylesheet hides everything else on the page so only this
-          card ends up on the printed page.
+          card ends up on the printed page, and print-color-adjust
+          forces the browser to keep background colors/gradients.
       */}
       {processingResult && (
         <div
@@ -565,6 +611,14 @@ function StudentResultCard() {
             left: 0;
             top: 0;
             width: 100%;
+          }
+          /* 🔥 Without this, most browsers strip background-color/gradient
+             on print to save ink — this forces colors to print as shown */
+          #print-result-card,
+          #print-result-card * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            color-adjust: exact !important;
           }
         }
       `}</style>

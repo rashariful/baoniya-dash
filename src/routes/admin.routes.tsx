@@ -299,27 +299,27 @@ export const adminRoutes = [
     group: "System",
     element: <MessagePage />,
   },
-  {
-    name: "Report",
-    path: "report",
-    icon: <FileBarChart />,
-    group: "System",
-    element: <ReportPage />,
-  },
-  {
-    name: "Website",
-    path: "website",
-    icon: <File />,
-    group: "System",
-    element: <ReportPage />,
-  },
-  {
-    name: "Settings",
-    path: "settings",
-    icon: <SettingsIcon />,
-    group: "System",
-    element: <ReportPage />,
-  },
+  // {
+  //   name: "Report",
+  //   path: "report",
+  //   icon: <FileBarChart />,
+  //   group: "System",
+  //   element: <ReportPage />,
+  // },
+  // {
+  //   name: "Website",
+  //   path: "website",
+  //   icon: <File />,
+  //   group: "System",
+  //   element: <ReportPage />,
+  // },
+  // {
+  //   name: "Settings",
+  //   path: "settings",
+  //   icon: <SettingsIcon />,
+  //   group: "System",
+  //   element: <ReportPage />,
+  // },
 ];
 
 // import {
