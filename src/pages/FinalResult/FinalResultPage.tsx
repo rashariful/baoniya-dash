@@ -23,7 +23,7 @@ const schoolInfo = {
   phone: '০১৯৮০৪৭৬০১১',
   email: 'support@baoniyaschool.com',
   motto: 'শিক্ষাই আলো',
-  website: 'www.baoniyaschool.com',
+  website: 'www.bajhs.edu.bd',
 };
 
 const API_BASE_URL = import.meta.env.VITE_REACT_APP_ROOT;
@@ -119,7 +119,7 @@ const FontStyles = () => (
       <div className="frx-root min-h-screen flex items-center justify-center">
         <FontStyles />
         <div className="text-center">
-          <div className="w-12 h-12 mx-auto rounded-full border-2 border-[#1D2438] border-t-transparent animate-spin" />
+          <div className="w-12 h-12 mx-auto rounded-full border-2 border-primabg-primary border-t-transparent animate-spin" />
           <p className="mt-4 text-[#4B5273] frx-mono text-sm tracking-wide">খাতা খোলা হচ্ছে…</p>
         </div>
       </div>
@@ -132,11 +132,11 @@ const FontStyles = () => (
         <FontStyles />
         <div className="text-center bg-white border border-[#E4D9BC] rounded-lg px-8 py-6 shadow-sm">
           <XCircle className="w-10 h-10 text-[#96342C] mx-auto mb-3" />
-          <p className="text-lg font-semibold text-[#1D2438]">লোড করা যায়নি</p>
+          <p className="text-lg font-semibold text-primabg">লোড করা যায়নি</p>
           <p className="text-sm text-[#4B5273] mt-1">{error}</p>
           <button
             onClick={fetchAllData}
-            className="mt-5 px-5 py-2 bg-[#1D2438] text-white rounded-md text-sm hover:bg-[#2B3555] transition-colors"
+            className="mt-5 px-5 py-2 bg-primary text-white rounded-md text-sm hover:bg-[#2B3555] transition-colors"
           >
             আবার চেষ্টা করুন
           </button>
@@ -150,7 +150,7 @@ const FontStyles = () => (
       <FontStyles />
 
       {/* Top bar */}
-      <div className="bg-[#1D2438] text-white">
+      <div className="bg-primary rounded-md text-white">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <GraduationCap className="w-7 h-7 text-[#C79A49]" />
@@ -195,11 +195,11 @@ const FontStyles = () => (
                   onClick={() => setSelectedStudent(result)}
                   className={`frx-roster-item w-full text-left px-4 py-3 flex items-center gap-3 hover:bg-[#FBF6E8] transition-colors ${isActive ? 'is-active bg-[#FBF6E8]' : ''}`}
                 >
-                  <div className="w-9 h-9 rounded-full bg-[#1D2438] text-white flex items-center justify-center frx-display text-sm shrink-0">
+                  <div className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center frx-display text-sm shrink-0">
                     {s.name?.charAt(0) || '?'}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-[#1D2438] truncate">{s.name || 'N/A'}</p>
+                    <p className="text-sm font-semibold text-primabg-primary truncate">{s.name || 'N/A'}</p>
                     <p className="frx-mono text-[11px] text-[#9C927A]">{s.studentId || '—'}</p>
                   </div>
                   <div className="flex flex-col items-end gap-1 shrink-0">
@@ -246,7 +246,7 @@ const FontStyles = () => (
 
                 <div className="bg-white rounded-lg shadow-md overflow-hidden border border-[#E4D9BC]">
                   {/* Letterhead */}
-                  <div className="bg-[#1D2438] text-white px-8 pt-7 pb-9">
+                  <div className="bg-primary text-white px-8 pt-7 pb-9">
                     <div className="flex items-start justify-between gap-4 flex-wrap">
                       <div>
                         <p className="frx-bn-display text-2xl">{schoolInfo.name}</p>
@@ -272,19 +272,19 @@ const FontStyles = () => (
                       <div className="grid grid-cols-2 gap-x-8 gap-y-3">
                         <div>
                           <p className="text-[11px] text-[#9C927A] tracking-wide">শিক্ষার্থীর নাম</p>
-                          <p className="frx-display text-lg text-[#1D2438]">{selectedStudent.studentId?.name || 'N/A'}</p>
+                          <p className="frx-display text-lg text-primabg-primary">{selectedStudent.studentId?.name || 'N/A'}</p>
                         </div>
                         <div>
                           <p className="text-[11px] text-[#9C927A] tracking-wide">শিক্ষার্থী আইডি</p>
-                          <p className="frx-mono text-sm text-[#1D2438] mt-1">{selectedStudent.studentId?.studentId || 'N/A'}</p>
+                          <p className="frx-mono text-sm text-primabg-primary mt-1">{selectedStudent.studentId?.studentId || 'N/A'}</p>
                         </div>
                         <div>
                           <p className="text-[11px] text-[#9C927A] tracking-wide">শ্রেণি / গ্রুপ</p>
-                          <p className="text-sm text-[#1D2438] mt-1">{selectedStudent.classGroupId?.name || 'N/A'}</p>
+                          <p className="text-sm text-primabg-primary mt-1">{selectedStudent.classGroupId?.name || 'N/A'}</p>
                         </div>
                         <div>
                           <p className="text-[11px] text-[#9C927A] tracking-wide">মার্জ পদ্ধতি</p>
-                          <p className="text-sm text-[#1D2438] mt-1">{selectedStudent.mergeStrategy || 'N/A'}</p>
+                          <p className="text-sm text-primabg-primary mt-1">{selectedStudent.mergeStrategy || 'N/A'}</p>
                         </div>
                       </div>
 

@@ -24,7 +24,7 @@ const schoolInfo = {
   phone: '০১৯৮০৪৭৬০১১',
   email: 'support@baoniyaschool.com',
   motto: 'শিক্ষাই আলো',
-  website: 'www.baoniyaschool.com',
+  website: 'www.bajhs.edu.bd',
 };
 
 const API_BASE_URL = import.meta.env.VITE_REACT_APP_ROOT;
@@ -344,7 +344,7 @@ export default function FinalResult() {
 //   phone: '০১৯৮০৪৭৬০১১',
 //   email: 'support@baoniyaschool.com',
 //   motto: 'শিক্ষাই আলো',
-//   website: 'www.baoniyaschool.com',
+//   website: 'www.bajhs.edu.bd',
 // };
 
 // const API_BASE_URL = import.meta.env.VITE_REACT_APP_ROOT;
@@ -669,7 +669,7 @@ export default function FinalResult() {
 //   phone: '০১৯৮০৪৭৬০১১',
 //   email: 'support@baoniyaschool.com',
 //   motto: 'শিক্ষাই আলো',
-//   website: 'www.baoniyaschool.com',
+//   website: 'www.bajhs.edu.bd',
 // };
 
 // const API_BASE_URL = import.meta.env.VITE_REACT_APP_ROOT;
@@ -986,7 +986,7 @@ export default function FinalResult() {
 //   phone: '০১৯৮০৪৭৬০১১',
 //   email: 'support@baoniyaschool.com',
 //   motto: 'শিক্ষাই আলো',
-//   website: 'www.baoniyaschool.com',
+//   website: 'www.bajhs.edu.bd',
 // };
 
 // const API_BASE_URL = import.meta.env.VITE_REACT_APP_ROOT;
@@ -1446,7 +1446,7 @@ export default function FinalResult() {
 // //   phone: '০১৯৮০৪৭৬০১১',
 // //   email: 'support@baoniyaschool.com',
 // //   motto: 'শিক্ষাই আলো',
-// //   website: 'www.baoniyaschool.com',
+// //   website: 'www.bajhs.edu.bd',
 // // };
 
 // // const API_BASE_URL = import.meta.env.VITE_REACT_APP_ROOT;
@@ -1935,7 +1935,7 @@ export default function FinalResult() {
 // //   email: "support@baoniyaschool.com",
 // //   logo: "🏫",
 // //   motto: "শিক্ষাই আলো",
-// //   website: "www.baoniyaschool.com"
+// //   website: "www.bajhs.edu.bd"
 // // };
 
 // // // API Base URL - Update with your actual API URL

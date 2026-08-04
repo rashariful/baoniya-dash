@@ -25,13 +25,16 @@ interface InvoiceModalProps {
   };
 }
 
+
+
+
 const defaultSchoolInfo = {
   logo: logo,
-  name: "Baoniya School",
-  email: "Baoniya@gmail.com",
-  website: "Bajhs.edu.com",
-  address: "Dhaka, Bangladesh",
-  phone: "01980476011",
+  name: 'বাওনিয়া আব্দুল জলিল উচ্চ বিদ্যালয়',
+  address: 'বাওনিয়া রোড, ঢাকা-১২৩০',
+  phone: '০১৯৮০৪৭৬০১১',
+  email: 'support@baoniyaschool.com',
+  website: 'www.bajhs.edu.bd',
 };
 
 // feeHead value -> Bangla label mapping (fallback e raw value dekhabe)
@@ -191,7 +194,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ open, onClose, fee, schoolI
             justifyContent: "space-between",
             alignItems: "flex-start",
             paddingBottom: 20,
-            borderBottom: "2px solid #1677ff",
+            borderBottom: "2px solid #033016",
             marginBottom: 24,
           }}
         >
@@ -220,7 +223,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ open, onClose, fee, schoolI
             <div
               style={{
                 display: "inline-block",
-                background: "#1677ff",
+                background: "#033016",
                 color: "#fff",
                 fontSize: 13,
                 fontWeight: 700,
@@ -510,7 +513,7 @@ export default InvoiceModal;
 //             justifyContent: "space-between",
 //             alignItems: "flex-start",
 //             paddingBottom: 20,
-//             borderBottom: "2px solid #1677ff",
+//             borderBottom: "2px solid #033016",
 //             marginBottom: 24,
 //           }}
 //         >
@@ -539,7 +542,7 @@ export default InvoiceModal;
 //             <div
 //               style={{
 //                 display: "inline-block",
-//                 background: "#1677ff",
+//                 background: "#033016",
 //                 color: "#fff",
 //                 fontSize: 13,
 //                 fontWeight: 700,

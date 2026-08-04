@@ -229,7 +229,7 @@ export default function CoverPage({ student, schoolInfo }) {
 
 //       {/* Footer Note */}
 //       <div className="text-center text-xs pb-4 opacity-70 z-10 font-mono">
-//         {schoolInfo?.website || 'www.baoniyaschool.com'}
+//         {schoolInfo?.website || 'www.bajhs.edu.bd'}
 //       </div>
 //     </div>
 //   );
