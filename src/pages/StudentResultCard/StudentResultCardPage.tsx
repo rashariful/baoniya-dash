@@ -4,6 +4,7 @@ import { useGetAllClassesQuery } from "@/redux/api/classesApi";
 import { useGetAllSectionQuery } from "@/redux/api/sectionApi";
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import logo from "@/assets/logo.jpeg"
 
 // ★ Theme map — change schoolInfo.primary to switch the whole card's color
 const THEMES = {

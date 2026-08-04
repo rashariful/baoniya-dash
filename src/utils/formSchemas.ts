@@ -895,11 +895,38 @@ export const studentFormFields: FormField[] = [
    👨‍🏫 TEACHER
 ========================= */
 export const teacherFormFields: FormField[] = [
-  
-  { name: "name", label: "Teacher Name", type: "text", placeholder: "e.g. Md. Abul Hasan", span: 12, required: true },
-  { name: "indexNumber", label: "Index Number", type: "text", placeholder: "e.g. Index Number", span: 12, required: true },
-  { name: "designation", label: "Designation", type: "text", placeholder: "e.g. Senior Lecturer", span: 12, required: true },
-  { name: "phone", label: "Phone", type: "text", placeholder: "e.g. 017xxxxxxxx", span: 12, required: true },
+  {
+    name: "name",
+    label: "Teacher Name",
+    type: "text",
+    placeholder: "e.g. Md. Abul Hasan",
+    span: 12,
+    required: true,
+  },
+  {
+    name: "indexNumber",
+    label: "Index Number",
+    type: "text",
+    placeholder: "e.g. Index Number",
+    span: 12,
+    required: false,
+  },
+  {
+    name: "designation",
+    label: "Designation",
+    type: "text",
+    placeholder: "e.g. Senior Lecturer",
+    span: 12,
+    required: true,
+  },
+  {
+    name: "phone",
+    label: "Phone",
+    type: "text",
+    placeholder: "e.g. 017xxxxxxxx",
+    span: 12,
+    required: true,
+  },
 ];
 // export const teacherFormFields: FormField[] = [
 //   // =========================

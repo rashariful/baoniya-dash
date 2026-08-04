@@ -87,13 +87,13 @@ export const adminRoutes = [
     group: "Academic",
     element: <StudentPage />,
   },
-  {
-    name: "Admission",
-    path: "admission",
-    icon: <UserPlus />,
-    group: "Academic",
-    element: <AdmissionPage />,
-  },
+  // {
+  //   name: "Admission",
+  //   path: "admission",
+  //   icon: <UserPlus />,
+  //   group: "Academic",
+  //   element: <AdmissionPage />,
+  // },
   {
     name: "Attendance",
     path: "attendance",
