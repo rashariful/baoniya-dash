@@ -711,20 +711,55 @@ export const sectionColumns: ColumnsType<any> = [
 /* =========================
    📚 Subject
 ========================= */
+/* =========================
+   📚 Subject
+========================= */
 export const subjectColumns: ColumnsType<any> = [
   slColumn,
-  { title: "Subject Name", dataIndex: "name" },
-  { title: "Code", dataIndex: "code" },
-  { title: "Full Marks", dataIndex: "fullMarks" },
-  { title: "Pass Marks", dataIndex: "passMarks" },
-  { title: "Class", dataIndex: ["classId", "name"] },
+
+  {
+    title: "Subject Name",
+    dataIndex: "name",
+  },
+
+  {
+    title: "Code",
+    dataIndex: "code",
+  },
+
+  {
+    title: "Type",
+    dataIndex: "subjectType",
+  },
+
+  {
+    title: "Full Marks",
+    dataIndex: "fullMarks",
+  },
+
+  {
+    title: "Pass Marks",
+    dataIndex: "passMarks",
+  },
+
+  {
+    title: "Class",
+    dataIndex: ["classId", "name"],
+  },
+
+  {
+    title: "Grading Scale",
+    dataIndex: ["gradingScaleId", "name"],
+    render: (_: any, record: any) =>
+      record?.gradingScaleId?.name || "Default",
+  },
+
   {
     title: "Created At",
     dataIndex: "createdAt",
-    render: (v) => new Date(v).toLocaleDateString(),
+    render: (value) => new Date(value).toLocaleDateString(),
   },
 ];
-
 /* =========================
    📝 Exam
 ========================= */

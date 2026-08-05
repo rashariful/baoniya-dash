@@ -45,7 +45,7 @@ import ReportPage from "@/pages/Report/ReportPage";
 import StudentPage from "@/pages/Student/StudentPage";
 import TeacherPage from "@/pages/Teacher/TeacherPage";
 import Noticepage from "@/pages/Notice/Noticepage";
-import Staffpage from "@/pages/Staff/Staffpage";
+// import Staffpage from "@/pages/Staff/Staffpage";
 import ParentPage from "@/pages/Parent/ParentPage";
 
 /* =========================
@@ -214,13 +214,13 @@ export const adminRoutes = [
     group: "Operations",
     element: <FeesPage />,
   },
-  {
-    name: "Staff",
-    path: "staff",
-    icon: <Briefcase />,
-    group: "Operations",
-    element: <Staffpage />,
-  },
+  // {
+  //   name: "Staff",
+  //   path: "staff",
+  //   icon: <Briefcase />,
+  //   group: "Operations",
+  //   element: <Staffpage />,
+  // },
   {
     name: "Asset",
     path: "asset",

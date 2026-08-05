@@ -180,6 +180,9 @@ export const sectionFormFields: FormField[] = [
 /* =========================
    📚 SUBJECT
 ========================= */
+/* =========================
+   📚 SUBJECT
+========================= */
 export const subjectFormFields: FormField[] = [
   {
     name: "name",
@@ -195,18 +198,7 @@ export const subjectFormFields: FormField[] = [
     type: "text",
     placeholder: "e.g. MATH-101",
     span: 12,
-  },
-  {
-    name: "fullMarks",
-    label: "Full Marks",
-    type: "number",
-    span: 12,
-  },
-  {
-    name: "passMarks",
-    label: "Pass Marks",
-    type: "number",
-    span: 12,
+    required: true,
   },
   {
     name: "classId",
@@ -214,8 +206,54 @@ export const subjectFormFields: FormField[] = [
     type: "select",
     span: 12,
     options: [],
-        dynamicOptions: true,
-
+    dynamicOptions: true,
+    required: true,
+  },
+  {
+    name: "subjectType",
+    label: "Subject Type",
+    type: "select",
+    span: 12,
+    required: true,
+    options: [
+      {
+        label: "Compulsory",
+        value: "Compulsory",
+      },
+      {
+        label: "Optional",
+        value: "Optional",
+      },
+      {
+        label: "4th Subject",
+        value: "4th Subject",
+      },
+    ],
+  },
+  {
+    name: "fullMarks",
+    label: "Full Marks",
+    type: "number",
+    placeholder: "e.g. 100",
+    span: 12,
+    required: true,
+  },
+  {
+    name: "passMarks",
+    label: "Pass Marks",
+    type: "number",
+    placeholder: "e.g. 33",
+    span: 12,
+    required: true,
+  },
+  {
+    name: "gradingScaleId",
+    label: "Grading Scale",
+    type: "select",
+    span: 12,
+    options: [],
+    dynamicOptions: true,
+    required: false, // না দিলে backend defaultGradingScaleId ব্যবহার করবে
   },
 ];
 

@@ -9,8 +9,6 @@ import {
   useUpdateDonateMutation,
   useDeleteDonateMutation,
 } from "@/redux/api/donateApi";
-import ExamResultPage from "../ExamResult/ExamResultPage";
-import ApiTestPage from "../ApiTestPage";
 
 // StatCard Component
 const StatCard = ({ title, value, sub, colorClass }: any) => (
@@ -75,7 +73,7 @@ const DonatePage = () => {
 
   return (
     <div className="space-y-6">
-      <ApiTestPage/>
+      
       {/* কার্ড সেকশন */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((s, i) => (
