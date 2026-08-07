@@ -31,7 +31,7 @@ interface InvoiceModalProps {
 const defaultSchoolInfo = {
   logo: logo,
   name: 'বাউনিয়া আবদুল জলিল উচ্চ বিদ্যালয়।',
-  address: 'বাওনিয়া রোড, ঢাকা-১২৩০',
+  address: 'বাউনিয়া মেইন রোড, ঢাকা ২৮৭৬। ',
   phone: '০১৯৮০৪৭৬০১১',
   email: 'support@baoniyaschool.com',
   website: 'www.bajhs.edu.bd',
