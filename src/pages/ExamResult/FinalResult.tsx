@@ -19,7 +19,7 @@ import CoverPage from '../FinalResult/CoverPage';
 import ResultCardSwitcher from '../FinalResult/Resultcards';
 
 const schoolInfo = {
-  name: 'বাওনিয়া আব্দুল জলিল উচ্চ বিদ্যালয়',
+  name: 'বাউনিয়া আবদুল জলিল উচ্চ বিদ্যালয়।',
   address: 'বাওনিয়া রোড, ঢাকা-১২৩০',
   phone: '০১৯৮০৪৭৬০১১',
   email: 'support@baoniyaschool.com',
@@ -339,7 +339,7 @@ export default function FinalResult() {
 // import CoverPage from './CoverPage'; // ১. কভার পেজ কম্পোনেন্ট ইমপোর্ট করে নিন
 
 // const schoolInfo = {
-//   name: 'বাওনিয়া আব্দুল জলিল উচ্চ বিদ্যালয়',
+//   name: 'বাউনিয়া আবদুল জলিল উচ্চ বিদ্যালয়।',
 //   address: 'বাওনিয়া রোড, ঢাকা-১২৩০',
 //   phone: '০১৯৮০৪৭৬০১১',
 //   email: 'support@baoniyaschool.com',

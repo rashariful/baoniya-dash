@@ -26,13 +26,13 @@ export default function CoverPage({ student, schoolInfo }) {
       {/* Top Header Section */}
       <div className="text-center pt-6 z-10">
         <h1 className="text-3xl font-bold tracking-wide mb-2" style={{ fontFamily: 'Tiro Bangla, serif' }}>
-          {schoolInfo?.name || 'বাওনিয়া আব্দুল জলিল উচ্চ বিদ্যালয়'}
+          {schoolInfo?.name || 'বাউনিয়া আবদুল জলিল উচ্চ বিদ্যালয়।'}
         </h1>
 
         {/* School Logo Circle */}
         <div className="w-24 h-24 mx-auto my-3 rounded-full border-2 border-current flex flex-col items-center justify-center bg-white/40">
         <img src={logo} alt="" className='rounded-full'/>
-          {/* <span className="text-[10px] font-semibold text-center leading-tight">বাওনিয়া আব্দুল জলিল উচ্চ বিদ্যালয়</span>
+          {/* <span className="text-[10px] font-semibold text-center leading-tight">বাউনিয়া আবদুল জলিল উচ্চ বিদ্যালয়।</span>
           <div className="my-1 text-xs">🌿 📖</div>
           <span className="text-[9px]">তুরাগ, ঢাকা</span> */}
         </div>
@@ -50,7 +50,7 @@ export default function CoverPage({ student, schoolInfo }) {
         </div>
 
         <p className="text-lg font-semibold mt-6 tracking-wide">
-          শিক্ষাবর্ষ : ২০২৬ খ্রিস্টাব্দ
+          শিক্ষাবর্ষ : ২০২৬ খ্রিষ্টাব্দ
         </p>
       </div>
 
@@ -144,12 +144,12 @@ export default function CoverPage({ student, schoolInfo }) {
 //       {/* Top Header Section */}
 //       <div className="text-center pt-6 z-10">
 //         <h1 className="text-3xl font-bold tracking-wide mb-2" style={{ fontFamily: 'Tiro Bangla, serif' }}>
-//           {schoolInfo?.name || 'বাওনিয়া আব্দুল জলিল উচ্চ বিদ্যালয়'}
+//           {schoolInfo?.name || 'বাউনিয়া আবদুল জলিল উচ্চ বিদ্যালয়।'}
 //         </h1>
 
 //         {/* School Logo Circle */}
 //         <div className="w-24 h-24 mx-auto my-3 rounded-full border-2 border-current flex flex-col items-center justify-center p-1 bg-white/40">
-//           <span className="text-[10px] font-semibold text-center leading-tight">বাওনিয়া আব্দুল জলিল উচ্চ বিদ্যালয়</span>
+//           <span className="text-[10px] font-semibold text-center leading-tight">বাউনিয়া আবদুল জলিল উচ্চ বিদ্যালয়।</span>
 //           <div className="my-1 text-xs">🌿 📖</div>
 //           <span className="text-[9px]">তুরাগ, ঢাকা</span>
 //         </div>
@@ -167,7 +167,7 @@ export default function CoverPage({ student, schoolInfo }) {
 //         </div>
 
 //         <p className="text-lg font-semibold mt-6 tracking-wide">
-//           শিক্ষাবর্ষ : ২০২৬ খ্রিস্টাব্দ
+//           শিক্ষাবর্ষ : ২০২৬ খ্রিষ্টাব্দ
 //         </p>
 //       </div>
 

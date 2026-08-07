@@ -111,7 +111,7 @@ function Dashboard() {
     const fetchDashboardData = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get<ApiResponse>('https://backoffice.bajhs.edu.bd/api/v1/dashboard/summary');
+        const response = await axios.get<ApiResponse>('https://icchaporon.com/api/v1/dashboard/summary');
         
         if (response.data.success) {
           setDashboardData(response.data.data);
