@@ -63,9 +63,9 @@ function ExamTest() {
   // ★ School Information
   const schoolInfo = {
     name: "বাওনিয়া উচ্চ বিদ্যালয়",
-    address: "বাউনিয়া মেইন রোড, ঢাকা ২৮৭৬। ",
-    phone: "০১৯৮০৪৭৬০১১",
-    email: "support@baoniyaschool.com",
+    address: "বাউনিয়া মেইন রোড, বাউনিয়া, তুরাগ ,ঢাকা-২৮৭৬। ",
+    phone: "০১৩০৯১০৮১৯৬",
+    email: "baj2highschool@gmail.com",
     logo: "🏫",
     motto: "শিক্ষাই আলো",
     primary: "blue", // ← change this to "purple" (or add more themes above) to switch color
@@ -240,7 +240,7 @@ function ExamTest() {
         {/* GPA Display */}
         <div className="text-center my-6">
           <div className={`inline-block bg-gradient-to-br ${t.bgSofter} px-10 py-4 rounded-2xl shadow-md border ${t.border}`}>
-            <p className={`text-sm ${t.text} font-semibold uppercase tracking-wider`}>Grade Point Average (GPA)</p>
+            <p className={`text-sm ${t.text} font-semibold uppercase tracking-wider`}>L.G. Point Average (GPA)</p>
             <p className={`text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${t.textStrong}`}>
               {Number(info.gpa).toFixed(2)}
             </p>
@@ -261,7 +261,7 @@ function ExamTest() {
                   <th className="px-4 py-3 text-center text-sm font-bold">Practical</th>
                   <th className="px-4 py-3 text-center text-sm font-bold">Total</th>
                   <th className="px-4 py-3 text-center text-sm font-bold">Full Marks</th>
-                  <th className="px-4 py-3 text-center text-sm font-bold">Grade</th>
+                  <th className="px-4 py-3 text-center text-sm font-bold">L.G.</th>
                   <th className="px-4 py-3 text-center text-sm font-bold">GP</th>
                   <th className="px-4 py-3 text-center text-sm font-bold">Status</th>
                 </tr>
@@ -282,9 +282,9 @@ function ExamTest() {
                     </td>
                     <td className="px-4 py-3 text-sm text-center text-gray-600">{subject.fullMarks ?? 0}</td>
                     <td className={`px-4 py-3 text-sm text-center font-bold ${t.text}`}>
-                      {subject.grade || 'N/A'}
+                      {subject.L.G. || 'N/A'}
                     </td>
-                    <td className="px-4 py-3 text-sm text-center font-semibold">{subject.gradePoint ?? 0}</td>
+                    <td className="px-4 py-3 text-sm text-center font-semibold">{subject.L.G.Point ?? 0}</td>
                     <td className="px-4 py-3 text-sm text-center">
                       <span className={`px-3 py-1 rounded-full text-xs font-bold ${
                         subject.status === 'Pass'
@@ -496,9 +496,9 @@ export default ExamTest;
 //   // School Information
 //   const schoolInfo = {
 //     name: "বাওনিয়া উচ্চ বিদ্যালয়",
-//     address: "বাউনিয়া মেইন রোড, ঢাকা ২৮৭৬। ",
-//     phone: "০১৯৮০৪৭৬০১১",
-//     email: "support@baoniyaschool.com",
+//     address: "বাউনিয়া মেইন রোড, বাউনিয়া, তুরাগ ,ঢাকা-২৮৭৬। ",
+//     phone: "০১৩০৯১০৮১৯৬",
+//     email: "baj2highschool@gmail.com",
 //     logo: "🏫",
 //     motto: "শিক্ষাই আলো"
 //   };
@@ -657,7 +657,7 @@ export default ExamTest;
 //         {/* GPA Display */}
 //         <div className="text-center mb-6">
 //           <div className="inline-block bg-blue-50 px-8 py-3 rounded-lg">
-//             <p className="text-sm text-gray-600">Grade Point Average (GPA)</p>
+//             <p className="text-sm text-gray-600">L.G. Point Average (GPA)</p>
 //             <p className="text-4xl font-bold text-blue-700">{Number(info.gpa).toFixed(2)}</p>
 //           </div>
 //         </div>
@@ -676,7 +676,7 @@ export default ExamTest;
 //           <th className="px-4 py-3 text-center text-sm font-semibold">Practical</th>
 //           <th className="px-4 py-3 text-center text-sm font-semibold">Total</th>
 //           <th className="px-4 py-3 text-center text-sm font-semibold">Full Marks</th>
-//           <th className="px-4 py-3 text-center text-sm font-semibold">Grade</th>
+//           <th className="px-4 py-3 text-center text-sm font-semibold">L.G.</th>
 //           <th className="px-4 py-3 text-center text-sm font-semibold">GP</th>
 //           <th className="px-4 py-3 text-center text-sm font-semibold">Status</th>
 //         </tr>
@@ -697,9 +697,9 @@ export default ExamTest;
 //             </td>
 //             <td className="px-4 py-2 text-sm text-center">{subject.fullMarks ?? 0}</td>
 //             <td className="px-4 py-2 text-sm text-center font-semibold">
-//               {subject.grade || 'N/A'}
+//               {subject.L.G. || 'N/A'}
 //             </td>
-//             <td className="px-4 py-2 text-sm text-center">{subject.gradePoint ?? 0}</td>
+//             <td className="px-4 py-2 text-sm text-center">{subject.L.G.Point ?? 0}</td>
 //             <td className="px-4 py-2 text-sm text-center">
 //               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
 //                 subject.status === 'Pass'
@@ -885,9 +885,9 @@ export default ExamTest;
 //   // School Information
 //   const schoolInfo = {
 //     name: "বাওনিয়া উচ্চ বিদ্যালয়",
-//     address: "বাউনিয়া মেইন রোড, ঢাকা ২৮৭৬। ",
-//     phone: "০১৯৮০৪৭৬০১১",
-//     email: "support@baoniyaschool.com",
+//     address: "বাউনিয়া মেইন রোড, বাউনিয়া, তুরাগ ,ঢাকা-২৮৭৬। ",
+//     phone: "০১৩০৯১০৮১৯৬",
+//     email: "baj2highschool@gmail.com",
 //     logo: "🏫", // Dummy logo
 //     motto: "শিক্ষাই আলো"
 //   };
@@ -1015,7 +1015,7 @@ export default ExamTest;
 //         {/* GPA Display */}
 //         <div className="text-center mb-6">
 //           <div className="inline-block bg-blue-50 px-8 py-3 rounded-lg">
-//             <p className="text-sm text-gray-600">Grade Point Average (GPA)</p>
+//             <p className="text-sm text-gray-600">L.G. Point Average (GPA)</p>
 //             <p className="text-4xl font-bold text-blue-700">{info.gpa.toFixed(2)}</p>
 //           </div>
 //         </div>
@@ -1032,7 +1032,7 @@ export default ExamTest;
 //                 <th className="px-4 py-3 text-center text-sm font-semibold">CA</th>
 //                 <th className="px-4 py-3 text-center text-sm font-semibold">Total</th>
 //                 <th className="px-4 py-3 text-center text-sm font-semibold">Full Marks</th>
-//                 <th className="px-4 py-3 text-center text-sm font-semibold">Grade</th>
+//                 <th className="px-4 py-3 text-center text-sm font-semibold">L.G.</th>
 //                 <th className="px-4 py-3 text-center text-sm font-semibold">GP</th>
 //                 <th className="px-4 py-3 text-center text-sm font-semibold">Status</th>
 //               </tr>
@@ -1052,9 +1052,9 @@ export default ExamTest;
 //                   </td>
 //                   <td className="px-4 py-2 text-sm text-center text-gray-700">{subject.fullMarks || 0}</td>
 //                   <td className="px-4 py-2 text-sm text-center font-semibold text-blue-700">
-//                     {subject.grade || 'N/A'}
+//                     {subject.L.G. || 'N/A'}
 //                   </td>
-//                   <td className="px-4 py-2 text-sm text-center">{subject.gradePoint || 0}</td>
+//                   <td className="px-4 py-2 text-sm text-center">{subject.L.G.Point || 0}</td>
 //                   <td className="px-4 py-2 text-sm text-center">
 //                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
 //                       subject.status === 'Pass' 

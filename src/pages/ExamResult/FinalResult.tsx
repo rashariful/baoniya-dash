@@ -20,9 +20,9 @@ import ResultCardSwitcher from '../FinalResult/Resultcards';
 
 const schoolInfo = {
   name: 'বাউনিয়া আবদুল জলিল উচ্চ বিদ্যালয়।',
-  address: 'বাউনিয়া মেইন রোড, ঢাকা ২৮৭৬। ',
-  phone: '০১৯৮০৪৭৬০১১',
-  email: 'support@baoniyaschool.com',
+  address: 'বাউনিয়া মেইন রোড, বাউনিয়া, তুরাগ ,ঢাকা-২৮৭৬। ',
+  phone: '০১৩০৯১০৮১৯৬',
+  email: 'baj2highschool@gmail.com',
   motto: 'শিক্ষাই আলো',
   website: 'www.bajhs.edu.bd',
 };
@@ -340,9 +340,9 @@ export default function FinalResult() {
 
 // const schoolInfo = {
 //   name: 'বাউনিয়া আবদুল জলিল উচ্চ বিদ্যালয়।',
-//   address: 'বাউনিয়া মেইন রোড, ঢাকা ২৮৭৬। ',
-//   phone: '০১৯৮০৪৭৬০১১',
-//   email: 'support@baoniyaschool.com',
+//   address: 'বাউনিয়া মেইন রোড, বাউনিয়া, তুরাগ ,ঢাকা-২৮৭৬। ',
+//   phone: '০১৩০৯১০৮১৯৬',
+//   email: 'baj2highschool@gmail.com',
 //   motto: 'শিক্ষাই আলো',
 //   website: 'www.bajhs.edu.bd',
 // };
@@ -665,9 +665,9 @@ export default function FinalResult() {
 
 // const schoolInfo = {
 //   name: 'বাওনিয়া উচ্চ বিদ্যালয়',
-//   address: 'বাউনিয়া মেইন রোড, ঢাকা ২৮৭৬। ',
-//   phone: '০১৯৮০৪৭৬০১১',
-//   email: 'support@baoniyaschool.com',
+//   address: 'বাউনিয়া মেইন রোড, বাউনিয়া, তুরাগ ,ঢাকা-২৮৭৬। ',
+//   phone: '০১৩০৯১০৮১৯৬',
+//   email: 'baj2highschool@gmail.com',
 //   motto: 'শিক্ষাই আলো',
 //   website: 'www.bajhs.edu.bd',
 // };
@@ -982,9 +982,9 @@ export default function FinalResult() {
 // // ---------------------------------------------------------------------------
 // const schoolInfo = {
 //   name: 'বাওনিয়া উচ্চ বিদ্যালয়',
-//   address: 'বাউনিয়া মেইন রোড, ঢাকা ২৮৭৬। ',
-//   phone: '০১৯৮০৪৭৬০১১',
-//   email: 'support@baoniyaschool.com',
+//   address: 'বাউনিয়া মেইন রোড, বাউনিয়া, তুরাগ ,ঢাকা-২৮৭৬। ',
+//   phone: '০১৩০৯১০৮১৯৬',
+//   email: 'baj2highschool@gmail.com',
 //   motto: 'শিক্ষাই আলো',
 //   website: 'www.bajhs.edu.bd',
 // };
@@ -1442,9 +1442,9 @@ export default function FinalResult() {
 // // // ---------------------------------------------------------------------------
 // // const schoolInfo = {
 // //   name: 'বাওনিয়া উচ্চ বিদ্যালয়',
-// //   address: 'বাউনিয়া মেইন রোড, ঢাকা ২৮৭৬। ',
-// //   phone: '০১৯৮০৪৭৬০১১',
-// //   email: 'support@baoniyaschool.com',
+// //   address: 'বাউনিয়া মেইন রোড, বাউনিয়া, তুরাগ ,ঢাকা-২৮৭৬। ',
+// //   phone: '০১৩০৯১০৮১৯৬',
+// //   email: 'baj2highschool@gmail.com',
 // //   motto: 'শিক্ষাই আলো',
 // //   website: 'www.bajhs.edu.bd',
 // // };
@@ -1930,9 +1930,9 @@ export default function FinalResult() {
 // // // School Information
 // // const schoolInfo = {
 // //   name: "বাওনিয়া উচ্চ বিদ্যালয়",
-// //   address: "বাউনিয়া মেইন রোড, ঢাকা ২৮৭৬। ",
-// //   phone: "০১৯৮০৪৭৬০১১",
-// //   email: "support@baoniyaschool.com",
+// //   address: "বাউনিয়া মেইন রোড, বাউনিয়া, তুরাগ ,ঢাকা-২৮৭৬। ",
+// //   phone: "০১৩০৯১০৮১৯৬",
+// //   email: "baj2highschool@gmail.com",
 // //   logo: "🏫",
 // //   motto: "শিক্ষাই আলো",
 // //   website: "www.bajhs.edu.bd"

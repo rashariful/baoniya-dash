@@ -57,9 +57,9 @@ function StudentResultCard() {
   // ★ School Information
   const schoolInfo = {
     name: "বাওনিয়া উচ্চ বিদ্যালয়",
-    address: "বাউনিয়া মেইন রোড, ঢাকা ২৮৭৬। ",
-    phone: "০১৯৮০৪৭৬০১১",
-    email: "support@baoniyaschool.com",
+    address: "বাউনিয়া মেইন রোড, বাউনিয়া, তুরাগ ,ঢাকা-২৮৭৬। ",
+    phone: "০১৩০৯১০৮১৯৬",
+    email: "baj2highschool@gmail.com",
     logo: logo,
     motto: "শিক্ষাই আলো",
   };
@@ -677,9 +677,9 @@ export default StudentResultCard;
 //   // ★ School Information
 //   const schoolInfo = {
 //     name: "বাওনিয়া উচ্চ বিদ্যালয়",
-//     address: "বাউনিয়া মেইন রোড, ঢাকা ২৮৭৬। ",
-//     phone: "০১৯৮০৪৭৬০১১",
-//     email: "support@baoniyaschool.com",
+//     address: "বাউনিয়া মেইন রোড, বাউনিয়া, তুরাগ ,ঢাকা-২৮৭৬। ",
+//     phone: "০১৩০৯১০৮১৯৬",
+//     email: "baj2highschool@gmail.com",
 //     logo: logo,
 //     motto: "শিক্ষাই আলো",
 //     primary: "blue", // ← change this to "purple" (or add more themes above) to switch color

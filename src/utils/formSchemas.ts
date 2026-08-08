@@ -1113,8 +1113,12 @@ const monthOptions = [
 
 const feeHeadOptions = [
   { label: "বকেয়া", value: "due" },
-  { label: "চলতি মাস", value: "current_month" },
-  { label: "অগ্রিম বেতন", value: "advance_tuition" },
+  // { label: "চলতি মাস", value: "current_month" },
+  // { label: "চলতি মাস", value: "current_month" },
+  // { label: "মাসিক বেতন", value: "advance_tuition" },
+
+  { label: "মাসিক বেতন", value: "monthly_tuition" },
+
   { label: "সেশন ফি", value: "session_fee" },
   { label: "ভর্তি/পুনঃ ভর্তি/ছাড়পত্র/জরিমানা", value: "admission_fee" },
   { label: "রশিদ বই", value: "receipt_book" },

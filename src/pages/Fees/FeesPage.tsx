@@ -1,8 +1,18 @@
 import React, { useMemo, useState } from "react";
-import { Card, message, Button, Input, Select, Space, Badge, Dropdown, Tooltip } from "antd";
-import { 
-  FileTextOutlined, 
-  SearchOutlined, 
+import {
+  Card,
+  message,
+  Button,
+  Input,
+  Select,
+  Space,
+  Badge,
+  Dropdown,
+  Tooltip,
+} from "antd";
+import {
+  FileTextOutlined,
+  SearchOutlined,
   FilterOutlined,
   ReloadOutlined,
   CalendarOutlined,
@@ -11,7 +21,7 @@ import {
   ExclamationCircleOutlined,
   DollarOutlined,
   ExperimentOutlined,
-  LineChartOutlined
+  LineChartOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import CrudTemplate from "@/components/templates/CrudTemplate/CrudTemplate";
@@ -30,18 +40,31 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 
 // StatCard Component with Premium UI
-const StatCard = ({ title, value, sub, colorClass, icon: Icon, trend }: any) => (
-  <div className={`p-6 rounded-2xl border ${colorClass} bg-opacity-10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group`}>
+const StatCard = ({
+  title,
+  value,
+  sub,
+  colorClass,
+  icon: Icon,
+  trend,
+}: any) => (
+  <div
+    className={`p-6 rounded-2xl border ${colorClass} bg-opacity-10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group`}
+  >
     <div className="flex items-start justify-between">
       <div>
-        <h3 className="text-[10px] font-bold uppercase tracking-widest opacity-60">{title}</h3>
+        <h3 className="text-[10px] font-bold uppercase tracking-widest opacity-60">
+          {title}
+        </h3>
         <div className="text-3xl font-bold mt-2">{value}</div>
         <p className="text-sm opacity-60 mt-1 flex items-center gap-1">
           {trend && <span className="text-emerald-500">↑</span>}
           {sub}
         </p>
       </div>
-      <div className={`p-3 rounded-xl ${colorClass} bg-opacity-20 group-hover:scale-110 transition-transform duration-300`}>
+      <div
+        className={`p-3 rounded-xl ${colorClass} bg-opacity-20 group-hover:scale-110 transition-transform duration-300`}
+      >
         {Icon && <Icon className="text-2xl" />}
       </div>
     </div>
@@ -49,27 +72,27 @@ const StatCard = ({ title, value, sub, colorClass, icon: Icon, trend }: any) => 
 );
 
 // Filter Components
-const FilterSection = ({ 
-  filters, 
-  setFilters, 
+const FilterSection = ({
+  filters,
+  setFilters,
   onReset,
   dateRange,
   setDateRange,
-  classOptions // 🔥 dynamic class options ekhon prop hishebe ashbe
+  classOptions, // 🔥 dynamic class options ekhon prop hishebe ashbe
 }: any) => {
   const statusOptions = [
-    { label: 'All Status', value: 'all' },
-    { label: 'Paid', value: 'paid' },
-    { label: 'Partial', value: 'partial' },
-    { label: 'Unpaid', value: 'unpaid' },
+    { label: "All Status", value: "all" },
+    { label: "Paid", value: "paid" },
+    { label: "Partial", value: "partial" },
+    { label: "Unpaid", value: "unpaid" },
   ];
 
   const dateOptions = [
-    { label: 'Today', value: 'today' },
-    { label: 'Yesterday', value: 'yesterday' },
-    { label: 'This Week', value: 'week' },
-    { label: 'This Month', value: 'month' },
-    { label: 'Custom', value: 'custom' },
+    { label: "Today", value: "today" },
+    { label: "Yesterday", value: "yesterday" },
+    { label: "This Week", value: "week" },
+    { label: "This Month", value: "month" },
+    { label: "Custom", value: "custom" },
   ];
 
   return (
@@ -78,14 +101,19 @@ const FilterSection = ({
         <div className="flex items-center gap-2">
           <FilterOutlined className="text-orange-500 text-lg" />
           <span className="font-semibold text-slate-700">Filters</span>
-          <Badge count={Object.values(filters).filter(v => v && v !== 'all').length} className="ml-1" />
+          <Badge
+            count={
+              Object.values(filters).filter((v) => v && v !== "all").length
+            }
+            className="ml-1"
+          />
         </div>
 
         <div className="flex-1 flex flex-wrap items-center gap-3">
           {/* Status Filter */}
           <Select
             placeholder="Status"
-            value={filters.status || 'all'}
+            value={filters.status || "all"}
             onChange={(value) => setFilters({ ...filters, status: value })}
             className="min-w-[140px]"
             options={statusOptions}
@@ -95,20 +123,20 @@ const FilterSection = ({
           {/* Class Filter — 🔥 ekhon real classId + name diye */}
           <Select
             placeholder="Class"
-            value={filters.class || 'all'}
+            value={filters.class || "all"}
             onChange={(value) => setFilters({ ...filters, class: value })}
             className="min-w-[160px]"
-            options={[{ label: 'All Classes', value: 'all' }, ...classOptions]}
+            options={[{ label: "All Classes", value: "all" }, ...classOptions]}
             suffixIcon={<ExperimentOutlined className="text-orange-400" />}
           />
 
           {/* Date Range Filter */}
           <Select
             placeholder="Date Range"
-            value={filters.dateRange || 'today'}
+            value={filters.dateRange || "today"}
             onChange={(value) => {
               setFilters({ ...filters, dateRange: value });
-              if (value !== 'custom') {
+              if (value !== "custom") {
                 setDateRange(null);
               }
             }}
@@ -118,21 +146,25 @@ const FilterSection = ({
           />
 
           {/* Custom Date Range */}
-          {filters.dateRange === 'custom' && (
+          {filters.dateRange === "custom" && (
             <div className="flex items-center gap-2 animate-in fade-in slide-in-from-left-2">
               <Input
                 type="date"
                 placeholder="From"
-                value={dateRange?.from || ''}
-                onChange={(e) => setDateRange({ ...dateRange, from: e.target.value })}
+                value={dateRange?.from || ""}
+                onChange={(e) =>
+                  setDateRange({ ...dateRange, from: e.target.value })
+                }
                 className="w-[150px] border-orange-200 focus:border-orange-400"
               />
               <span className="text-slate-400">→</span>
               <Input
                 type="date"
                 placeholder="To"
-                value={dateRange?.to || ''}
-                onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })}
+                value={dateRange?.to || ""}
+                onChange={(e) =>
+                  setDateRange({ ...dateRange, to: e.target.value })
+                }
                 className="w-[150px] border-orange-200 focus:border-orange-400"
               />
             </div>
@@ -151,7 +183,10 @@ const FilterSection = ({
         {/* Quick Stats */}
         <div className="flex items-center gap-3 text-xs">
           <Tooltip title="Total Records">
-            <Badge count={filters.total || 0} style={{ backgroundColor: '#f97316' }} />
+            <Badge
+              count={filters.total || 0}
+              style={{ backgroundColor: "#f97316" }}
+            />
           </Tooltip>
         </div>
       </div>
@@ -164,11 +199,14 @@ const FeesPage = () => {
   const [invoiceOpen, setInvoiceOpen] = useState(false);
   const [selectedFee, setSelectedFee] = useState<any>(null);
   const [filters, setFilters] = useState({
-    status: 'all',
-    class: 'all',
-    dateRange: 'today',
+    status: "all",
+    class: "all",
+    dateRange: "today",
   });
-  const [dateRange, setDateRange] = useState<{ from: string; to: string } | null>(null);
+  const [dateRange, setDateRange] = useState<{
+    from: string;
+    to: string;
+  } | null>(null);
 
   const { data, isLoading, refetch } = useGetAllFeesQuery();
   const { data: studentData } = useGetAllStudentQuery();
@@ -191,18 +229,20 @@ const FeesPage = () => {
     let fees = data?.data || [];
 
     // Status Filter
-    if (filters.status && filters.status !== 'all') {
+    if (filters.status && filters.status !== "all") {
       fees = fees.filter((fee: any) => fee.status === filters.status);
     }
 
     // Class Filter — fee.studentId.classId direct check
-    if (filters.class && filters.class !== 'all') {
+    if (filters.class && filters.class !== "all") {
       fees = fees.filter((fee: any) => {
         const studentClassId =
-          typeof fee.studentId === 'object'
+          typeof fee.studentId === "object"
             ? fee.studentId?.classId?._id || fee.studentId?.classId
-            : studentData?.data?.find((s: any) => s._id === fee.studentId)?.classId?._id ||
-              studentData?.data?.find((s: any) => s._id === fee.studentId)?.classId;
+            : studentData?.data?.find((s: any) => s._id === fee.studentId)
+                ?.classId?._id ||
+              studentData?.data?.find((s: any) => s._id === fee.studentId)
+                ?.classId;
 
         return studentClassId === filters.class;
       });
@@ -211,28 +251,28 @@ const FeesPage = () => {
     // Date Range Filter
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    
+
     fees = fees.filter((fee: any) => {
       const feeDate = new Date(fee.createdAt);
-      
+
       switch (filters.dateRange) {
-        case 'today':
+        case "today":
           return feeDate >= today;
-        case 'yesterday': {
+        case "yesterday": {
           const yesterday = new Date(today);
           yesterday.setDate(yesterday.getDate() - 1);
           return feeDate >= yesterday && feeDate < today;
         }
-        case 'week': {
+        case "week": {
           const weekStart = new Date(today);
           weekStart.setDate(weekStart.getDate() - 7);
           return feeDate >= weekStart;
         }
-        case 'month': {
+        case "month": {
           const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
           return feeDate >= monthStart;
         }
-        case 'custom': {
+        case "custom": {
           if (dateRange?.from && dateRange?.to) {
             const from = new Date(dateRange.from);
             const to = new Date(dateRange.to);
@@ -252,43 +292,49 @@ const FeesPage = () => {
   // 🔥 ফিন্যান্সিয়াল ক্যালকুলেশন with filters
   const stats = useMemo(() => {
     const fees = filteredData || [];
-    const totalTarget = fees.reduce((acc: number, curr: any) => acc + (curr.amount || 0), 0);
-    const totalPaid = fees.reduce((acc: number, curr: any) => acc + (curr.paidAmount || 0), 0);
+    const totalTarget = fees.reduce(
+      (acc: number, curr: any) => acc + (curr.amount || 0),
+      0,
+    );
+    const totalPaid = fees.reduce(
+      (acc: number, curr: any) => acc + (curr.paidAmount || 0),
+      0,
+    );
     const totalDue = totalTarget - totalPaid;
     const partialCount = fees.filter((f: any) => f.status === "partial").length;
     const paidCount = fees.filter((f: any) => f.status === "paid").length;
 
     return [
-      { 
-        title: "TOTAL TARGET", 
-        value: `৳${totalTarget.toLocaleString()}`, 
-        sub: "expected collection", 
+      {
+        title: "TOTAL TARGET",
+        value: `৳${totalTarget.toLocaleString()}`,
+        sub: "expected collection",
         color: "bg-emerald-50 border-emerald-200 text-emerald-700",
         icon: DollarOutlined,
-        trend: true
+        trend: true,
       },
-      { 
-        title: "TOTAL COLLECTED", 
-        value: `৳${totalPaid.toLocaleString()}`, 
-        sub: "successfully paid", 
+      {
+        title: "TOTAL COLLECTED",
+        value: `৳${totalPaid.toLocaleString()}`,
+        sub: "successfully paid",
         color: "bg-blue-50 border-blue-200 text-blue-700",
         icon: CheckCircleOutlined,
-        trend: true
+        trend: true,
       },
-      { 
-        title: "TOTAL DUE", 
-        value: `৳${totalDue.toLocaleString()}`, 
-        sub: "outstanding balance", 
+      {
+        title: "TOTAL DUE",
+        value: `৳${totalDue.toLocaleString()}`,
+        sub: "outstanding balance",
         color: "bg-red-50 border-red-200 text-red-700",
-        icon: ExclamationCircleOutlined
+        icon: ExclamationCircleOutlined,
       },
-      { 
-        title: "PAYMENT STATUS", 
-        value: `${paidCount} / ${fees.length}`, 
-        sub: `${partialCount} partial payments`, 
+      {
+        title: "PAYMENT STATUS",
+        value: `${paidCount} / ${fees.length}`,
+        sub: `${partialCount} partial payments`,
         color: "bg-amber-50 border-amber-200 text-amber-700",
         icon: LineChartOutlined,
-        trend: true
+        trend: true,
       },
     ];
   }, [filteredData]);
@@ -299,7 +345,9 @@ const FeesPage = () => {
   const dynamicFormFields = useMemo(() => {
     const studentOptions = mapOptions(studentData?.data || [], "name");
     return feesFormFields.map((field) =>
-      field.name === "studentId" ? { ...field, options: studentOptions } : field
+      field.name === "studentId"
+        ? { ...field, options: studentOptions }
+        : field,
     );
   }, [studentData]);
 
@@ -324,7 +372,7 @@ const FeesPage = () => {
         ),
       },
     ],
-    [feesColumns]
+    [feesColumns],
   );
 
   const handleAdd = async (data: any) => {
@@ -339,20 +387,20 @@ const FeesPage = () => {
 
   const handleResetFilters = () => {
     setFilters({
-      status: 'all',
-      class: 'all',
-      dateRange: 'today',
+      status: "all",
+      class: "all",
+      dateRange: "today",
     });
     setDateRange(null);
-    setSearchTerm('');
-    message.success('Filters reset successfully');
+    setSearchTerm("");
+    message.success("Filters reset successfully");
   };
 
   // 🔥 fee.studentId already populated — direct pass koro InvoiceModal e,
   // studentMap lookup ar lagbe na (string ID case er jonno fallback rakha holo)
   const resolveStudent = (fee: any) => {
     if (!fee) return null;
-    if (typeof fee.studentId === 'object') return fee.studentId;
+    if (typeof fee.studentId === "object") return fee.studentId;
     return studentData?.data?.find((s: any) => s._id === fee.studentId) || null;
   };
 
@@ -372,9 +420,12 @@ const FeesPage = () => {
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <Badge 
-                count={`${filteredData.length} records`} 
-                style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: 'white' }}
+              <Badge
+                count={`${filteredData.length} records`}
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.2)",
+                  color: "white",
+                }}
               />
             </div>
           </div>
@@ -383,14 +434,14 @@ const FeesPage = () => {
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {stats.map((s, i) => (
-            <Card 
-              key={i} 
+            <Card
+              key={i}
               className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
-              <StatCard 
-                title={s.title} 
-                value={s.value} 
-                sub={s.sub} 
+              <StatCard
+                title={s.title}
+                value={s.value}
+                sub={s.sub}
                 colorClass={s.color}
                 icon={s.icon}
                 trend={s.trend}
@@ -430,8 +481,8 @@ const FeesPage = () => {
           onSearch={setSearchTerm}
           searchPlaceholder="Search by student name, ID, or fee details..."
           extraActions={
-            <Button 
-              icon={<ReloadOutlined />} 
+            <Button
+              icon={<ReloadOutlined />}
               onClick={() => refetch()}
               className="border-orange-200 text-orange-600 hover:bg-orange-50 transition-all duration-300"
             >
@@ -454,41 +505,41 @@ const FeesPage = () => {
           border-radius: 16px !important;
           overflow: hidden !important;
         }
-        
+
         .ant-select-selector {
           border-radius: 10px !important;
           border-color: #fcd5b5 !important;
           transition: all 0.3s ease !important;
         }
-        
+
         .ant-select-selector:hover {
           border-color: #f97316 !important;
         }
-        
+
         .ant-select-focused .ant-select-selector {
           border-color: #f97316 !important;
           box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2) !important;
         }
-        
+
         .ant-input {
           border-radius: 10px !important;
           transition: all 0.3s ease !important;
         }
-        
+
         .ant-input:focus {
           border-color: #f97316 !important;
           box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2) !important;
         }
-        
+
         .ant-btn {
           border-radius: 10px !important;
           transition: all 0.3s ease !important;
         }
-        
+
         .ant-btn:hover {
           transform: translateY(-1px) !important;
         }
-        
+
         .ant-badge-count {
           border-radius: 8px !important;
           font-weight: 600 !important;
@@ -500,12 +551,11 @@ const FeesPage = () => {
 
 export default FeesPage;
 
-
 // import React, { useMemo, useState } from "react";
 // import { Card, message, Button, Input, Select, Space, Badge, Dropdown, Tooltip } from "antd";
-// import { 
-//   FileTextOutlined, 
-//   SearchOutlined, 
+// import {
+//   FileTextOutlined,
+//   SearchOutlined,
 //   FilterOutlined,
 //   ReloadOutlined,
 //   CalendarOutlined,
@@ -551,12 +601,12 @@ export default FeesPage;
 // );
 
 // // Filter Components
-// const FilterSection = ({ 
-//   filters, 
-//   setFilters, 
+// const FilterSection = ({
+//   filters,
+//   setFilters,
 //   onReset,
 //   dateRange,
-//   setDateRange 
+//   setDateRange
 // }: any) => {
 //   const statusOptions = [
 //     { label: 'All Status', value: 'all' },
@@ -704,10 +754,10 @@ export default FeesPage;
 //     // Date Range Filter
 //     const now = new Date();
 //     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    
+
 //     fees = fees.filter((fee: any) => {
 //       const feeDate = new Date(fee.createdAt);
-      
+
 //       switch (filters.dateRange) {
 //         case 'today':
 //           return feeDate >= today;
@@ -752,33 +802,33 @@ export default FeesPage;
 //     const paidCount = fees.filter((f: any) => f.status === "paid").length;
 
 //     return [
-//       { 
-//         title: "TOTAL TARGET", 
-//         value: `৳${totalTarget.toLocaleString()}`, 
-//         sub: "expected collection", 
+//       {
+//         title: "TOTAL TARGET",
+//         value: `৳${totalTarget.toLocaleString()}`,
+//         sub: "expected collection",
 //         color: "bg-emerald-50 border-emerald-200 text-emerald-700",
 //         icon: DollarOutlined,
 //         trend: true
 //       },
-//       { 
-//         title: "TOTAL COLLECTED", 
-//         value: `৳${totalPaid.toLocaleString()}`, 
-//         sub: "successfully paid", 
+//       {
+//         title: "TOTAL COLLECTED",
+//         value: `৳${totalPaid.toLocaleString()}`,
+//         sub: "successfully paid",
 //         color: "bg-blue-50 border-blue-200 text-blue-700",
 //         icon: CheckCircleOutlined,
 //         trend: true
 //       },
-//       { 
-//         title: "TOTAL DUE", 
-//         value: `৳${totalDue.toLocaleString()}`, 
-//         sub: "outstanding balance", 
+//       {
+//         title: "TOTAL DUE",
+//         value: `৳${totalDue.toLocaleString()}`,
+//         sub: "outstanding balance",
 //         color: "bg-red-50 border-red-200 text-red-700",
 //         icon: ExclamationCircleOutlined
 //       },
-//       { 
-//         title: "PAYMENT STATUS", 
-//         value: `${paidCount} / ${fees.length}`, 
-//         sub: `${partialCount} partial payments`, 
+//       {
+//         title: "PAYMENT STATUS",
+//         value: `${paidCount} / ${fees.length}`,
+//         sub: `${partialCount} partial payments`,
 //         color: "bg-amber-50 border-amber-200 text-amber-700",
 //         icon: LineChartOutlined,
 //         trend: true
@@ -866,8 +916,8 @@ export default FeesPage;
 //               </p>
 //             </div>
 //             <div className="flex items-center gap-2">
-//               <Badge 
-//                 count={`${filteredData.length} records`} 
+//               <Badge
+//                 count={`${filteredData.length} records`}
 //                 style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: 'white' }}
 //               />
 //             </div>
@@ -877,14 +927,14 @@ export default FeesPage;
 //         {/* Stats Cards */}
 //         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 //           {stats.map((s, i) => (
-//             <Card 
-//               key={i} 
+//             <Card
+//               key={i}
 //               className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
 //             >
-//               <StatCard 
-//                 title={s.title} 
-//                 value={s.value} 
-//                 sub={s.sub} 
+//               <StatCard
+//                 title={s.title}
+//                 value={s.value}
+//                 sub={s.sub}
 //                 colorClass={s.color}
 //                 icon={s.icon}
 //                 trend={s.trend}
@@ -923,8 +973,8 @@ export default FeesPage;
 //           onSearch={setSearchTerm}
 //           searchPlaceholder="Search by student name, ID, or fee details..."
 //           extraActions={
-//             <Button 
-//               icon={<ReloadOutlined />} 
+//             <Button
+//               icon={<ReloadOutlined />}
 //               onClick={() => refetch()}
 //               className="border-orange-200 text-orange-600 hover:bg-orange-50 transition-all duration-300"
 //             >
@@ -947,41 +997,41 @@ export default FeesPage;
 //           border-radius: 16px !important;
 //           overflow: hidden !important;
 //         }
-        
+
 //         .ant-select-selector {
 //           border-radius: 10px !important;
 //           border-color: #fcd5b5 !important;
 //           transition: all 0.3s ease !important;
 //         }
-        
+
 //         .ant-select-selector:hover {
 //           border-color: #f97316 !important;
 //         }
-        
+
 //         .ant-select-focused .ant-select-selector {
 //           border-color: #f97316 !important;
 //           box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2) !important;
 //         }
-        
+
 //         .ant-input {
 //           border-radius: 10px !important;
 //           transition: all 0.3s ease !important;
 //         }
-        
+
 //         .ant-input:focus {
 //           border-color: #f97316 !important;
 //           box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2) !important;
 //         }
-        
+
 //         .ant-btn {
 //           border-radius: 10px !important;
 //           transition: all 0.3s ease !important;
 //         }
-        
+
 //         .ant-btn:hover {
 //           transform: translateY(-1px) !important;
 //         }
-        
+
 //         .ant-badge-count {
 //           border-radius: 8px !important;
 //           font-weight: 600 !important;
