@@ -829,7 +829,7 @@ export const studentFormFields: FormField[] = [
     type: "text",
     placeholder: "Enter student phone number",
     span: 12,
-    required: true,
+    required: false,
   },
   {
     name: "fatherName",

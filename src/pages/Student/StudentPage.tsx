@@ -38,7 +38,7 @@ const StudentPage = () => {
     { name: "limit", value: 100 },
   ]);
 
-  // ★ সব section নিয়ে আসছি (filter ছাড়া)
+  // ★ সব section নিয়ে আসছি (filter ছাড়া)
   const { data: sectionData } = useGetAllSectionQuery([
     { name: "limit", value: 500 },
   ]);
@@ -52,18 +52,35 @@ const StudentPage = () => {
   const [updateStudent] = useUpdateStudentMutation();
   const [deleteStudent] = useDeleteStudentMutation();
 
+  // ★ FIX: populated reference object (e.g. classId, sectionId, sessionId আসলে
+  // backend থেকে { _id, name, ... } আকারে populated হয়ে আসতে পারে, বিশেষ করে
+  // edit form-এ prefill করার সময়। এমন object কে raw JSON.stringify করে পাঠালে
+  // backend ObjectId cast করতে গিয়ে fail করে ("Cast to ObjectId failed").
+  // তাই object-এ _id থাকলে শুধু সেই _id string টা পাঠাই।
   const convertToFormData = (data: Record<string, any>) => {
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       if (!value && value !== 0) return;
+
       if (value?.originFileObj instanceof File) {
         formData.append(key, value.originFileObj);
       } else if (value instanceof File) {
         formData.append(key, value);
       } else if (value instanceof Date) {
         formData.append(key, value.toISOString());
+      } else if (Array.isArray(value)) {
+        // array of populated objects/ids হইলে _id গুলা বের করে JSON array পাঠাই
+        const normalized = value.map((v) =>
+          v && typeof v === "object" && v._id ? v._id : v
+        );
+        formData.append(key, JSON.stringify(normalized));
       } else if (typeof value === "object" && value !== null) {
-        formData.append(key, JSON.stringify(value));
+        // ★ populated reference object -> শুধু _id পাঠাও
+        if (value._id) {
+          formData.append(key, String(value._id));
+        } else {
+          formData.append(key, JSON.stringify(value));
+        }
       } else {
         formData.append(key, String(value));
       }
