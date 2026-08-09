@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { message, Button } from "antd";
+import React, { useMemo, useState, useEffect } from "react";
+import { message, Button, Select, Space } from "antd";
 import { IdcardOutlined } from "@ant-design/icons";
 import CrudTemplate from "@/components/templates/CrudTemplate/CrudTemplate";
 import { Card } from "@/components/ui/card";
@@ -29,16 +29,34 @@ const StudentPage = () => {
   const [idCardOpen, setIdCardOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<any>(null);
 
+  // ★ Filter State (শুধু Class + Section)
+  const [selectedClassId, setSelectedClassId] = useState<string | undefined>(undefined);
+  const [selectedSectionId, setSelectedSectionId] = useState<string | undefined>(undefined);
+
+  // ★ Query params বানাও
+  const queryParams = useMemo(() => {
+    const params: { name: string; value: string }[] = [];
+
+    if (searchTerm) {
+      params.push({ name: "searchTerm", value: searchTerm });
+    }
+    if (selectedClassId) {
+      params.push({ name: "classId", value: selectedClassId });
+    }
+    if (selectedSectionId) {
+      params.push({ name: "sectionId", value: selectedSectionId });
+    }
+
+    return params.length > 0 ? params : undefined;
+  }, [searchTerm, selectedClassId, selectedSectionId]);
+
   // Queries
-  const { data, isLoading, refetch } = useGetAllStudentQuery(
-    searchTerm ? [{ name: "searchTerm", value: searchTerm }] : undefined
-  );
+  const { data, isLoading, refetch } = useGetAllStudentQuery(queryParams);
 
   const { data: classData } = useGetAllClassesQuery([
     { name: "limit", value: 100 },
   ]);
 
-  // ★ সব section নিয়ে আসছি (filter ছাড়া)
   const { data: sectionData } = useGetAllSectionQuery([
     { name: "limit", value: 500 },
   ]);
@@ -52,11 +70,12 @@ const StudentPage = () => {
   const [updateStudent] = useUpdateStudentMutation();
   const [deleteStudent] = useDeleteStudentMutation();
 
-  // ★ FIX: populated reference object (e.g. classId, sectionId, sessionId আসলে
-  // backend থেকে { _id, name, ... } আকারে populated হয়ে আসতে পারে, বিশেষ করে
-  // edit form-এ prefill করার সময়। এমন object কে raw JSON.stringify করে পাঠালে
-  // backend ObjectId cast করতে গিয়ে fail করে ("Cast to ObjectId failed").
-  // তাই object-এ _id থাকলে শুধু সেই _id string টা পাঠাই।
+  // ★ Class change হলে Section clear করে দাও
+  useEffect(() => {
+    setSelectedSectionId(undefined);
+  }, [selectedClassId]);
+
+  // convertToFormData (আগের মতোই রাখো)
   const convertToFormData = (data: Record<string, any>) => {
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
@@ -69,13 +88,11 @@ const StudentPage = () => {
       } else if (value instanceof Date) {
         formData.append(key, value.toISOString());
       } else if (Array.isArray(value)) {
-        // array of populated objects/ids হইলে _id গুলা বের করে JSON array পাঠাই
         const normalized = value.map((v) =>
           v && typeof v === "object" && v._id ? v._id : v
         );
         formData.append(key, JSON.stringify(normalized));
       } else if (typeof value === "object" && value !== null) {
-        // ★ populated reference object -> শুধু _id পাঠাও
         if (value._id) {
           formData.append(key, String(value._id));
         } else {
@@ -92,19 +109,44 @@ const StudentPage = () => {
   const classNameMap = useMemo(() => {
     const map: Record<string, string> = {};
     (classData?.data || []).forEach((cls: any) => {
-      map[cls._id] = cls.name; // "Class 6", "Class 7" ইত্যাদি
+      map[cls._id] = cls.name;
     });
     return map;
   }, [classData]);
 
-  // ★ Section options — label এ class name যোগ করা
-  const sectionOptions = useMemo(() => {
+  // ★ Class options
+  const classOptions = useMemo(() => {
+    return (classData?.data || []).map((cls: any) => ({
+      label: cls.name,
+      value: cls._id,
+    }));
+  }, [classData]);
+
+  // ★ Section options — selected Class অনুযায়ী filter
+  const filteredSectionOptions = useMemo(() => {
+    if (!selectedClassId) return [];
+
+    return (sectionData?.data || [])
+      .filter((sec: any) => {
+        const classId =
+          typeof sec.classId === "object" ? sec.classId?._id : sec.classId;
+        return classId === selectedClassId;
+      })
+      .map((sec: any) => ({
+        label: sec.name,
+        value: sec._id,
+      }));
+  }, [sectionData, selectedClassId]);
+
+  // Form এর জন্য সব section (label এ class name সহ)
+  const sectionOptionsForForm = useMemo(() => {
     return (sectionData?.data || []).map((sec: any) => {
-      const classId = typeof sec.classId === "object" ? sec.classId?._id : sec.classId;
+      const classId =
+        typeof sec.classId === "object" ? sec.classId?._id : sec.classId;
       const className = classNameMap[classId] || "Unknown";
 
       return {
-        label: `${sec.name} (${className})`, // → A (Class 6)
+        label: `${sec.name} (${className})`,
         value: sec._id,
       };
     });
@@ -171,28 +213,22 @@ const StudentPage = () => {
   }, [data]);
 
   const dynamicFormFields = useMemo(() => {
-    const classOptions = mapOptions(classData?.data);
+    const classOptionsForForm = mapOptions(classData?.data);
     const sessionOptions = mapOptions(sessionData?.data);
 
     return studentFormFields.map((field) => {
       if (field.name === "classId") {
-        return { ...field, options: classOptions };
+        return { ...field, options: classOptionsForForm };
       }
-
       if (field.name === "sectionId") {
-        return {
-          ...field,
-          options: sectionOptions, // A (Class 6), B (Class 6)...
-        };
+        return { ...field, options: sectionOptionsForForm };
       }
-
       if (field.name === "sessionId") {
         return { ...field, options: sessionOptions };
       }
-
       return field;
     });
-  }, [classData, sectionData, sessionData, sectionOptions]);
+  }, [classData, sectionData, sessionData, sectionOptionsForForm]);
 
   const columnsWithIdCard = useMemo(
     () => [
@@ -217,14 +253,56 @@ const StudentPage = () => {
     []
   );
 
+  // ★ Reset filters
+  const handleResetFilters = () => {
+    setSelectedClassId(undefined);
+    setSelectedSectionId(undefined);
+    setSearchTerm("");
+  };
+
   return (
     <div className="space-y-6 p-4">
+      {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {stats.map((item, index) => (
           <Card key={index}>
             <StatCard {...item} colorClass={item.color} />
           </Card>
         ))}
+      </div>
+
+      {/* ★ Class + Section Filter Bar */}
+      <div className="bg-white p-4 rounded-xl border shadow-sm">
+        <Space wrap size="middle">
+          <div>
+            <div className="text-xs font-medium text-gray-500 mb-1">Class</div>
+            <Select
+              placeholder="Select Class"
+              allowClear
+              style={{ width: 200 }}
+              value={selectedClassId}
+              onChange={(value) => setSelectedClassId(value)}
+              options={classOptions}
+            />
+          </div>
+
+          <div>
+            <div className="text-xs font-medium text-gray-500 mb-1">Section</div>
+            <Select
+              placeholder={selectedClassId ? "Select Section" : "First select Class"}
+              allowClear
+              style={{ width: 200 }}
+              value={selectedSectionId}
+              onChange={(value) => setSelectedSectionId(value)}
+              options={filteredSectionOptions}
+              disabled={!selectedClassId}
+            />
+          </div>
+
+          <div className="pt-5">
+            <Button onClick={handleResetFilters}>Reset</Button>
+          </div>
+        </Space>
       </div>
 
       <CrudTemplate
@@ -251,6 +329,260 @@ const StudentPage = () => {
 };
 
 export default StudentPage;
+
+// import React, { useMemo, useState } from "react";
+// import { message, Button } from "antd";
+// import { IdcardOutlined } from "@ant-design/icons";
+// import CrudTemplate from "@/components/templates/CrudTemplate/CrudTemplate";
+// import { Card } from "@/components/ui/card";
+// import { studentColumns } from "@/utils/tableConfigs";
+// import { studentFormFields } from "@/utils/formSchemas";
+// import {
+//   useCreateStudentMutation,
+//   useDeleteStudentMutation,
+//   useGetAllStudentQuery,
+//   useUpdateStudentMutation,
+// } from "@/redux/api/studentApi";
+// import { useGetAllClassesQuery } from "@/redux/api/classesApi";
+// import { useGetAllSectionQuery } from "@/redux/api/sectionApi";
+// import { useGetAllAcademicSessionQuery } from "@/redux/api/academicSessionApi";
+// import IDCardModal from "./IDCardModal";
+
+// const StatCard = ({ title, value, sub, colorClass }: any) => (
+//   <div className={`p-6 rounded-xl border ${colorClass} bg-opacity-5 shadow-sm transition-all hover:shadow-md`}>
+//     <h3 className="text-[10px] font-bold uppercase tracking-widest opacity-60">{title}</h3>
+//     <div className="text-3xl font-bold mt-2">{value}</div>
+//     <p className="text-sm opacity-60 mt-1">{sub}</p>
+//   </div>
+// );
+
+// const StudentPage = () => {
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const [idCardOpen, setIdCardOpen] = useState(false);
+//   const [selectedStudent, setSelectedStudent] = useState<any>(null);
+
+//   // Queries
+//   const { data, isLoading, refetch } = useGetAllStudentQuery(
+//     searchTerm ? [{ name: "searchTerm", value: searchTerm }] : undefined
+//   );
+
+//   const { data: classData } = useGetAllClassesQuery([
+//     { name: "limit", value: 100 },
+//   ]);
+
+//   // ★ সব section নিয়ে আসছি (filter ছাড়া)
+//   const { data: sectionData } = useGetAllSectionQuery([
+//     { name: "limit", value: 500 },
+//   ]);
+
+//   const { data: sessionData } = useGetAllAcademicSessionQuery([
+//     { name: "limit", value: 100 },
+//   ]);
+
+//   // Mutations
+//   const [createStudent] = useCreateStudentMutation();
+//   const [updateStudent] = useUpdateStudentMutation();
+//   const [deleteStudent] = useDeleteStudentMutation();
+
+//   // ★ FIX: populated reference object (e.g. classId, sectionId, sessionId আসলে
+//   // backend থেকে { _id, name, ... } আকারে populated হয়ে আসতে পারে, বিশেষ করে
+//   // edit form-এ prefill করার সময়। এমন object কে raw JSON.stringify করে পাঠালে
+//   // backend ObjectId cast করতে গিয়ে fail করে ("Cast to ObjectId failed").
+//   // তাই object-এ _id থাকলে শুধু সেই _id string টা পাঠাই।
+//   const convertToFormData = (data: Record<string, any>) => {
+//     const formData = new FormData();
+//     Object.entries(data).forEach(([key, value]) => {
+//       if (!value && value !== 0) return;
+
+//       if (value?.originFileObj instanceof File) {
+//         formData.append(key, value.originFileObj);
+//       } else if (value instanceof File) {
+//         formData.append(key, value);
+//       } else if (value instanceof Date) {
+//         formData.append(key, value.toISOString());
+//       } else if (Array.isArray(value)) {
+//         // array of populated objects/ids হইলে _id গুলা বের করে JSON array পাঠাই
+//         const normalized = value.map((v) =>
+//           v && typeof v === "object" && v._id ? v._id : v
+//         );
+//         formData.append(key, JSON.stringify(normalized));
+//       } else if (typeof value === "object" && value !== null) {
+//         // ★ populated reference object -> শুধু _id পাঠাও
+//         if (value._id) {
+//           formData.append(key, String(value._id));
+//         } else {
+//           formData.append(key, JSON.stringify(value));
+//         }
+//       } else {
+//         formData.append(key, String(value));
+//       }
+//     });
+//     return formData;
+//   };
+
+//   // ★ classId → class name map
+//   const classNameMap = useMemo(() => {
+//     const map: Record<string, string> = {};
+//     (classData?.data || []).forEach((cls: any) => {
+//       map[cls._id] = cls.name; // "Class 6", "Class 7" ইত্যাদি
+//     });
+//     return map;
+//   }, [classData]);
+
+//   // ★ Section options — label এ class name যোগ করা
+//   const sectionOptions = useMemo(() => {
+//     return (sectionData?.data || []).map((sec: any) => {
+//       const classId = typeof sec.classId === "object" ? sec.classId?._id : sec.classId;
+//       const className = classNameMap[classId] || "Unknown";
+
+//       return {
+//         label: `${sec.name} (${className})`, // → A (Class 6)
+//         value: sec._id,
+//       };
+//     });
+//   }, [sectionData, classNameMap]);
+
+//   const mapOptions = (arr: any[] = [], labelKey = "name") =>
+//     arr.map((item) => ({ label: item[labelKey], value: item._id }));
+
+//   // CRUD Handlers
+//   const handleAdd = async (formData: any) => {
+//     try {
+//       const payload = convertToFormData(formData);
+//       await createStudent(payload).unwrap();
+//       message.success("Student created successfully");
+//       refetch();
+//     } catch (error: any) {
+//       message.error(error?.data?.message || "Failed to create student");
+//     }
+//   };
+
+//   const handleEdit = async (id: string, formData: any) => {
+//     try {
+//       const payload = convertToFormData(formData);
+//       await updateStudent({ id, data: payload }).unwrap();
+//       message.success("Student updated successfully");
+//       refetch();
+//     } catch (error: any) {
+//       message.error(error?.data?.message || "Failed to update student");
+//     }
+//   };
+
+//   const handleDelete = async (id: string) => {
+//     try {
+//       await deleteStudent(id).unwrap();
+//       message.success("Student deleted successfully");
+//       refetch();
+//     } catch (error: any) {
+//       message.error(error?.data?.message || "Failed to delete student");
+//     }
+//   };
+
+//   const stats = useMemo(() => {
+//     const students = data?.data || [];
+//     return [
+//       {
+//         title: "TOTAL STUDENTS",
+//         value: students.length,
+//         sub: "All Students",
+//         color: "bg-emerald-50 border-emerald-200 text-emerald-900",
+//       },
+//       {
+//         title: "CURRENT SESSION",
+//         value: students.filter((s: any) => s.sessionId).length,
+//         sub: "Academic Session",
+//         color: "bg-blue-50 border-blue-200 text-blue-900",
+//       },
+//       {
+//         title: "PHONE ADDED",
+//         value: students.filter((s: any) => s.phone).length,
+//         sub: "Contact Available",
+//         color: "bg-purple-50 border-purple-200 text-purple-900",
+//       },
+//     ];
+//   }, [data]);
+
+//   const dynamicFormFields = useMemo(() => {
+//     const classOptions = mapOptions(classData?.data);
+//     const sessionOptions = mapOptions(sessionData?.data);
+
+//     return studentFormFields.map((field) => {
+//       if (field.name === "classId") {
+//         return { ...field, options: classOptions };
+//       }
+
+//       if (field.name === "sectionId") {
+//         return {
+//           ...field,
+//           options: sectionOptions, // A (Class 6), B (Class 6)...
+//         };
+//       }
+
+//       if (field.name === "sessionId") {
+//         return { ...field, options: sessionOptions };
+//       }
+
+//       return field;
+//     });
+//   }, [classData, sectionData, sessionData, sectionOptions]);
+
+//   const columnsWithIdCard = useMemo(
+//     () => [
+//       ...studentColumns,
+//       {
+//         title: "আইডি কার্ড",
+//         key: "idcard",
+//         render: (_: any, record: any) => (
+//           <Button
+//             size="small"
+//             icon={<IdcardOutlined />}
+//             onClick={() => {
+//               setSelectedStudent(record);
+//               setIdCardOpen(true);
+//             }}
+//           >
+//             ID Card
+//           </Button>
+//         ),
+//       },
+//     ],
+//     []
+//   );
+
+//   return (
+//     <div className="space-y-6 p-4">
+//       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+//         {stats.map((item, index) => (
+//           <Card key={index}>
+//             <StatCard {...item} colorClass={item.color} />
+//           </Card>
+//         ))}
+//       </div>
+
+//       <CrudTemplate
+//         title="Student Management"
+//         subtitle="Manage all students"
+//         data={data?.data || []}
+//         columns={columnsWithIdCard}
+//         formFields={dynamicFormFields}
+//         loading={isLoading}
+//         onAdd={handleAdd}
+//         onEdit={handleEdit}
+//         onDelete={handleDelete}
+//         enableSearch
+//         onSearch={setSearchTerm}
+//       />
+
+//       <IDCardModal
+//         open={idCardOpen}
+//         onClose={() => setIdCardOpen(false)}
+//         student={selectedStudent}
+//       />
+//     </div>
+//   );
+// };
+
+// export default StudentPage;
 
 // import React, { useMemo, useState } from "react";
 // import { message, Button } from "antd";
