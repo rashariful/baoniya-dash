@@ -241,73 +241,11 @@ const FontStyles = () => (
                 </button>
               </div>
 
-              <div ref={resultRef} className="space-y-6">
-                <CoverPage student={selectedStudent} schoolInfo={schoolInfo} />
+              <div ref={resultRef}>
+  <CoverPage student={selectedStudent} schoolInfo={schoolInfo} />
+</div>
 
-                <div className="bg-white rounded-lg shadow-md overflow-hidden border border-[#E4D9BC]">
-                  {/* Letterhead */}
-                  <div className="bg-primary text-white px-8 pt-7 pb-9">
-                    <div className="flex items-start justify-between gap-4 flex-wrap">
-                      <div>
-                        <p className="frx-bn-display text-2xl">{schoolInfo.name}</p>
-                        <p className="text-xs text-white/60 mt-1">{schoolInfo.address}</p>
-                        <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-[11px] text-white/50 frx-mono">
-                          <span className="flex items-center gap-1"><Phone className="w-3 h-3" />{schoolInfo.phone}</span>
-                          <span className="flex items-center gap-1"><Mail className="w-3 h-3" />{schoolInfo.email}</span>
-                          <span className="flex items-center gap-1"><Globe className="w-3 h-3" />{schoolInfo.website}</span>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-xs text-[#C79A49] tracking-wide">{schoolInfo.motto}</p>
-                        <p className="frx-mono text-[11px] text-white/50 mt-1">{selectedStudent.sessionId?.name || '—'}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="frx-perforation" />
-
-                  {/* Body */}
-                  <div className="px-8 pt-8 pb-8">
-                    <div className="flex flex-wrap items-start justify-between gap-6 mb-8">
-                      <div className="grid grid-cols-2 gap-x-8 gap-y-3">
-                        <div>
-                          <p className="text-[11px] text-[#9C927A] tracking-wide">শিক্ষার্থীর নাম</p>
-                          <p className="frx-display text-lg text-primabg-primary">{selectedStudent.studentId?.name || 'N/A'}</p>
-                        </div>
-                        <div>
-                          <p className="text-[11px] text-[#9C927A] tracking-wide">শিক্ষার্থী আইডি</p>
-                          <p className="frx-mono text-sm text-primabg-primary mt-1">{selectedStudent.studentId?.studentId || 'N/A'}</p>
-                        </div>
-                        <div>
-                          <p className="text-[11px] text-[#9C927A] tracking-wide">শ্রেণি / গ্রুপ</p>
-                          <p className="text-sm text-primabg-primary mt-1">{selectedStudent.classGroupId?.name || 'N/A'}</p>
-                        </div>
-                        <div>
-                          <p className="text-[11px] text-[#9C927A] tracking-wide">মার্জ পদ্ধতি</p>
-                          <p className="text-sm text-primabg-primary mt-1">{selectedStudent.mergeStrategy || 'N/A'}</p>
-                        </div>
-                      </div>
-
-                      {/* CGPA Badge */}
-                      <div className="relative shrink-0 mx-auto">
-                        <div
-                          className="w-28 h-28 rounded-full flex flex-col items-center justify-center shadow-lg"
-                          style={{ background: 'radial-gradient(circle at 35% 30%, #E0B978, #A9752B 70%)' }}
-                        >
-                          <span className="frx-display text-2xl font-bold text-white">
-                            {selectedStudent.cgpa != null ? selectedStudent.cgpa.toFixed(2) : '—'}
-                          </span>
-                          <span className="text-[10px] tracking-widest text-white/90 font-mono mt-0.5">CGPA</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-6">
-                      <ResultCardSwitcher result={selectedStudent} />
-                    </div>
-                  </div>
-                </div>
-              </div>
+             
             </>
           )}
         </div>

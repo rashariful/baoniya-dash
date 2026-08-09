@@ -381,7 +381,7 @@ function StudentResultCard() {
             colSpan={5}
             className="border border-black px-3 py-1 text-sm font-bold text-black"
           >
-            অর্ধবার্ষিক/প্রাক নির্বাচনি
+            অর্ধবার্ষিক/বার্ষিক
           </th>
           <th
             rowSpan={2}
