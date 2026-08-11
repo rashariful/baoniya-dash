@@ -281,7 +281,7 @@ export default function FinalResult() {
                         </div>
                         <div>
                           <p className="text-[11px] text-[#9C927A] tracking-wide">শ্রেণি / গ্রুপ</p>
-                          <p className="text-sm text-[#1D2438] mt-1">{selectedStudent.classGroupId?.name || 'N/A'}</p>
+                          <p className="text-sm text-[#1D2438] mt-1">{selectedStudent?.studentId?.classId?.name || 'N/A'}</p>
                         </div>
                         <div>
                           <p className="text-[11px] text-[#9C927A] tracking-wide">মার্জ পদ্ধতি</p>

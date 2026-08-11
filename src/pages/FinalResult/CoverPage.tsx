@@ -3,6 +3,7 @@ import logo from '@/assets/logo.jpeg';
 import ResultCardSwitcher from './Resultcards'; // path ঠিক করে নাও
 
 export default function CoverPage({ student, schoolInfo }) {
+  console.log(student, "student info")
   const isPrimary =
     (student?.classGroupId?.name || '').toLowerCase().includes('nursery') ||
     (student?.classGroupId?.name || '').toLowerCase().includes('primary') ||
@@ -92,7 +93,7 @@ export default function CoverPage({ student, schoolInfo }) {
               <span className="w-20 font-semibold">শ্রেণি</span>
               <span className="mx-2">:</span>
               <span className="flex-1 font-bold">
-                {student?.classGroupId?.name || '—'}
+                {student?.studentId?.classId?.name || '—'}
               </span>
             </div>
             <div className="flex items-center">
@@ -104,23 +105,26 @@ export default function CoverPage({ student, schoolInfo }) {
             </div>
           </div>
 
+          
+
+
           <div className="grid grid-cols-2 gap-4 pt-1">
             <div className="flex items-center">
               <span className="w-20 font-semibold">শাখা</span>
               <span className="mx-2">:</span>
-              <span className="flex-1">{student?.section || 'সাধারণ'}</span>
+              <span className="flex-1">{student?.studentId?.sectionId?.name || 'সাধারণ'}</span>
             </div>
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <span className="w-20 font-semibold">বিভাগ</span>
               <span className="mx-2">:</span>
               <span className="flex-1">{student?.department || '—'}</span>
-            </div>
+            </div> */}
           </div>
 
           <div className="flex items-center pt-1">
             <span className="w-28 font-semibold">ফোন</span>
             <span className="mx-2">:</span>
-            <span className="flex-1">{student?.studentId?.phone || '—'}</span>
+            <span className="flex-1">{student?.studentId?.guardianPhone || '—'}</span>
           </div>
         </div>
       </div>

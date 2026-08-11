@@ -154,13 +154,13 @@ export const adminRoutes = [
     group: "Examination",
     element: <TeacherMarkEntry />,
   },
-  {
-    name: "Exam Result",
-    path: "exam-result",
-    icon: <Sigma />,
-    group: "Examination",
-    element: <ExamResultPage />,
-  },
+  // {
+  //   name: "Exam Result",
+  //   path: "exam-result",
+  //   icon: <Sigma />,
+  //   group: "Examination",
+  //   element: <ExamResultPage />,
+  // },
   // {
   //   name: "Result Card Preview",
   //   path: "exam-test",
